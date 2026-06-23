@@ -1,95 +1,87 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>MythicMon</title>
+    <title>MythicMon - Pack Shop</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <nav>
+
+<nav>
 
     <div class="logo">
         MythicMon
     </div>
 
     <div class="nav-links">
-        <a href="#shop">Shop</a>
-        <a href="#safari">Safari</a>
-        <a href="#collection">Collection</a>
+        <a href="index.html">Shop</a>
+        <a href="safari.html">Safari</a>
+        <a href="collection.html">Collection</a>
     </div>
 
     <div class="currency">
-
         Coins:
-        <span id="coin-display">
-        100
-        </span>
-
+        <span id="coin-display">100</span>
     </div>
 
 </nav>
 
 <section class="hero">
 
-    <h1>
-        Pack Shop
-    </h1>
+    <h1>Pack Shop</h1>
 
     <p>
-        Open packs, collect creatures,
-        and build your collection.
+        Open packs and collect creatures.
     </p>
 
-    <section class="pack-section">
+</section>
 
-        <div class="pack-grid">
+<section class="pack-section">
 
-            <!-- WATER PACK -->
-            <div class="pack-card water">
+    <div class="pack-grid">
 
-                <h3>Aqua Surge</h3>
+        <div class="pack-card reef-pack">
 
-                <p>Water Type Pack</p>
+            <h3>Tidal Reef Pack</h3>
 
-                <button onclick="openPack()">
-                    Open Pack
-                </button>
+            <p>Creatures from Tidal Reef Safari</p>
 
-            </div>
-
-            <!-- FIRE PACK -->
-            <div class="pack-card fire">
-
-                <h3>Inferno Blaze</h3>
-
-                <p>Fire Type Pack</p>
-
-                <button onclick="openPack()">
-                    Open Pack
-                </button>
-
-            </div>
-
-            <!-- NATURE PACK -->
-            <div class="pack-card nature">
-
-                <h3>Jungle Bloom</h3>
-
-                <p>Nature Type Pack</p>
-
-                <button onclick="openPack()">
-                    Open Pack
-                </button>
-            </div>
+            <button onclick="openPack('reef')">
+                Open Pack
+            </button>
 
         </div>
 
-    </section>
+        <div class="pack-card ember-pack">
+
+            <h3>Ember Valley Pack</h3>
+
+            <p>Creatures from Ember Valley Safari</p>
+
+            <button onclick="openPack('ember')">
+                Open Pack
+            </button>
+
+        </div>
+
+        <div class="pack-card forest-pack">
+
+            <h3>Verdant Forest Pack</h3>
+
+            <p>Creatures from Verdant Forest Safari</p>
+
+            <button onclick="openPack('forest')">
+                Open Pack
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
 
 <section id="starter-selection">
 
-    <h2>
-        Choose Your Starter
-    </h2>
+    <h2>Choose Your Starter</h2>
 
     <button onclick="chooseStarter('Flaretail')">
         Flaretail
@@ -105,62 +97,13 @@
 
 </section>
 
-
 <section id="game-output">
 
-    <h2>
-        Game Events
-    </h2>
+    <h2>Pack Results</h2>
 
-    <div id="output">
-
-    </div>
+    <div id="output"></div>
 
 </section>
-
-<section id="safari">
-
-    <h2>
-        Safari Zone
-    </h2>
-
-    <button>
-        Enter Meadow Safari
-    </button>
-
-    <button>
-        Enter Mountain Safari
-    </button>
-
-    <button>
-        Enter Cosmic Safari
-    </button>
-
-</section>
-
-<section id="collection">
-
-    <h2>
-        Collection
-    </h2>
-
-    <div id="collection-list">
-
-    </div>
-
-</section>
-
-<button onclick="showCollection()">
-    View Collection
-</button>
-
-<div id="collection-list"></div>
-
-<button onclick="startBattle()">
-    Explore Safari
-</button>
-
-<div id="battle-area"></div>
 
 <script src="script.js"></script>
 
