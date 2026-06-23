@@ -50,9 +50,16 @@ function loadGame()
         gameData =
         JSON.parse(save);
 
+        const starterSection =
         document.getElementById(
             "starter-selection"
-        ).style.display = "none";
+        );
+
+        if(starterSection)
+        {
+            starterSection.style.display =
+            "none";
+        }
 
         document.getElementById(
             "output"
