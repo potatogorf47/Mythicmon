@@ -8,11 +8,7 @@ let gameData = {
 
 
 };
-{
-    starter: null,
-    coins: 100,
-    collection: []
-}
+
 function chooseStarter(name)
 {
     gameData.starter = name;
