@@ -86,29 +86,63 @@ function updateCoins()
     ).textContent =
     gameData.coins;
 }
-function openPack()
+function openPack(zone)
 {
-    if(gameData.starter === null)
+    if(gameData.coins < 10)
     {
-        alert(
-            "Choose a starter first!"
-        );
-
+        alert("Not enough coins!");
         return;
     }
+
+    const available =
+    creatures.filter(
+        creature =>
+        creature.zone === zone &&
+        gameData.unlocked.includes(
+            creature.name
+        )
+    );
+
+    if(available.length === 0)
+    {
+        alert(
+            "You haven't unlocked any creatures from this zone yet!"
+        );
+        return;
+    }
+
+    gameData.coins -= 10;
+
+    const pull =
+    available[
+        Math.floor(
+            Math.random() *
+            available.length
+        )
+    ];
+
+    gameData.collection.push(
+        pull.name
+    );
+
+    updateCoins();
+
+    saveGame();
 
     document.getElementById(
         "output"
     ).innerHTML =
 
     `
-    <h2>
-        Pack Opened!
-    </h2>
+    <div class="pull-card">
 
-    <p>
-        More coming soon...
-    </p>
+        <h2>${pull.name}</h2>
+
+        <p>${pull.type}</p>
+
+        <p>${pull.rarity}</p>
+
+    </div>
     `;
 }
 function startBattle()
