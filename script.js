@@ -1,4 +1,3 @@
-console.log("SCRIPT LOADED");
 let gameData = {
 
     starter: null,
@@ -9,6 +8,8 @@ let gameData = {
 
 
 };
+
+console.log("SCRIPT LOADED");
 
 function chooseStarter(name)
 {
