@@ -228,6 +228,16 @@ function showCollection()
     ).innerHTML =
     html;
 }
+function enterSafari(zone)
+{
+    localStorage.setItem(
+        "currentZone",
+        zone
+    );
+
+    window.location.href =
+    "battle.html";
+}
 loadGame();
 updateCoins();
 
