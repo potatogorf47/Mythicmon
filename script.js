@@ -111,6 +111,89 @@ function openPack()
     </p>
     `;
 }
+function startBattle()
+{
+    const wildCreatures =
+    [
+        "Sparkit",
+        "Mosshell",
+        "Pebbite"
+    ];
+
+    const wild =
+    wildCreatures[
+        Math.floor(
+            Math.random() *
+            wildCreatures.length
+        )
+    ];
+
+    document.getElementById(
+        "battle-area"
+    ).innerHTML =
+
+    `
+    <h3>
+        Wild ${wild} appeared!
+    </h3>
+
+    <button onclick="winBattle('${wild}')">
+        Attack
+    </button>
+    `;
+}
+function winBattle(creature)
+{
+    if(
+        !gameData.collection.includes(
+            creature
+        )
+    )
+    {
+        gameData.collection.push(
+            creature
+        );
+    }
+
+    saveGame();
+
+    document.getElementById(
+        "battle-area"
+    ).innerHTML =
+
+    `
+    <h3>
+        You defeated ${creature}!
+    </h3>
+
+    <p>
+        Added to collection.
+    </p>
+    `;
+}
+function showCollection()
+{
+    let html = "";
+
+    gameData.collection.forEach(
+        creature =>
+        {
+            html +=
+            `
+            <div class="card">
+
+                ${creature}
+
+            </div>
+            `;
+        }
+    );
+
+    document.getElementById(
+        "collection-list"
+    ).innerHTML =
+    html;
+}
 loadGame();
 updateCoins();
 
