@@ -1,3 +1,4 @@
+console.log("SCRIPT LOADED");
 let gameData = {
 
     starter: null,
