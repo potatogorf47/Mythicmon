@@ -1,20 +1,64 @@
-<!DOCTYPE="html"
-<section id="safari">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MythicMon - Safari</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-    <h2>
-        Safari Zone
-    </h2>
+<nav>
 
-    <button>
-        Enter Meadow Safari
-    </button>
+    <div class="logo">
+        MythicMon
+    </div>
 
-    <button>
-        Enter Mountain Safari
-    </button>
+    <div class="nav-links">
+        <a href="index.html">Shop</a>
+        <a href="safari.html">Safari</a>
+        <a href="collection.html">Collection</a>
+    </div>
 
-    <button>
-        Enter Cosmic Safari
-    </button>
+</nav>
 
-</section>
+<h1>Safari Zones</h1>
+
+<div class="safari-grid">
+
+    <div class="safari-card">
+
+        <h2>Verdant Forest</h2>
+
+        <button onclick="startBattle('forest')">
+            Explore
+        </button>
+
+    </div>
+
+    <div class="safari-card">
+
+        <h2>Ember Valley</h2>
+
+        <button onclick="startBattle('ember')">
+            Explore
+        </button>
+
+    </div>
+
+    <div class="safari-card">
+
+        <h2>Tidal Reef</h2>
+
+        <button onclick="startBattle('reef')">
+            Explore
+        </button>
+
+    </div>
+
+</div>
+
+<div id="battle-area"></div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
