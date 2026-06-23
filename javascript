@@ -6,6 +6,7 @@ let gameData = {
 
     collection: []
 
+
 };
 {
     starter: null,
