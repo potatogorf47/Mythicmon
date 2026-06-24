@@ -2,61 +2,204 @@
 // GAME DATA
 // ======================
 
-let gameData = {
+let gameData =
+{
     starter: null,
+
     coins: 100,
+
     collection: [],
-    unlocked: []
+
+    unlocked: [],
+
+    level: 1
 };
 
 // ======================
 // CREATURES
 // ======================
 
-const creatures = [
+const creatures =
+[
+    {
+        name: "Flaretail",
+        type: "Fire",
+        rarity: "Starter",
+        zone: "ember",
+        hp: 55,
+        attack: 12
+    },
 
-{
-    name: "Flaretail",
-    type: "Flame",
-    rarity: "Starter",
-    zone: "ember"
-},
+    {
+        name: "Aquafang",
+        type: "Water",
+        rarity: "Starter",
+        zone: "reef",
+        hp: 60,
+        attack: 10
+    },
 
-{
-    name: "Aquafang",
-    type: "Tide",
-    rarity: "Starter",
-    zone: "reef"
-},
+    {
+        name: "Leafhorn",
+        type: "Nature",
+        rarity: "Starter",
+        zone: "forest",
+        hp: 65,
+        attack: 9
+    },
 
-{
-    name: "Leafhorn",
-    type: "Grove",
-    rarity: "Starter",
-    zone: "forest"
-},
+    {
+        name: "Sparkit",
+        type: "Electric",
+        rarity: "Common",
+        zone: "forest",
+        hp: 40,
+        attack: 8
+    },
 
-{
-    name: "Sparkit",
-    type: "Storm",
-    rarity: "Common",
-    zone: "forest"
-},
+    {
+        name: "Mosshell",
+        type: "Nature",
+        rarity: "Common",
+        zone: "forest",
+        hp: 45,
+        attack: 7
+    },
 
-{
-    name: "Mosshell",
-    type: "Grove",
-    rarity: "Common",
-    zone: "forest"
-},
+    {
+        name: "Thunderclaw",
+        type: "Electric",
+        rarity: "Rare",
+        zone: "ember",
+        hp: 70,
+        attack: 14
+    },
 
-{
-    name: "Thunderclaw",
-    type: "Storm",
-    rarity: "Rare",
-    zone: "ember"
-}
+    {
+        name: "Crystalback",
+        type: "Water",
+        rarity: "Rare",
+        zone: "reef",
+        hp: 75,
+        attack: 12
+    },
 
+    {
+        name: "Shadowfang",
+        type: "Dark",
+        rarity: "Epic",
+        zone: "cavern",
+        hp: 90,
+        attack: 18
+    },
+
+    {
+        name: "Stonejaw",
+        type: "Rock",
+        rarity: "Common",
+        zone: "cavern",
+        hp: 65,
+        attack: 9
+    },
+
+    {
+        name: "Magmabear",
+        type: "Fire",
+        rarity: "Epic",
+        zone: "volcano",
+        hp: 95,
+        attack: 20
+    },
+
+    {
+        name: "Blizzardon",
+        type: "Ice",
+        rarity: "Rare",
+        zone: "tundra",
+        hp: 80,
+        attack: 15
+    },
+
+    {
+        name: "Frosthorn",
+        type: "Ice",
+        rarity: "Common",
+        zone: "tundra",
+        hp: 60,
+        attack: 10
+    },
+
+    {
+        name: "Venomwing",
+        type: "Poison",
+        rarity: "Epic",
+        zone: "swamp",
+        hp: 85,
+        attack: 17
+    },
+
+    {
+        name: "Bogtoad",
+        type: "Poison",
+        rarity: "Common",
+        zone: "swamp",
+        hp: 55,
+        attack: 8
+    },
+
+    {
+        name: "Skyserpent",
+        type: "Air",
+        rarity: "Legendary",
+        zone: "sky",
+        hp: 120,
+        attack: 28
+    },
+
+    {
+        name: "Cloudrake",
+        type: "Air",
+        rarity: "Rare",
+        zone: "sky",
+        hp: 75,
+        attack: 14
+    },
+
+    {
+        name: "Solarion",
+        type: "Light",
+        rarity: "Legendary",
+        zone: "temple",
+        hp: 130,
+        attack: 30
+    },
+
+    {
+        name: "Moonfang",
+        type: "Dark",
+        rarity: "Epic",
+        zone: "temple",
+        hp: 95,
+        attack: 19
+    },
+
+    {
+        name: "Ironhide",
+        type: "Steel",
+        rarity: "Rare",
+        zone: "factory",
+        hp: 90,
+        attack: 13
+    },
+
+    {
+        name: "Voltiger",
+        type: "Electric",
+        rarity: "Epic",
+        zone: "factory",
+        hp: 100,
+        attack: 22
+    }
 ];
 
 // ======================
