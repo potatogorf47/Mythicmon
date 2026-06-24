@@ -11,6 +11,31 @@ let gameData = {
 
 console.log("SCRIPT LOADED");
 
+const creatures = [
+
+{
+    name: "Sparkit",
+    type: "Storm",
+    rarity: "Common",
+    zone: "forest"
+},
+
+{
+    name: "Mosshell",
+    type: "Grove",
+    rarity: "Common",
+    zone: "forest"
+},
+
+{
+    name: "Thunderclaw",
+    type: "Storm",
+    rarity: "Rare",
+    zone: "ember"
+}
+
+];
+
 function chooseStarter(name)
 {
     gameData.starter = name;
@@ -98,10 +123,12 @@ function openPack(zone)
     creatures.filter(
         creature =>
         creature.zone === zone &&
-        gameData.unlocked.includes(
-            creature.name
-        )
-    );
+        let gameData = {
+            starter: null,
+            coins: 100,
+            collection: [],
+            unlocked: []
+};
 
     if(available.length === 0)
     {
@@ -203,31 +230,81 @@ function winBattle(creature)
     <p>
         Added to collection.
     </p>
+    if(
+    !gameData.unlocked.includes(
+        creature
+    )
+)
+{
+    gameData.unlocked.push(
+        creature
+    );
+}
     `;
+    
 }
 function showCollection()
 {
+    const grid =
+    document.getElementById(
+        "collection-grid"
+    );
+
+    if(!grid)
+    {
+        return;
+    }
+
+    let html = "";
+
+    gameData.collection.forEach(
+        creature =>
+        {
+function showCollection()
+{
+    const grid =
+    document.getElementById(
+        "collection-grid"
+    );
+
+    if(!grid)
+    {
+        return;
+    }
+
     let html = "";
 
     gameData.collection.forEach(
         creature =>
         {
             html +=
-            `
-            <div class="card">
 
-                ${creature}
+            `
+            <div class="collection-card">
+
+                <div class="art">
+                    Art
+                </div>
+
+                <div class="card-info">
+
+                    Lv 1
+
+                    <br>
+
+                    ${creature}
+
+                </div>
 
             </div>
             `;
         }
     );
 
-    document.getElementById(
-        "collection-list"
-    ).innerHTML =
-    html;
+    grid.innerHTML = html;
 }
+
+
 function enterSafari(zone)
 {
     localStorage.setItem(
@@ -240,4 +317,5 @@ function enterSafari(zone)
 }
 loadGame();
 updateCoins();
+showCollection();
 
