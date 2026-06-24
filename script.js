@@ -145,25 +145,17 @@ function chooseStarter(name)
     gameData.starter = name;
 
     if(
-        !gameData.collection.includes(
-            name
-        )
+        !gameData.collection.includes(name)
     )
     {
-        gameData.collection.push(
-            name
-        );
+        gameData.collection.push(name);
     }
 
     if(
-        !gameData.unlocked.includes(
-            name
-        )
+        !gameData.unlocked.includes(name)
     )
     {
-        gameData.unlocked.push(
-            name
-        );
+        gameData.unlocked.push(name);
     }
 
     saveGame();
@@ -203,7 +195,7 @@ function openPack(zone)
     if(available.length === 0)
     {
         alert(
-            "No creatures available."
+            "No creatures found."
         );
         return;
     }
@@ -220,16 +212,9 @@ function openPack(zone)
         )
     ];
 
-    if(
-        !gameData.collection.includes(
-            pull.name
-        )
-    )
-    {
-        gameData.collection.push(
-            pull.name
-        );
-    }
+    gameData.collection.push(
+        pull.name
+    );
 
     saveGame();
 
@@ -238,15 +223,7 @@ function openPack(zone)
 
 function showCard(card)
 {
-    const oldOverlay =
-    document.getElementById(
-        "pack-overlay"
-    );
-
-    if(oldOverlay)
-    {
-        oldOverlay.remove();
-    }
+    closePack();
 
     const overlay =
     document.createElement(
@@ -264,13 +241,9 @@ function showCard(card)
             ART
         </div>
 
-        <h2>
-            ${card.name}
-        </h2>
+        <h2>${card.name}</h2>
 
-        <p>
-            ${card.rarity}
-        </p>
+        <p>${card.rarity}</p>
 
         <button onclick="closePack()">
             Continue
@@ -283,6 +256,7 @@ function showCard(card)
         overlay
     );
 }
+
 function closePack()
 {
     const overlay =
@@ -295,12 +269,18 @@ function closePack()
         overlay.remove();
     }
 }
+
 // ======================
 // SAFARI
 // ======================
 
 function enterSafari(zone)
 {
+    console.log(
+        "Entering safari:",
+        zone
+    );
+
     localStorage.setItem(
         "currentZone",
         zone
@@ -308,6 +288,47 @@ function enterSafari(zone)
 
     window.location.href =
     "battle.html";
+}
+
+// ======================
+// COLLECTION
+// ======================
+
+function showCollection()
+{
+    const grid =
+    document.getElementById(
+        "collection-grid"
+    );
+
+    if(!grid)
+    {
+        return;
+    }
+
+    let html = "";
+
+    gameData.collection.forEach(
+        creature =>
+        {
+            html +=
+            `
+            <div class="collection-card">
+
+                <div class="art">
+                    ART
+                </div>
+
+                <div class="card-info">
+                    ${creature}
+                </div>
+
+            </div>
+            `;
+        }
+    );
+
+    grid.innerHTML = html;
 }
 
 // ======================
@@ -316,21 +337,8 @@ function enterSafari(zone)
 
 loadGame();
 updateCoins();
+showCollection();
 
-console.log("BOTTOM OF SCRIPT");
-
-function enterSafari(zone)
-{
-    console.log("ENTER SAFARI");
-
-    localStorage.setItem(
-        "currentZone",
-        zone
-    );
-
-    window.location.href =
-    "battle.html";
-}
-
-console.log(typeof enterSafari);
+console.log(
+    "SCRIPT LOADED SUCCESSFULLY"
 );
