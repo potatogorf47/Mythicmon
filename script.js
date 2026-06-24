@@ -47,18 +47,25 @@ function chooseStarter(name)
         "starter-selection"
     ).style.display = "none";
 
+    const output =
     document.getElementById(
         "output"
-    ).innerHTML =
+    );
 
-    `
-    <h2>
-        You chose ${name}!
-    </h2>
-    `;
+    if(output)
+    {
+        output.innerHTML =
+        `
+        <h2>
+            Welcome Back!
+        </h2>
 
-    saveGame();
-}
+        <p>
+            Starter:
+            ${gameData.starter}
+        </p>
+        `;
+    }
 function saveGame()
 {
     localStorage.setItem(
