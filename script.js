@@ -431,6 +431,7 @@ function showCollection()
 
     grid.innerHTML = html;
 }
+console.log("END OF FILE REACHED");
 
 // ======================
 // STARTUP
