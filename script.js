@@ -431,7 +431,6 @@ function showCollection()
 
     grid.innerHTML = html;
 }
-console.log("END OF FILE REACHED");
 
 // ======================
 // STARTUP
@@ -440,3 +439,5 @@ console.log("END OF FILE REACHED");
 loadGame();
 updateCoins();
 showCollection();
+console.log("END OF FILE REACHED");
+
