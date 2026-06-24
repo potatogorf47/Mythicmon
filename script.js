@@ -1,18 +1,40 @@
+// ======================
+// GAME DATA
+// ======================
+
 let gameData = {
-
     starter: null,
-
     coins: 100,
-
     collection: [],
-
     unlocked: []
-
 };
 
-console.log("SCRIPT LOADED");
+// ======================
+// CREATURES
+// ======================
 
 const creatures = [
+
+{
+    name: "Flaretail",
+    type: "Flame",
+    rarity: "Starter",
+    zone: "ember"
+},
+
+{
+    name: "Aquafang",
+    type: "Tide",
+    rarity: "Starter",
+    zone: "reef"
+},
+
+{
+    name: "Leafhorn",
+    type: "Grove",
+    rarity: "Starter",
+    zone: "forest"
+},
 
 {
     name: "Sparkit",
@@ -37,35 +59,10 @@ const creatures = [
 
 ];
 
-function chooseStarter(name)
-{
-    gameData.starter = name;
+// ======================
+// SAVE / LOAD
+// ======================
 
-    gameData.collection.push(name);
-
-    document.getElementById(
-        "starter-selection"
-    ).style.display = "none";
-
-    const output =
-    document.getElementById(
-        "output"
-    );
-
-    if(output)
-    {
-        output.innerHTML =
-        `
-        <h2>
-            Welcome Back!
-        </h2>
-
-        <p>
-            Starter:
-            ${gameData.starter}
-        </p>
-        `;
-    }
 function saveGame()
 {
     localStorage.setItem(
@@ -73,6 +70,7 @@ function saveGame()
         JSON.stringify(gameData)
     );
 }
+
 function loadGame()
 {
     const save =
@@ -84,66 +82,94 @@ function loadGame()
     {
         gameData =
         JSON.parse(save);
+
         if(!gameData.unlocked)
         {
-        gameData.unlocked = [];
+            gameData.unlocked = [];
         }
-
-        const starterSection =
-        document.getElementById(
-            "starter-selection"
-        );
-
-        if(starterSection)
-        {
-            starterSection.style.display =
-            "none";
-        }
-
-        document.getElementById(
-            "output"
-        ).innerHTML =
-
-        `
-        <h2>
-            Welcome Back!
-        </h2>
-
-        <p>
-            Starter:
-            ${gameData.starter}
-        </p>
-        `;
     }
 }
+
+// ======================
+// COINS
+// ======================
+
 function updateCoins()
 {
+    const coinDisplay =
     document.getElementById(
         "coin-display"
-    ).textContent =
-    gameData.coins;
+    );
+
+    if(coinDisplay)
+    {
+        coinDisplay.textContent =
+        gameData.coins;
+    }
 }
+
+// ======================
+// STARTER SELECTION
+// ======================
+
+function chooseStarter(name)
+{
+    gameData.starter = name;
+
+    if(
+        !gameData.collection.includes(
+            name
+        )
+    )
+    {
+        gameData.collection.push(name);
+    }
+
+    if(
+        !gameData.unlocked.includes(
+            name
+        )
+    )
+    {
+        gameData.unlocked.push(name);
+    }
+
+    saveGame();
+
+    alert(
+        "You chose " + name + "!"
+    );
+
+    location.reload();
+}
+
+// ======================
+// PACK OPENING
+// ======================
+
 function openPack(zone)
 {
     if(gameData.coins < 10)
     {
-        alert("Not enough coins!");
+        alert(
+            "Not enough coins!"
+        );
         return;
     }
 
-const available =
-creatures.filter(
-    creature =>
+    const available =
+    creatures.filter(
+        creature =>
         creature.zone === zone &&
         gameData.unlocked.includes(
             creature.name
         )
-);
+    );
 
     if(available.length === 0)
     {
         alert(
-            "You haven't unlocked any creatures from this zone yet!"
+            "Defeat creatures in this safari first!"
         );
         return;
     }
@@ -162,50 +188,96 @@ creatures.filter(
         pull.name
     );
 
-    updateCoins();
-
     saveGame();
 
+    updateCoins();
+
+    const output =
     document.getElementById(
         "output"
-    ).innerHTML =
+    );
 
-    `
-    <div class="pull-card">
+    if(output)
+    {
+        output.innerHTML =
+        `
+        <div class="pull-card">
 
-        <h2>${pull.name}</h2>
+            <h2>${pull.name}</h2>
 
-        <p>${pull.type}</p>
+            <p>${pull.type}</p>
 
-        <p>${pull.rarity}</p>
+            <p>${pull.rarity}</p>
 
-    </div>
-    `;
+        </div>
+        `;
+    }
 }
+
+// ======================
+// SAFARI
+// ======================
+
+function enterSafari(zone)
+{
+    localStorage.setItem(
+        "currentZone",
+        zone
+    );
+
+    window.location.href =
+    "battle.html";
+}
+
+// ======================
+// BATTLE SYSTEM
+// ======================
+
+let enemyHP = 50;
+let playerHP = 60;
+let currentEnemy = "";
+
 function startBattle()
 {
-    const wildCreatures =
-    [
-        "Sparkit",
-        "Mosshell",
-        "Pebbite"
-    ];
+    enemyHP = 50;
+    playerHP = 60;
 
-    const wild =
-    wildCreatures[
+    const zone =
+    localStorage.getItem(
+        "currentZone"
+    );
+
+    const zoneCreatures =
+    creatures.filter(
+        creature =>
+        creature.zone === zone
+    );
+
+    const randomCreature =
+    zoneCreatures[
         Math.floor(
             Math.random() *
-            wildCreatures.length
+            zoneCreatures.length
         )
     ];
 
-    document.getElementById(
-    "battle-area"
-    ).innerHTML =
+    currentEnemy =
+    randomCreature.name;
 
+    const battleArea =
+    document.getElementById(
+        "battle-area"
+    );
+
+    if(!battleArea)
+    {
+        return;
+    }
+
+    battleArea.innerHTML =
     `
     <h2>
-    Wild ${wild}
+        Wild ${currentEnemy}
     </h2>
 
     <p>
@@ -222,121 +294,13 @@ function startBattle()
         </span>
     </p>
 
-    <button onclick="attackEnemy('${wild}')">
+    <button onclick="attackEnemy()">
         Attack
     </button>
     `;
-function winBattle(creature)
-{
-    if(
-        !gameData.unlocked.includes(
-            creature
-        )
-    )
-    {
-        gameData.unlocked.push(
-            creature
-        );
-    }
-
-    if(
-        !gameData.collection.includes(
-            creature
-        )
-    )
-    {
-        gameData.collection.push(
-            creature
-        );
-    }
-
-    saveGame();
-
-    document.getElementById(
-        "battle-area"
-    ).innerHTML =
-
-    `
-    <h3>
-        You defeated ${creature}!
-    </h3>
-
-    <p>
-        Added to collection.
-    </p>
-    `;
 }
 
-function showCollection()
-{
-    const grid =
-    document.getElementById(
-        "collection-grid"
-    );
-
-    if(!grid)
-    {
-        return;
-    }
-    if(
-    gameData.starter &&
-    !gameData.collection.includes(
-        gameData.starter
-    )
-)
-{
-    gameData.collection.push(
-        gameData.starter
-    );
-}
-
-    let html = "";
-
-    gameData.collection.forEach(
-        creature =>
-        {
-            html +=
-
-            `
-            <div class="collection-card">
-
-                <div class="art">
-                    Art
-                </div>
-
-                <div class="card-info">
-
-                    Lv 1
-
-                    <br>
-
-                    ${creature}
-
-                </div>
-
-            </div>
-            `;
-        }
-    );
-
-    grid.innerHTML = html;
-}
-
-
-function enterSafari(zone)
-{
-    localStorage.setItem(
-        "currentZone",
-        zone
-    );
-
-    window.location.href =
-    "battle.html";
-}
-let enemyHP = 50;
-let playerHP = 60;
-
-function attackEnemy(creature)
+function attackEnemy()
 {
     enemyHP -= 15;
 
@@ -354,24 +318,124 @@ function attackEnemy(creature)
 
     if(enemyHP <= 0)
     {
-        winBattle(creature);
+        winBattle();
         return;
     }
 
     if(playerHP <= 0)
     {
-        document.getElementById(
-            "battle-area"
-        ).innerHTML =
-
-        `
-        <h2>
-            You Lost!
-        </h2>
-        `;
+        loseBattle();
     }
 }
+
+function winBattle()
+{
+    gameData.coins += 25;
+
+    if(
+        !gameData.unlocked.includes(
+            currentEnemy
+        )
+    )
+    {
+        gameData.unlocked.push(
+            currentEnemy
+        );
+    }
+
+    if(
+        !gameData.collection.includes(
+            currentEnemy
+        )
+    )
+    {
+        gameData.collection.push(
+            currentEnemy
+        );
+    }
+
+    saveGame();
+
+    document.getElementById(
+        "battle-area"
+    ).innerHTML =
+    `
+    <h2>
+        Victory!
+    </h2>
+
+    <p>
+        ${currentEnemy}
+        unlocked!
+    </p>
+
+    <p>
+        +25 Coins
+    </p>
+    `;
+}
+
+function loseBattle()
+{
+    document.getElementById(
+        "battle-area"
+    ).innerHTML =
+    `
+    <h2>
+        You Lost!
+    </h2>
+
+    <button onclick="startBattle()">
+        Try Again
+    </button>
+    `;
+}
+
+// ======================
+// COLLECTION
+// ======================
+
+function showCollection()
+{
+    const grid =
+    document.getElementById(
+        "collection-grid"
+    );
+
+    if(!grid)
+    {
+        return;
+    }
+
+    let html = "";
+
+    gameData.collection.forEach(
+        creature =>
+        {
+            html +=
+            `
+            <div class="collection-card">
+
+                <div class="art">
+                    Art
+                </div>
+
+                <div class="card-info">
+                    ${creature}
+                </div>
+
+            </div>
+            `;
+        }
+    );
+
+    grid.innerHTML = html;
+}
+
+// ======================
+// STARTUP
+// ======================
+
 loadGame();
 updateCoins();
 showCollection();
-
