@@ -5,13 +5,9 @@
 let gameData =
 {
     starter: null,
-
     coins: 100,
-
     collection: [],
-
     unlocked: [],
-
     level: 1
 };
 
@@ -109,96 +105,6 @@ const creatures =
         zone: "volcano",
         hp: 95,
         attack: 20
-    },
-
-    {
-        name: "Blizzardon",
-        type: "Ice",
-        rarity: "Rare",
-        zone: "tundra",
-        hp: 80,
-        attack: 15
-    },
-
-    {
-        name: "Frosthorn",
-        type: "Ice",
-        rarity: "Common",
-        zone: "tundra",
-        hp: 60,
-        attack: 10
-    },
-
-    {
-        name: "Venomwing",
-        type: "Poison",
-        rarity: "Epic",
-        zone: "swamp",
-        hp: 85,
-        attack: 17
-    },
-
-    {
-        name: "Bogtoad",
-        type: "Poison",
-        rarity: "Common",
-        zone: "swamp",
-        hp: 55,
-        attack: 8
-    },
-
-    {
-        name: "Skyserpent",
-        type: "Air",
-        rarity: "Legendary",
-        zone: "sky",
-        hp: 120,
-        attack: 28
-    },
-
-    {
-        name: "Cloudrake",
-        type: "Air",
-        rarity: "Rare",
-        zone: "sky",
-        hp: 75,
-        attack: 14
-    },
-
-    {
-        name: "Solarion",
-        type: "Light",
-        rarity: "Legendary",
-        zone: "temple",
-        hp: 130,
-        attack: 30
-    },
-
-    {
-        name: "Moonfang",
-        type: "Dark",
-        rarity: "Epic",
-        zone: "temple",
-        hp: 95,
-        attack: 19
-    },
-
-    {
-        name: "Ironhide",
-        type: "Steel",
-        rarity: "Rare",
-        zone: "factory",
-        hp: 90,
-        attack: 13
-    },
-
-    {
-        name: "Voltiger",
-        type: "Electric",
-        rarity: "Epic",
-        zone: "factory",
-        hp: 100,
-        attack: 22
     }
 ];
 
@@ -216,13 +122,6 @@ function saveGame()
 
 function loadGame()
 {
-    if(!gameData.starter)
-{
-    document.getElementById(
-        "starter-modal"
-    ).style.display =
-    "flex";
-}
     const save =
     localStorage.getItem(
         "mythicmon"
@@ -232,11 +131,42 @@ function loadGame()
     {
         gameData =
         JSON.parse(save);
+    }
 
-        if(!gameData.unlocked)
-        {
-            gameData.unlocked = [];
-        }
+    if(!gameData.collection)
+    {
+        gameData.collection = [];
+    }
+
+    if(!gameData.unlocked)
+    {
+        gameData.unlocked = [];
+    }
+
+    if(
+        gameData.starter &&
+        !gameData.collection.includes(
+            gameData.starter
+        )
+    )
+    {
+        gameData.collection.push(
+            gameData.starter
+        );
+    }
+
+    const starterModal =
+    document.getElementById(
+        "starter-modal"
+    );
+
+    if(
+        starterModal &&
+        !gameData.starter
+    )
+    {
+        starterModal.style.display =
+        "flex";
     }
 }
 
@@ -246,20 +176,20 @@ function loadGame()
 
 function updateCoins()
 {
-    const coinDisplay =
+    const display =
     document.getElementById(
         "coin-display"
     );
 
-    if(coinDisplay)
+    if(display)
     {
-        coinDisplay.textContent =
+        display.textContent =
         gameData.coins;
     }
 }
 
 // ======================
-// STARTER SELECTION
+// STARTER
 // ======================
 
 function chooseStarter(name)
@@ -271,15 +201,28 @@ function chooseStarter(name)
 
     gameData.starter = name;
 
-    gameData.collection.push(name);
+    gameData.collection.push(
+        name
+    );
 
-    gameData.unlocked.push(name);
+    gameData.unlocked.push(
+        name
+    );
 
     saveGame();
 
+    const modal =
     document.getElementById(
         "starter-modal"
-    ).style.display = "none";
+    );
+
+    if(modal)
+    {
+        modal.style.display =
+        "none";
+    }
+
+    showCollection();
 }
 
 // ======================
@@ -288,27 +231,36 @@ function chooseStarter(name)
 
 function openPack(zone)
 {
+    const available =
+    creatures.filter(
+        creature =>
+        creature.zone === zone
+    );
+
+    if(available.length === 0)
+    {
+        alert(
+            "No creatures in this pack."
+        );
+        return;
+    }
+
     if(gameData.coins < 10)
     {
-        alert("Not enough coins");
+        alert(
+            "Not enough coins."
+        );
         return;
     }
 
     gameData.coins -= 10;
 
+    updateCoins();
+
     let pulls = [];
 
     for(let i = 0; i < 5; i++)
     {
-        const available =
-        creatures.filter(
-            c =>
-            c.zone === zone &&
-            gameData.unlocked.includes(
-                c.name
-            )
-        );
-
         const pull =
         available[
             Math.floor(
@@ -326,14 +278,18 @@ function openPack(zone)
 
     saveGame();
 
-    showPackOpening(pulls);
+    showPackOpening(
+        pulls
+    );
 }
 
 function showPackOpening(cards)
 {
     let current = 0;
 
-    showCard(cards[current]);
+    showCard(
+        cards[current]
+    );
 
     window.nextCard =
     function()
@@ -342,32 +298,56 @@ function showPackOpening(cards)
 
         if(current >= cards.length)
         {
-            location.reload();
+            const overlay =
+            document.getElementById(
+                "pack-overlay"
+            );
+
+            if(overlay)
+            {
+                overlay.remove();
+            }
+
             return;
         }
 
-        showCard(cards[current]);
+        showCard(
+            cards[current]
+        );
     };
 }
+
 function showCard(card)
 {
+    const old =
+    document.getElementById(
+        "pack-overlay"
+    );
+
+    if(old)
+    {
+        old.remove();
+    }
+
     document.body.insertAdjacentHTML(
         "beforeend",
 
 `
 <div id="pack-overlay">
 
-<div class="reveal-card ${card.rarity.toLowerCase()}">
+    <div class="reveal-card ${card.rarity.toLowerCase()}">
 
-<h2>${card.name}</h2>
+        <h2>${card.name}</h2>
 
-<p>${card.rarity}</p>
+        <p>${card.type}</p>
 
-<button onclick="nextCard()">
-Next
-</button>
+        <p>${card.rarity}</p>
 
-</div>
+        <button onclick="nextCard()">
+            Next
+        </button>
+
+    </div>
 
 </div>
 `
@@ -385,12 +365,12 @@ function enterSafari(zone)
         zone
     );
 
-    window.location.href =
+    location.href =
     "battle.html";
 }
 
 // ======================
-// BATTLE SYSTEM
+// BATTLE
 // ======================
 
 let enemyHP = 50;
@@ -399,9 +379,6 @@ let currentEnemy = "";
 
 function startBattle()
 {
-    enemyHP = 50;
-    playerHP = 60;
-
     const zone =
     localStorage.getItem(
         "currentZone"
@@ -413,7 +390,12 @@ function startBattle()
         creature.zone === zone
     );
 
-    const randomCreature =
+    if(zoneCreatures.length === 0)
+    {
+        return;
+    }
+
+    const enemy =
     zoneCreatures[
         Math.floor(
             Math.random() *
@@ -422,7 +404,10 @@ function startBattle()
     ];
 
     currentEnemy =
-    randomCreature.name;
+    enemy.name;
+
+    enemyHP = enemy.hp;
+    playerHP = 80;
 
     const battleArea =
     document.getElementById(
@@ -435,46 +420,45 @@ function startBattle()
     }
 
     battleArea.innerHTML =
-    `
-    <h2>
-        Wild ${currentEnemy}
-    </h2>
+`
+<h2>Wild ${enemy.name}</h2>
 
-    <p>
-        Enemy HP:
-        <span id="enemy-hp">
-            ${enemyHP}
-        </span>
-    </p>
+<p>
+Enemy HP:
+<span id="enemy-hp">${enemyHP}</span>
+</p>
 
-    <p>
-        Your HP:
-        <span id="player-hp">
-            ${playerHP}
-        </span>
-    </p>
+<p>
+Your HP:
+<span id="player-hp">${playerHP}</span>
+</p>
 
-    <button onclick="attackEnemy()">
-        Attack
-    </button>
-    `;
+<button onclick="attackEnemy()">
+Attack
+</button>
+`;
 }
 
 function attackEnemy()
 {
     enemyHP -= 15;
-
     playerHP -= 8;
 
     document.getElementById(
         "enemy-hp"
     ).textContent =
-    enemyHP;
+    Math.max(
+        enemyHP,
+        0
+    );
 
     document.getElementById(
         "player-hp"
     ).textContent =
-    playerHP;
+    Math.max(
+        playerHP,
+        0
+    );
 
     if(enemyHP <= 0)
     {
@@ -515,24 +499,18 @@ function winBattle()
     }
 
     saveGame();
+    updateCoins();
 
     document.getElementById(
         "battle-area"
     ).innerHTML =
-    `
-    <h2>
-        Victory!
-    </h2>
+`
+<h2>Victory!</h2>
 
-    <p>
-        ${currentEnemy}
-        unlocked!
-    </p>
+<p>${currentEnemy} unlocked!</p>
 
-    <p>
-        +25 Coins
-    </p>
-    `;
+<p>+25 Coins</p>
+`;
 }
 
 function loseBattle()
@@ -540,15 +518,13 @@ function loseBattle()
     document.getElementById(
         "battle-area"
     ).innerHTML =
-    `
-    <h2>
-        You Lost!
-    </h2>
+`
+<h2>You Lost!</h2>
 
-    <button onclick="startBattle()">
-        Try Again
-    </button>
-    `;
+<button onclick="startBattle()">
+Try Again
+</button>
+`;
 }
 
 // ======================
@@ -578,24 +554,29 @@ function showCollection()
                 c.name === creatureName
             );
 
+            if(!creature)
+            {
+                return;
+            }
+
             grid.innerHTML +=
-            `
-            <div class="collection-card">
+`
+<div class="collection-card">
 
-                <div class="art">
-                    Art
-                </div>
+    <div class="art">
+        Art
+    </div>
 
-                <div>
-                    ${creature.name}
-                </div>
+    <div>
+        ${creature.name}
+    </div>
 
-                <div>
-                    ${creature.rarity}
-                </div>
+    <div>
+        ${creature.rarity}
+    </div>
 
-            </div>
-            `;
+</div>
+`;
         }
     );
 }
@@ -607,5 +588,8 @@ function showCollection()
 loadGame();
 updateCoins();
 showCollection();
-console.log("END OF FILE REACHED");
+
+console.log(
+    "SCRIPT LOADED"
+);
 
