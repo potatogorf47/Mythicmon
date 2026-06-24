@@ -8,16 +8,39 @@ body {
     color: white;
     font-family: Arial, sans-serif;
 }
-nav {
+nav
+{
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
 
-    padding: 20px 40px;
+    padding: 20px 50px;
 
-    background: #120a38;
+    background: #151515;
+}
 
-    border-bottom: 1px solid #2d1d73;
+.nav-links
+{
+    position: absolute;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    gap: 30px;
+}
+
+.nav-links a
+{
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: bold;
 }
 .logo {
     font-size: 28px;
@@ -25,19 +48,7 @@ nav {
 
     color: #d98cff;
 }
-.nav-links {
-    display: flex;
-    gap: 25px;
-}
-.nav-links a {
-    color: white;
-    text-decoration: none;
 
-    transition: 0.3s;
-}
-.nav-links a:hover {
-    color: #c16cff;
-}
 .currency {
     background: #1d124d;
 
@@ -200,35 +211,49 @@ button:hover {
 }
 .pack-card
 {
-    border-radius:20px;
+    width: 240px;
 
-    padding:20px;
+    height: 340px;
 
-    transition:0.3s;
+    border-radius: 25px;
 
-    cursor:pointer;
+    padding: 20px;
+
+    color: white;
+
+    text-align: center;
+
+    transition: 0.3s;
+
+    cursor: pointer;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
 }
 
 .pack-card:hover
 {
-    transform:translateY(-8px);
+    transform:
+    scale(1.05);
 
     box-shadow:
-    0 0 20px rgba(
-    255,
-    255,
-    255,
-    0.3
+    0 0 25px rgba(
+        255,
+        255,
+        255,
+        0.2
     );
 }
-
-.reef-pack
+.forest-pack
 {
     background:
     linear-gradient(
-    135deg,
-    #00aaff,
-    #0044ff
+        135deg,
+        #2e8b57,
+        #145a32
     );
 }
 
@@ -236,19 +261,19 @@ button:hover {
 {
     background:
     linear-gradient(
-    135deg,
-    #ff6600,
-    #ff2222
+        135deg,
+        #ff6600,
+        #b22222
     );
 }
 
-.forest-pack
+.reef-pack
 {
     background:
     linear-gradient(
-    135deg,
-    #00cc55,
-    #006633
+        135deg,
+        #00bfff,
+        #0047ab
     );
 }
 
@@ -337,4 +362,52 @@ button:hover {
     height:100%;
 
     background:lime;
+}
+.safari-card
+{
+    width: 320px;
+
+    background: #222;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    transition: 0.3s;
+
+    cursor: pointer;
+
+    box-shadow:
+    0 0 20px rgba(
+    0,
+    0,
+    0,
+    0.5
+    );
+}
+
+.safari-card:hover
+{
+    transform:
+    translateY(-10px);
+
+    box-shadow:
+    0 0 25px rgba(
+    255,
+    255,
+    255,
+    0.15
+    );
+}
+.safari-grid
+{
+    display: flex;
+
+    justify-content: center;
+
+    gap: 40px;
+
+    flex-wrap: wrap;
+
+    margin-top: 40px;
 }
