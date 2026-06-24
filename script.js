@@ -4,8 +4,9 @@ let gameData = {
 
     coins: 100,
 
-    collection: []
+    collection: [],
 
+    unlocked: []
 
 };
 
@@ -123,11 +124,7 @@ function openPack(zone)
     creatures.filter(
         creature =>
         creature.zone === zone &&
-        let gameData = {
-            starter: null,
-            coins: 100,
-            collection: [],
-            unlocked: []
+
 };
 
     if(available.length === 0)
@@ -206,31 +203,6 @@ function startBattle()
 function winBattle(creature)
 {
     if(
-        !gameData.collection.includes(
-            creature
-        )
-    )
-    {
-        gameData.collection.push(
-            creature
-        );
-    }
-
-    saveGame();
-
-    document.getElementById(
-        "battle-area"
-    ).innerHTML =
-
-    `
-    <h3>
-        You defeated ${creature}!
-    </h3>
-
-    <p>
-        Added to collection.
-    </p>
-    if(
     !gameData.unlocked.includes(
         creature
     )
@@ -240,26 +212,21 @@ function winBattle(creature)
         creature
     );
 }
-    `;
-    
-}
-function showCollection()
-{
-    const grid =
-    document.getElementById(
-        "collection-grid"
-    );
 
-    if(!grid)
-    {
-        return;
-    }
+document.getElementById(
+    "battle-area"
+).innerHTML =
 
-    let html = "";
+`
+<h3>
+    You defeated ${creature}!
+</h3>
 
-    gameData.collection.forEach(
-        creature =>
-        {
+<p>
+    Added to collection.
+</p>
+`;
+
 function showCollection()
 {
     const grid =
