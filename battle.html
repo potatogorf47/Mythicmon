@@ -10,66 +10,98 @@ href="style.css">
 
 </head>
 
-<body>
+<body class="battle-page">
+
+<nav>
+
+<div class="logo">
+MythicMon
+</div>
+
+</nav>
 
 <div class="battle-screen">
 
-    <div class="enemy-side">
+<div class="enemy-area">
 
-        <h2 id="enemy-name">
+<div class="enemy-card">
 
-        </h2>
+<h2 id="enemy-name">
+Enemy
+</h2>
 
-        <div class="hp-bar">
+<div class="hp-container">
 
-            <div id="enemy-hp">
-
-            </div>
-
-        </div>
-
-        <div class="sprite">
-
-            Enemy
-        </div>
-
-    </div>
-
-    <div class="player-side">
-
-        <div class="sprite">
-
-            Starter
-        </div>
-
-        <h2 id="player-name">
-
-        </h2>
-
-        <div class="hp-bar">
-
-            <div id="player-hp">
-
-            </div>
-
-        </div>
-
-    </div>
+<div
+id="enemy-hp"
+class="hp-fill">
 
 </div>
+
+</div>
+
+</div>
+
+<div class="enemy-sprite">
+
+Enemy Art
+
+</div>
+
+</div>
+
+<div class="player-area">
+
+<div class="player-sprite">
+
+Starter Art
+
+</div>
+
+<div class="player-card">
+
+<h2 id="player-name">
+Starter
+</h2>
+
+<div class="hp-container">
+
+<div
+id="player-hp"
+class="hp-fill">
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="battle-menu">
 
 <div id="battle-log">
 
+A wild creature appeared!
+
 </div>
 
-<div id="battle-area"></div>
+<button onclick="attack()">
+
+Attack
+
+</button>
+
+</div>
+
+</div>
 
 <script src="script.js"></script>
+<script src="battle.js"></script>
 
 <script>
 startBattle();
 </script>
 
 </body>
-
 </html>
