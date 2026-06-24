@@ -137,22 +137,47 @@ function updateCoins()
 
 function chooseStarter(name)
 {
+    if(gameData.starter)
+    {
+        return;
+    }
+
     gameData.starter = name;
 
-    gameData.collection.push(
-        name
-    );
+    if(
+        !gameData.collection.includes(
+            name
+        )
+    )
+    {
+        gameData.collection.push(
+            name
+        );
+    }
 
-    gameData.unlocked.push(
-        name
-    );
+    if(
+        !gameData.unlocked.includes(
+            name
+        )
+    )
+    {
+        gameData.unlocked.push(
+            name
+        );
+    }
 
     saveGame();
 
+    const modal =
     document.getElementById(
         "starter-modal"
-    ).style.display =
-    "none";
+    );
+
+    if(modal)
+    {
+        modal.style.display =
+        "none";
+    }
 }
 
 // ======================
@@ -171,14 +196,15 @@ function openPack(zone)
 
     const available =
     creatures.filter(
-        c =>
-        c.zone === zone
+        creature =>
+        creature.zone === zone
     );
 
-    if(
-        available.length === 0
-    )
+    if(available.length === 0)
     {
+        alert(
+            "No creatures available."
+        );
         return;
     }
 
@@ -194,9 +220,16 @@ function openPack(zone)
         )
     ];
 
-    gameData.collection.push(
-        pull.name
-    );
+    if(
+        !gameData.collection.includes(
+            pull.name
+        )
+    )
+    {
+        gameData.collection.push(
+            pull.name
+        );
+    }
 
     saveGame();
 
@@ -205,48 +238,76 @@ function openPack(zone)
 
 function showCard(card)
 {
+    const oldOverlay =
+    document.getElementById(
+        "pack-overlay"
+    );
+
+    if(oldOverlay)
+    {
+        oldOverlay.remove();
+    }
+
+    const overlay =
+    document.createElement(
+        "div"
+    );
+
+    overlay.id =
+    "pack-overlay";
+
+    overlay.innerHTML =
+    `
+    <div class="reveal-card ${card.rarity.toLowerCase()}">
+
+        <div class="card-art">
+            ART
+        </div>
+
+        <h2>
+            ${card.name}
+        </h2>
+
+        <p>
+            ${card.rarity}
+        </p>
+
+        <button onclick="closePack()">
+            Continue
+        </button>
+
+    </div>
+    `;
+
+    document.body.appendChild(
+        overlay
+    );
+}
+function closePack()
+{
     const overlay =
     document.getElementById(
         "pack-overlay"
     );
 
-    const packCard =
-    document.getElementById(
-        "pack-card"
+    if(overlay)
+    {
+        overlay.remove();
+    }
+}
+// ======================
+// SAFARI
+// ======================
+
+function enterSafari(zone)
+{
+    localStorage.setItem(
+        "currentZone",
+        zone
     );
 
-    overlay.style.display =
-    "flex";
-
-    packCard.className =
-    "reveal-card " +
-    card.rarity.toLowerCase();
-
-    packCard.innerHTML =
-    `
-    <h2>
-        ${card.name}
-    </h2>
-
-    <p>
-        ${card.rarity}
-    </p>
-
-    <button
-    onclick="
-    closePack()
-    ">
-        Continue
-    </button>
-    `;
-}
-
-function closePack()
-{
-    document.getElementById(
-        "pack-overlay"
-    ).style.display =
-    "none";
+    window.location.href =
+    "battle.html";
 }
 
 // ======================
