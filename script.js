@@ -567,12 +567,18 @@ function showCollection()
         return;
     }
 
-    let html = "";
+    grid.innerHTML = "";
 
     gameData.collection.forEach(
-        creature =>
+        creatureName =>
         {
-            html +=
+            const creature =
+            creatures.find(
+                c =>
+                c.name === creatureName
+            );
+
+            grid.innerHTML +=
             `
             <div class="collection-card">
 
@@ -580,16 +586,18 @@ function showCollection()
                     Art
                 </div>
 
-                <div class="card-info">
-                    ${creature}
+                <div>
+                    ${creature.name}
+                </div>
+
+                <div>
+                    ${creature.rarity}
                 </div>
 
             </div>
             `;
         }
     );
-
-    grid.innerHTML = html;
 }
 
 // ======================
