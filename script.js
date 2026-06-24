@@ -120,12 +120,14 @@ function openPack(zone)
         return;
     }
 
-    const available =
-    creatures.filter(
-        creature =>
+const available =
+creatures.filter(
+    creature =>
         creature.zone === zone &&
-
-};
+        gameData.unlocked.includes(
+            creature.name
+        )
+);
 
     if(available.length === 0)
     {
