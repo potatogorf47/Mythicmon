@@ -205,29 +205,43 @@ function startBattle()
 function winBattle(creature)
 {
     if(
-    !gameData.unlocked.includes(
-        creature
+        !gameData.unlocked.includes(
+            creature
+        )
     )
-)
-{
-    gameData.unlocked.push(
-        creature
-    );
+    {
+        gameData.unlocked.push(
+            creature
+        );
+    }
+
+    if(
+        !gameData.collection.includes(
+            creature
+        )
+    )
+    {
+        gameData.collection.push(
+            creature
+        );
+    }
+
+    saveGame();
+
+    document.getElementById(
+        "battle-area"
+    ).innerHTML =
+
+    `
+    <h3>
+        You defeated ${creature}!
+    </h3>
+
+    <p>
+        Added to collection.
+    </p>
+    `;
 }
-
-document.getElementById(
-    "battle-area"
-).innerHTML =
-
-`
-<h3>
-    You defeated ${creature}!
-</h3>
-
-<p>
-    Added to collection.
-</p>
-`;
 
 function showCollection()
 {
