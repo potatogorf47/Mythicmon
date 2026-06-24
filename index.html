@@ -1,31 +1,23 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>MythicMon - Pack Shop</title>
-    <link rel="stylesheet" href="style.css">
+
+    <title>
+        MythicMon
+    </title>
+
+    <link
+    rel="stylesheet"
+    href="style.css">
+
 </head>
+
 <body>
-    <div id="starter-modal">
 
-    <div class="starter-box">
-
-        <h2>Choose Your Starter</h2>
-
-        <button onclick="chooseStarter('Flaretail')">
-            Flaretail
-        </button>
-
-        <button onclick="chooseStarter('Aquafang')">
-            Aquafang
-        </button>
-
-        <button onclick="chooseStarter('Leafhorn')">
-            Leafhorn
-        </button>
-
-    </div>
-
-</div>
+<!-- ======================
+NAVBAR
+====================== -->
 
 <nav>
 
@@ -34,80 +26,162 @@
     </div>
 
     <div class="nav-links">
-        <a href="index.html">Shop</a>
-        <a href="safari.html">Safari</a>
-        <a href="collection.html">Collection</a>
+
+        <a href="index.html">
+            Shop
+        </a>
+
+        <a href="safari.html">
+            Safari
+        </a>
+
+        <a href="collection.html">
+            Collection
+        </a>
+
     </div>
 
-    <div class="currency">
+    <div class="coins">
+
         Coins:
-        <span id="coin-display">100</span>
+        <span id="coin-display">
+            100
+        </span>
+
     </div>
 
 </nav>
 
-<section class="hero">
+<!-- ======================
+STARTER MODAL
+====================== -->
 
-    <h1>Pack Shop</h1>
+<div id="starter-modal">
+
+    <div class="starter-box">
+
+        <h2>
+            Choose Your Starter
+        </h2>
+
+        <button
+        onclick="chooseStarter('Flaretail')">
+
+            Flaretail
+
+        </button>
+
+        <button
+        onclick="chooseStarter('Aquafang')">
+
+            Aquafang
+
+        </button>
+
+        <button
+        onclick="chooseStarter('Leafhorn')">
+
+            Leafhorn
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ======================
+PACK SHOP
+====================== -->
+
+<section class="shop-title">
+
+    <h1>
+        Pack Shop
+    </h1>
 
     <p>
-        Open packs and collect creatures.
+        Open packs to expand your collection.
     </p>
 
 </section>
 
-<section class="pack-section">
+<section class="pack-grid">
 
-    <div class="pack-grid">
+    <div class="pack-card forest">
 
-        <div class="pack-card reef-pack">
+        <h2>
+            Verdant Pack
+        </h2>
 
-            <h3>Tidal Reef Pack</h3>
+        <p>
+            Forest Creatures
+        </p>
 
-            <p>Creatures from Tidal Reef Safari</p>
+        <button
+        onclick="openPack('forest')">
 
-            <button onclick="openPack('reef')">
-                Open Pack
-            </button>
+            Open Pack
+        </button>
 
-        </div>
+    </div>
 
-        <div class="pack-card ember-pack">
+    <div class="pack-card ember">
 
-            <h3>Ember Valley Pack</h3>
+        <h2>
+            Ember Pack
+        </h2>
 
-            <p>Creatures from Ember Valley Safari</p>
+        <p>
+            Fire Creatures
+        </p>
 
-            <button onclick="openPack('ember')">
-                Open Pack
-            </button>
+        <button
+        onclick="openPack('ember')">
 
-        </div>
+            Open Pack
+        </button>
 
-        <div class="pack-card forest-pack">
+    </div>
 
-            <h3>Verdant Forest Pack</h3>
+    <div class="pack-card reef">
 
-            <p>Creatures from Verdant Forest Safari</p>
+        <h2>
+            Reef Pack
+        </h2>
 
-            <button onclick="openPack('forest')">
-                Open Pack
-            </button>
+        <p>
+            Water Creatures
+        </p>
 
-        </div>
+        <button
+        onclick="openPack('reef')">
+
+            Open Pack
+        </button>
 
     </div>
 
 </section>
 
+<!-- ======================
+PACK OPENING SCREEN
+====================== -->
 
-<section id="game-output">
+<div id="pack-overlay">
 
-    <h2>Pack Results</h2>
+    <div id="pack-card">
 
-    <div id="output"></div>
+    </div>
 
-</section>
+</div>
+
+<!-- ======================
+OUTPUT
+====================== -->
+
+<div id="output">
+
+</div>
 
 <script src="script.js"></script>
 
