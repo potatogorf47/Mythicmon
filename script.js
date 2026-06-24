@@ -216,6 +216,13 @@ function saveGame()
 
 function loadGame()
 {
+    if(!gameData.starter)
+{
+    document.getElementById(
+        "starter-modal"
+    ).style.display =
+    "flex";
+}
     const save =
     localStorage.getItem(
         "mythicmon"
@@ -257,33 +264,22 @@ function updateCoins()
 
 function chooseStarter(name)
 {
+    if(gameData.starter)
+    {
+        return;
+    }
+
     gameData.starter = name;
 
-    if(
-        !gameData.collection.includes(
-            name
-        )
-    )
-    {
-        gameData.collection.push(name);
-    }
+    gameData.collection.push(name);
 
-    if(
-        !gameData.unlocked.includes(
-            name
-        )
-    )
-    {
-        gameData.unlocked.push(name);
-    }
+    gameData.unlocked.push(name);
 
     saveGame();
 
-    alert(
-        "You chose " + name + "!"
-    );
-
-    location.reload();
+    document.getElementById(
+        "starter-modal"
+    ).style.display = "none";
 }
 
 // ======================
@@ -294,67 +290,88 @@ function openPack(zone)
 {
     if(gameData.coins < 10)
     {
-        alert(
-            "Not enough coins!"
-        );
-        return;
-    }
-
-    const available =
-    creatures.filter(
-        creature =>
-        creature.zone === zone &&
-        gameData.unlocked.includes(
-            creature.name
-        )
-    );
-
-    if(available.length === 0)
-    {
-        alert(
-            "Defeat creatures in this safari first!"
-        );
+        alert("Not enough coins");
         return;
     }
 
     gameData.coins -= 10;
 
-    const pull =
-    available[
-        Math.floor(
-            Math.random() *
-            available.length
-        )
-    ];
+    let pulls = [];
 
-    gameData.collection.push(
-        pull.name
-    );
+    for(let i = 0; i < 5; i++)
+    {
+        const available =
+        creatures.filter(
+            c =>
+            c.zone === zone &&
+            gameData.unlocked.includes(
+                c.name
+            )
+        );
+
+        const pull =
+        available[
+            Math.floor(
+                Math.random() *
+                available.length
+            )
+        ];
+
+        pulls.push(pull);
+
+        gameData.collection.push(
+            pull.name
+        );
+    }
 
     saveGame();
 
-    updateCoins();
+    showPackOpening(pulls);
+}
 
-    const output =
-    document.getElementById(
-        "output"
-    );
+function showPackOpening(cards)
+{
+    let current = 0;
 
-    if(output)
+    showCard(cards[current]);
+
+    window.nextCard =
+    function()
     {
-        output.innerHTML =
-        `
-        <div class="pull-card">
+        current++;
 
-            <h2>${pull.name}</h2>
+        if(current >= cards.length)
+        {
+            location.reload();
+            return;
+        }
 
-            <p>${pull.type}</p>
+        showCard(cards[current]);
+    };
+}
+function showCard(card)
+{
+    document.body.insertAdjacentHTML(
+        "beforeend",
 
-            <p>${pull.rarity}</p>
+`
+<div id="pack-overlay">
 
-        </div>
-        `;
-    }
+<div class="reveal-card ${card.rarity.toLowerCase()}">
+
+<h2>${card.name}</h2>
+
+<p>${card.rarity}</p>
+
+<button onclick="nextCard()">
+Next
+</button>
+
+</div>
+
+</div>
+`
+    );
 }
 
 // ======================
