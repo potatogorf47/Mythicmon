@@ -258,6 +258,17 @@ function showCollection()
     {
         return;
     }
+    if(
+    gameData.starter &&
+    !gameData.collection.includes(
+        gameData.starter
+    )
+)
+{
+    gameData.collection.push(
+        gameData.starter
+    );
+}
 
     let html = "";
 
