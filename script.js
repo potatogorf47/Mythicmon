@@ -193,19 +193,32 @@ function startBattle()
     ];
 
     document.getElementById(
-        "battle-area"
+    "battle-area"
     ).innerHTML =
 
     `
-    <h3>
-        Wild ${wild} appeared!
-    </h3>
+    <h2>
+    Wild ${wild}
+    </h2>
 
-    <button onclick="winBattle('${wild}')">
+    <p>
+        Enemy HP:
+        <span id="enemy-hp">
+            ${enemyHP}
+        </span>
+    </p>
+
+    <p>
+        Your HP:
+        <span id="player-hp">
+            ${playerHP}
+        </span>
+    </p>
+
+    <button onclick="attackEnemy('${wild}')">
         Attack
     </button>
     `;
-}
 function winBattle(creature)
 {
     if(
@@ -312,6 +325,44 @@ function enterSafari(zone)
 
     window.location.href =
     "battle.html";
+}
+let enemyHP = 50;
+let playerHP = 60;
+
+function attackEnemy(creature)
+{
+    enemyHP -= 15;
+
+    playerHP -= 8;
+
+    document.getElementById(
+        "enemy-hp"
+    ).textContent =
+    enemyHP;
+
+    document.getElementById(
+        "player-hp"
+    ).textContent =
+    playerHP;
+
+    if(enemyHP <= 0)
+    {
+        winBattle(creature);
+        return;
+    }
+
+    if(playerHP <= 0)
+    {
+        document.getElementById(
+            "battle-area"
+        ).innerHTML =
+
+        `
+        <h2>
+            You Lost!
+        </h2>
+        `;
+    }
 }
 loadGame();
 updateCoins();
