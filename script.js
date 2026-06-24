@@ -317,6 +317,20 @@ function enterSafari(zone)
 loadGame();
 updateCoins();
 
-console.log(
-    "SCRIPT LOADED"
+console.log("BOTTOM OF SCRIPT");
+
+function enterSafari(zone)
+{
+    console.log("ENTER SAFARI");
+
+    localStorage.setItem(
+        "currentZone",
+        zone
+    );
+
+    window.location.href =
+    "battle.html";
+}
+
+console.log(typeof enterSafari);
 );
