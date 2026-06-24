@@ -411,3 +411,38 @@ button:hover {
 
     margin-top: 40px;
 }
+.common
+{
+    background:
+    linear-gradient(
+        #444,
+        #222
+    );
+}
+
+.rare
+{
+    background:
+    linear-gradient(
+        #2196f3,
+        #0d47a1
+    );
+}
+
+.epic
+{
+    background:
+    linear-gradient(
+        #9c27b0,
+        #4a148c
+    );
+}
+
+.legendary
+{
+    background:
+    linear-gradient(
+        #ff9800,
+        #ff5722
+    );
+}
