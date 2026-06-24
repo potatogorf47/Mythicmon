@@ -77,6 +77,10 @@ function loadGame()
     {
         gameData =
         JSON.parse(save);
+        if(!gameData.unlocked)
+        {
+        gameData.unlocked = [];
+        }
 
         const starterSection =
         document.getElementById(
