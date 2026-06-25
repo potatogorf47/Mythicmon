@@ -4,6 +4,7 @@ let playerMaxHP = 100;
 let enemyHP = 100;
 let enemyMaxHP = 100;
 let currentEnemy = null;
+let starterCreature = null;
 
 
 function startBattle()
@@ -16,6 +17,15 @@ function startBattle()
     const options =
     creatures.filter(
         c => c.zone === zone
+    );
+    const save =
+    JSON.parse(
+        localStorage.getItem("mythicmon")
+    );
+
+    starterCreature =
+    creatures.find(
+        c => c.name === save.starter
     );
 
     if(options.length === 0)
