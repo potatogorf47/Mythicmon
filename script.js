@@ -1,64 +1,67 @@
 // ======================
-// SAVE DATA
+// GAME DATA
 // ======================
 
-let gameData =
-{
+let gameData = {
     starter: null,
-
     coins: 100,
-
     collection: [],
-
     unlocked: []
 };
 
 // ======================
-// CREATURE DATABASE
+// CREATURES
 // ======================
 
-const creatures =
-[
+const creatures = [
     {
         name: "Flaretail",
         rarity: "Starter",
-        zone: "ember"
+        zone: "ember",
+        hp: 55,
+        attack: 12
     },
-
     {
         name: "Aquafang",
         rarity: "Starter",
-        zone: "reef"
+        zone: "reef",
+        hp: 60,
+        attack: 10
     },
-
     {
         name: "Leafhorn",
         rarity: "Starter",
-        zone: "forest"
+        zone: "forest",
+        hp: 65,
+        attack: 9
     },
-
     {
         name: "Sparkit",
         rarity: "Common",
-        zone: "forest"
+        zone: "forest",
+        hp: 40,
+        attack: 8
     },
-
     {
         name: "Mosshell",
         rarity: "Common",
-        zone: "forest"
+        zone: "forest",
+        hp: 45,
+        attack: 7
     },
-
     {
         name: "Thunderclaw",
         rarity: "Rare",
-        zone: "ember"
+        zone: "ember",
+        hp: 70,
+        attack: 14
     },
-
     {
         name: "Crystalback",
         rarity: "Rare",
-        zone: "reef"
+        zone: "reef",
+        hp: 75,
+        attack: 12
     }
 ];
 
@@ -92,13 +95,18 @@ function loadGame()
         "starter-modal"
     );
 
-    if(
-        modal &&
-        !gameData.starter
-    )
+    if(modal)
     {
-        modal.style.display =
-        "flex";
+        if(gameData.starter)
+        {
+            modal.style.display =
+            "none";
+        }
+        else
+        {
+            modal.style.display =
+            "flex";
+        }
     }
 }
 
@@ -131,16 +139,10 @@ function chooseStarter(name)
         return;
     }
 
-    gameData.starter =
-    name;
+    gameData.starter = name;
 
-    gameData.collection.push(
-        name
-    );
-
-    gameData.unlocked.push(
-        name
-    );
+    gameData.collection.push(name);
+    gameData.unlocked.push(name);
 
     saveGame();
 
@@ -156,9 +158,8 @@ function chooseStarter(name)
     }
 
     alert(
-        "You chose " +
         name +
-        "!"
+        " joined your collection!"
     );
 }
 
@@ -168,33 +169,20 @@ function chooseStarter(name)
 
 function openPack(zone)
 {
-    if(!gameData.starter)
-    {
-        alert(
-            "Choose a starter first!"
-        );
-
-        return;
-    }
-
     if(gameData.coins < 10)
     {
         alert(
             "Not enough coins!"
         );
-
         return;
     }
 
     const available =
     creatures.filter(
-        creature =>
-        creature.zone === zone
+        c => c.zone === zone
     );
 
-    if(
-        available.length === 0
-    )
+    if(available.length === 0)
     {
         return;
     }
@@ -215,13 +203,69 @@ function openPack(zone)
         pull.name
     );
 
+    if(
+        !gameData.unlocked.includes(
+            pull.name
+        )
+    )
+    {
+        gameData.unlocked.push(
+            pull.name
+        );
+    }
+
     saveGame();
 
-    alert(
-        "You pulled " +
-        pull.name +
-        "!"
+    showCard(pull);
+}
+
+function showCard(card)
+{
+    closePack();
+
+    const overlay =
+    document.createElement(
+        "div"
     );
+
+    overlay.id =
+    "pack-overlay";
+
+    overlay.innerHTML =
+    `
+    <div class="reveal-card ${card.rarity.toLowerCase()}">
+
+        <div class="card-art">
+            ${card.name}
+        </div>
+
+        <h2>${card.name}</h2>
+
+        <p>${card.rarity}</p>
+
+        <button onclick="closePack()">
+            Continue
+        </button>
+
+    </div>
+    `;
+
+    document.body.appendChild(
+        overlay
+    );
+}
+
+function closePack()
+{
+    const overlay =
+    document.getElementById(
+        "pack-overlay"
+    );
+
+    if(overlay)
+    {
+        overlay.remove();
+    }
 }
 
 // ======================
@@ -265,15 +309,11 @@ function showCollection()
             <div class="collection-card">
 
                 <div class="art">
-
-                    Art
-
+                    ${creature}
                 </div>
 
                 <div class="card-info">
-
                     ${creature}
-
                 </div>
 
             </div>
@@ -281,8 +321,7 @@ function showCollection()
         }
     );
 
-    grid.innerHTML =
-    html;
+    grid.innerHTML = html;
 }
 
 // ======================
@@ -290,11 +329,9 @@ function showCollection()
 // ======================
 
 loadGame();
-
 updateCoins();
-
 showCollection();
 
 console.log(
-    "SCRIPT LOADED"
+    "SCRIPT LOADED SUCCESSFULLY"
 );
