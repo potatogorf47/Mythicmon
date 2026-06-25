@@ -728,6 +728,11 @@ function showCard(card)
 
     },1800);
 enableCardTilt();
+const left =
+currentPack.length -
+revealIndex - 1;
+${left}
+Cards Remaining
 }
 
 // ======================================
