@@ -1,3 +1,4 @@
+console.log("BATTLE JS START");
 let playerHP = 100;
 let enemyHP = 100;
 
@@ -139,6 +140,7 @@ function loseBattle()
 
     startBattle();
 }
+console.log("BATTLE JS END");
 
 window.onload =
 function()
