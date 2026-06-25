@@ -2,18 +2,19 @@
 // SAVE DATA
 // ======================
 
-let currentUser = null;
-
 let gameData =
 {
     starter: null,
+
     coins: 100,
+
     collection: [],
+
     unlocked: []
 };
 
 // ======================
-// CREATURES
+// CREATURE DATABASE
 // ======================
 
 const creatures =
@@ -21,57 +22,43 @@ const creatures =
     {
         name: "Flaretail",
         rarity: "Starter",
-        zone: "ember",
-        hp: 55,
-        attack: 12
+        zone: "ember"
     },
 
     {
         name: "Aquafang",
         rarity: "Starter",
-        zone: "reef",
-        hp: 60,
-        attack: 10
+        zone: "reef"
     },
 
     {
         name: "Leafhorn",
         rarity: "Starter",
-        zone: "forest",
-        hp: 65,
-        attack: 9
+        zone: "forest"
     },
 
     {
         name: "Sparkit",
         rarity: "Common",
-        zone: "forest",
-        hp: 40,
-        attack: 8
+        zone: "forest"
     },
 
     {
         name: "Mosshell",
         rarity: "Common",
-        zone: "forest",
-        hp: 45,
-        attack: 7
+        zone: "forest"
     },
 
     {
         name: "Thunderclaw",
         rarity: "Rare",
-        zone: "ember",
-        hp: 70,
-        attack: 14
+        zone: "ember"
     },
 
     {
         name: "Crystalback",
         rarity: "Rare",
-        zone: "reef",
-        hp: 75,
-        attack: 12
+        zone: "reef"
     }
 ];
 
@@ -81,31 +68,9 @@ const creatures =
 
 function saveGame()
 {
-    if(!currentUser)
-    {
-        return;
-    }
-
-    const account =
-    JSON.parse(
-        localStorage.getItem(
-            "account_" + currentUser
-        )
-    );
-
-    account.gameData =
-    gameData;
-
     localStorage.setItem(
-        "account_" + currentUser,
-        JSON.stringify(account)
-    );
-}
-function saveCurrentUser()
-{
-    localStorage.setItem(
-        "currentUser",
-        currentUser
+        "mythicmon",
+        JSON.stringify(gameData)
     );
 }
 
@@ -134,18 +99,6 @@ function loadGame()
     {
         modal.style.display =
         "flex";
-    }
-    currentUser =
-    localStorage.getItem(
-        "currentUser"
-    );
-
-    if(!currentUser)
-    {
-        window.location.href =
-        "login.html";
-
-        return;
     }
 }
 
@@ -178,21 +131,16 @@ function chooseStarter(name)
         return;
     }
 
-    gameData.starter = name;
+    gameData.starter =
+    name;
 
-    if(
-        !gameData.collection.includes(name)
-    )
-    {
-        gameData.collection.push(name);
-    }
+    gameData.collection.push(
+        name
+    );
 
-    if(
-        !gameData.unlocked.includes(name)
-    )
-    {
-        gameData.unlocked.push(name);
-    }
+    gameData.unlocked.push(
+        name
+    );
 
     saveGame();
 
@@ -206,6 +154,12 @@ function chooseStarter(name)
         modal.style.display =
         "none";
     }
+
+    alert(
+        "You chose " +
+        name +
+        "!"
+    );
 }
 
 // ======================
@@ -214,11 +168,21 @@ function chooseStarter(name)
 
 function openPack(zone)
 {
+    if(!gameData.starter)
+    {
+        alert(
+            "Choose a starter first!"
+        );
+
+        return;
+    }
+
     if(gameData.coins < 10)
     {
         alert(
             "Not enough coins!"
         );
+
         return;
     }
 
@@ -228,11 +192,10 @@ function openPack(zone)
         creature.zone === zone
     );
 
-    if(available.length === 0)
+    if(
+        available.length === 0
+    )
     {
-        alert(
-            "No creatures found."
-        );
         return;
     }
 
@@ -254,56 +217,11 @@ function openPack(zone)
 
     saveGame();
 
-    showCard(pull);
-}
-
-function showCard(card)
-{
-    closePack();
-
-    const overlay =
-    document.createElement(
-        "div"
+    alert(
+        "You pulled " +
+        pull.name +
+        "!"
     );
-
-    overlay.id =
-    "pack-overlay";
-
-    overlay.innerHTML =
-    `
-    <div class="reveal-card ${card.rarity.toLowerCase()}">
-
-        <div class="card-art">
-            ART
-        </div>
-
-        <h2>${card.name}</h2>
-
-        <p>${card.rarity}</p>
-
-        <button onclick="closePack()">
-            Continue
-        </button>
-
-    </div>
-    `;
-
-    document.body.appendChild(
-        overlay
-    );
-}
-
-function closePack()
-{
-    const overlay =
-    document.getElementById(
-        "pack-overlay"
-    );
-
-    if(overlay)
-    {
-        overlay.remove();
-    }
 }
 
 // ======================
@@ -312,11 +230,6 @@ function closePack()
 
 function enterSafari(zone)
 {
-    console.log(
-        "Entering safari:",
-        zone
-    );
-
     localStorage.setItem(
         "currentZone",
         zone
@@ -352,11 +265,15 @@ function showCollection()
             <div class="collection-card">
 
                 <div class="art">
-                    ART
+
+                    Art
+
                 </div>
 
                 <div class="card-info">
+
                     ${creature}
+
                 </div>
 
             </div>
@@ -364,89 +281,8 @@ function showCollection()
         }
     );
 
-    grid.innerHTML = html;
-}
-function createAccount()
-{
-    const username =
-    document.getElementById(
-        "username"
-    ).value;
-
-    const password =
-    document.getElementById(
-        "password"
-    ).value;
-
-    const account =
-    {
-        password: password,
-
-        gameData:
-        {
-            starter: null,
-            coins: 100,
-            collection: [],
-            unlocked: []
-        }
-    };
-
-    localStorage.setItem(
-        "account_" + username,
-        JSON.stringify(account)
-    );
-
-    alert(
-        "Account Created!"
-    );
-}
-function login()
-{
-    const username =
-    document.getElementById(
-        "username"
-    ).value;
-
-    const password =
-    document.getElementById(
-        "password"
-    ).value;
-
-    const account =
-    JSON.parse(
-        localStorage.getItem(
-            "account_" + username
-        )
-    );
-
-    if(!account)
-    {
-        alert(
-            "Account not found"
-        );
-
-        return;
-    }
-
-    if(account.password !== password)
-    {
-        alert(
-            "Incorrect password"
-        );
-
-        return;
-    }
-
-    currentUser =
-    username;
-
-    gameData =
-    account.gameData;
-
-    saveCurrentUser();
-
-    window.location.href =
-    "index.html";
+    grid.innerHTML =
+    html;
 }
 
 // ======================
@@ -454,9 +290,11 @@ function login()
 // ======================
 
 loadGame();
+
 updateCoins();
+
 showCollection();
 
 console.log(
-    "SCRIPT LOADED SUCCESSFULLY"
+    "SCRIPT LOADED"
 );
