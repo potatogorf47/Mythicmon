@@ -762,31 +762,41 @@ button:hover{
     filter:
     brightness(2);
 }
-.fade-in
+.reveal-card
 {
+    transform-style: preserve-3d;
+
     animation:
-    reveal
-    .45s ease;
+    cardFlip
+    .8s
+    cubic-bezier(.2,.8,.2,1);
+
+    transition:
+    transform
+    .15s;
 }
 
-@keyframes reveal
+@keyframes cardFlip
 {
-    from
+    0%
     {
-        transform:
-        scale(.6)
-        rotateY(90deg);
-
         opacity:0;
+
+        transform:
+        rotateY(180deg)
+        scale(.6);
     }
 
-    to
+    50%
+    {
+        opacity:1;
+    }
+
+    100%
     {
         transform:
-        scale(1)
-        rotateY(0deg);
-
-        opacity:1;
+        rotateY(0deg)
+        scale(1);
     }
 }
 .card-art
