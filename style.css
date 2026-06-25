@@ -903,3 +903,28 @@ button:hover{
     box-shadow:
     0 0 60px rgba(255,255,255,.25);
 }
+.flash
+{
+    position:absolute;
+
+    inset:0;
+
+    background:white;
+
+    animation:
+    flash
+    .35s forwards;
+}
+
+@keyframes flash
+{
+    from
+    {
+        opacity:1;
+    }
+
+    to
+    {
+        opacity:0;
+    }
+}
