@@ -3,105 +3,122 @@
 
 <head>
 
-<title>Battle</title>
+    <title>MythicMon Battle</title>
 
-<link rel="stylesheet"
-href="style.css">
+    <link rel="stylesheet"
+    href="style.css">
 
 </head>
 
 <body class="battle-page">
 
-<nav>
+    <nav>
 
-<div class="logo">
-MythicMon
-</div>
+        <div class="logo">
+            MythicMon
+        </div>
 
-</nav>
+    </nav>
 
-<div class="battle-screen">
+    <div class="battle-screen">
 
-<div class="enemy-area">
+        <!-- ENEMY -->
 
-<div class="enemy-card">
+        <div class="enemy-area">
 
-<h2 id="enemy-name">
-Enemy
-</h2>
+            <div class="enemy-card">
 
-<div class="hp-container">
+                <h2 id="enemy-name">
+                    Enemy
+                </h2>
 
-<div
-id="enemy-hp"
-class="hp-fill">
+                <p>
+                    HP:
+                    <span id="enemy-hp-text">
+                        100
+                    </span>
+                </p>
 
-</div>
+                <div class="hp-container">
 
-</div>
+                    <div
+                    id="enemy-hp-fill"
+                    class="hp-fill">
 
-</div>
+                    </div>
 
-<div class="enemy-sprite">
+                </div>
 
-Enemy Art
+            </div>
 
-</div>
+            <div class="enemy-sprite">
 
-</div>
+                Enemy Art
 
-<div class="player-area">
+            </div>
 
-<div class="player-sprite">
+        </div>
 
-Starter Art
+        <!-- PLAYER -->
 
-</div>
+        <div class="player-area">
 
-<div class="player-card">
+            <div class="player-sprite">
 
-<h2 id="player-name">
-Starter
-</h2>
+                Starter Art
 
-<div class="hp-container">
+            </div>
 
-<div
-id="player-hp"
-class="hp-fill">
+            <div class="player-card">
 
-</div>
+                <h2 id="player-name">
+                    Your MythicMon
+                </h2>
 
-</div>
+                <p>
+                    HP:
+                    <span id="player-hp-text">
+                        100
+                    </span>
+                </p>
 
-</div>
+                <div class="hp-container">
 
-</div>
+                    <div
+                    id="player-hp-fill"
+                    class="hp-fill">
 
-<div class="battle-menu">
+                    </div>
 
-<div id="battle-log">
+                </div>
 
-A wild creature appeared!
+            </div>
 
-</div>
+        </div>
 
-<button onclick="attack()">
+        <!-- BATTLE MENU -->
 
-Attack
+        <div class="battle-menu">
 
-</button>
+            <div id="battle-log">
 
-</div>
+                A wild creature appeared!
 
-</div>
+            </div>
 
-<script src="script.js"></script>
-<script src="battle.js"></script>
+            <button onclick="attackEnemy()">
 
-<script>
-startBattle();
-</script>
+                Attack
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+    <script src="battle.js"></script>
 
 </body>
+
 </html>
