@@ -2,6 +2,8 @@
 // SAVE DATA
 // ======================
 
+let currentUser = null;
+
 let gameData =
 {
     starter: null,
@@ -79,9 +81,31 @@ const creatures =
 
 function saveGame()
 {
+    if(!currentUser)
+    {
+        return;
+    }
+
+    const account =
+    JSON.parse(
+        localStorage.getItem(
+            "account_" + currentUser
+        )
+    );
+
+    account.gameData =
+    gameData;
+
     localStorage.setItem(
-        "mythicmon",
-        JSON.stringify(gameData)
+        "account_" + currentUser,
+        JSON.stringify(account)
+    );
+}
+function saveCurrentUser()
+{
+    localStorage.setItem(
+        "currentUser",
+        currentUser
     );
 }
 
@@ -110,6 +134,18 @@ function loadGame()
     {
         modal.style.display =
         "flex";
+    }
+    currentUser =
+    localStorage.getItem(
+        "currentUser"
+    );
+
+    if(!currentUser)
+    {
+        window.location.href =
+        "login.html";
+
+        return;
     }
 }
 
@@ -329,6 +365,88 @@ function showCollection()
     );
 
     grid.innerHTML = html;
+}
+function createAccount()
+{
+    const username =
+    document.getElementById(
+        "username"
+    ).value;
+
+    const password =
+    document.getElementById(
+        "password"
+    ).value;
+
+    const account =
+    {
+        password: password,
+
+        gameData:
+        {
+            starter: null,
+            coins: 100,
+            collection: [],
+            unlocked: []
+        }
+    };
+
+    localStorage.setItem(
+        "account_" + username,
+        JSON.stringify(account)
+    );
+
+    alert(
+        "Account Created!"
+    );
+}
+function login()
+{
+    const username =
+    document.getElementById(
+        "username"
+    ).value;
+
+    const password =
+    document.getElementById(
+        "password"
+    ).value;
+
+    const account =
+    JSON.parse(
+        localStorage.getItem(
+            "account_" + username
+        )
+    );
+
+    if(!account)
+    {
+        alert(
+            "Account not found"
+        );
+
+        return;
+    }
+
+    if(account.password !== password)
+    {
+        alert(
+            "Incorrect password"
+        );
+
+        return;
+    }
+
+    currentUser =
+    username;
+
+    gameData =
+    account.gameData;
+
+    saveCurrentUser();
+
+    window.location.href =
+    "index.html";
 }
 
 // ======================
