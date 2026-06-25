@@ -875,6 +875,60 @@ function checkStarter()
         modal.style.display = "flex";
     }
 }
+function enableCardTilt()
+{
+    const card =
+    document.querySelector(
+        ".reveal-card"
+    );
+
+    if(!card)
+    {
+        return;
+    }
+
+    card.addEventListener(
+        "mousemove",
+
+        function(event)
+        {
+            const rect =
+            card.getBoundingClientRect();
+
+            const x =
+            event.clientX -
+            rect.left;
+
+            const y =
+            event.clientY -
+            rect.top;
+
+            const rotateY =
+            ((x / rect.width) - .5) * 18;
+
+            const rotateX =
+            ((y / rect.height) - .5) * -18;
+
+            card.style.transform =
+            `
+            perspective(1000px)
+            rotateX(${rotateX}deg)
+            rotateY(${rotateY}deg)
+            scale(1.03)
+            `;
+        }
+    );
+
+    card.addEventListener(
+        "mouseleave",
+
+        function()
+        {
+            card.style.transform =
+            "";
+        }
+    );
+}
 
 // ======================================
 // PAGE STARTUP
