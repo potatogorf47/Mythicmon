@@ -727,6 +727,7 @@ function showCard(card)
         `;
 
     },1800);
+enableCardTilt();
 }
 
 // ======================================
