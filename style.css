@@ -61,7 +61,45 @@ nav{
     border-radius:50px;
     font-weight:bold;
 }
+nav
+{
+    display: grid;
 
+    grid-template-columns:
+    1fr
+    auto
+    1fr;
+
+    align-items: center;
+
+    padding: 20px 40px;
+
+    background: #151515;
+}
+
+.logo
+{
+    justify-self: start;
+
+    font-size: 28px;
+    font-weight: bold;
+
+    color: #d98cff;
+}
+
+.nav-links
+{
+    display: flex;
+
+    gap: 40px;
+
+    justify-self: center;
+}
+
+.currency
+{
+    justify-self: end;
+}
 /* =========================
    HERO
 ========================= */
