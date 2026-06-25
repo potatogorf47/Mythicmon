@@ -4,33 +4,6 @@ let enemyHP = 100;
 
 let currentEnemy = null;
 
-const creatures =
-[
-    {
-        name:"Sparkit",
-        zone:"forest",
-        hp:40,
-        attack:8
-    },
-    {
-        name:"Mosshell",
-        zone:"forest",
-        hp:45,
-        attack:7
-    },
-    {
-        name:"Thunderclaw",
-        zone:"ember",
-        hp:70,
-        attack:14
-    },
-    {
-        name:"Crystalback",
-        zone:"reef",
-        hp:75,
-        attack:12
-    }
-];
 
 function startBattle()
 {
@@ -147,3 +120,5 @@ function()
 {
     startBattle();
 };
+window.attackEnemy = attackEnemy;
+window.startBattle = startBattle;
