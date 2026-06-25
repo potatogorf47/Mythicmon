@@ -63,6 +63,13 @@ const creatures = [
         hp: 75,
         attack: 12
     }
+    {
+        name: "Fireclaw",
+        rarity: "Legendary",
+        zone: "ember",
+        hp: 100,
+        attack: 20
+    }
 ];
 
 // ======================
