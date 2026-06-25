@@ -3,21 +3,14 @@
 
 <head>
 
-    <title>
-        MythicMon
-    </title>
+    <title>MythicMon</title>
 
-    <link
-    rel="stylesheet"
+    <link rel="stylesheet"
     href="style.css">
 
 </head>
 
 <body>
-
-<!-- ======================
-NAVBAR
-====================== -->
 
 <nav>
 
@@ -41,7 +34,7 @@ NAVBAR
 
     </div>
 
-    <div class="coins">
+    <div class="currency">
 
         Coins:
         <span id="coin-display">
@@ -52,128 +45,145 @@ NAVBAR
 
 </nav>
 
-<!-- ======================
-STARTER MODAL
-====================== -->
-
-<div id="starter-modal">
-
-    <div class="starter-box">
-
-        <h2>
-            Choose Your Starter
-        </h2>
-
-        <button
-        onclick="chooseStarter('Flaretail')">
-
-            Flaretail
-
-        </button>
-
-        <button
-        onclick="chooseStarter('Aquafang')">
-
-            Aquafang
-
-        </button>
-
-        <button
-        onclick="chooseStarter('Leafhorn')">
-
-            Leafhorn
-
-        </button>
-
-    </div>
-
-</div>
-
-<!-- ======================
-PACK SHOP
-====================== -->
-
-<section class="shop-title">
+<section class="hero">
 
     <h1>
         Pack Shop
     </h1>
 
     <p>
-        Open packs to expand your collection.
+        Open packs and collect MythicMon.
     </p>
 
 </section>
 
-<section class="pack-grid">
+<section class="pack-section">
 
-    <div class="pack-card forest">
+    <div class="pack-grid">
 
-        <h2>
-            Verdant Pack
-        </h2>
+        <div class="pack-card forest-pack">
 
-        <p>
-            Forest Creatures
-        </p>
+            <h2>
+                Verdant Pack
+            </h2>
 
-        <button
-        onclick="openPack('forest')">
+            <p>
+                Forest Creatures
+            </p>
 
-            Open Pack
-        </button>
+            <button
+            onclick="openPack('forest')">
 
-    </div>
+                Open Pack
 
-    <div class="pack-card ember">
+            </button>
 
-        <h2>
-            Ember Pack
-        </h2>
+        </div>
 
-        <p>
-            Fire Creatures
-        </p>
+        <div class="pack-card ember-pack">
 
-        <button
-        onclick="openPack('ember')">
+            <h2>
+                Ember Pack
+            </h2>
 
-            Open Pack
-        </button>
+            <p>
+                Fire Creatures
+            </p>
 
-    </div>
+            <button
+            onclick="openPack('ember')">
 
-    <div class="pack-card reef">
+                Open Pack
 
-        <h2>
-            Reef Pack
-        </h2>
+            </button>
 
-        <p>
-            Water Creatures
-        </p>
+        </div>
 
-        <button
-        onclick="openPack('reef')">
+        <div class="pack-card reef-pack">
 
-            Open Pack
-        </button>
+            <h2>
+                Reef Pack
+            </h2>
+
+            <p>
+                Water Creatures
+            </p>
+
+            <button
+            onclick="openPack('reef')">
+
+                Open Pack
+
+            </button>
+
+        </div>
 
     </div>
 
 </section>
 
+<!-- STARTER MODAL -->
 
+<div id="starter-modal">
 
-<!-- ======================
-OUTPUT
-====================== -->
+    <div class="starter-box">
 
-<div id="output">
+        <h1>
+            Choose Your Starter
+        </h1>
+
+        <div class="starter-grid">
+
+            <div
+            class="starter-card"
+            onclick="chooseStarter('Flaretail')">
+
+                <h2>
+                    Flaretail
+                </h2>
+
+                <p>
+                    Fire Type
+                </p>
+
+            </div>
+
+            <div
+            class="starter-card"
+            onclick="chooseStarter('Aquafang')">
+
+                <h2>
+                    Aquafang
+                </h2>
+
+                <p>
+                    Water Type
+                </p>
+
+            </div>
+
+            <div
+            class="starter-card"
+            onclick="chooseStarter('Leafhorn')">
+
+                <h2>
+                    Leafhorn
+                </h2>
+
+                <p>
+                    Nature Type
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
 
 <script src="script.js"></script>
 
 </body>
+
 </html>
