@@ -1,18 +1,12 @@
-// ======================================
+// =====================================
 // MYTHICMON
-// SCRIPT.JS
+// script.js
 // PART 1
-// ======================================
+// =====================================
 
-// ======================================
-// VERSION
-// ======================================
-
-const GAME_VERSION = "2.0";
-
-// ======================================
-// PLAYER SAVE
-// ======================================
+// =====================================
+// PLAYER DATA
+// =====================================
 
 let gameData =
 {
@@ -24,7 +18,7 @@ let gameData =
 
     level: 1,
 
-    experience: 0,
+    xp: 0,
 
     collection: [],
 
@@ -33,13 +27,13 @@ let gameData =
     settings:
     {
         music: true,
-        sounds: true
+        sfx: true
     }
 };
 
-// ======================================
+// =====================================
 // CREATURE DATABASE
-// ======================================
+// =====================================
 
 const creatures =
 [
@@ -52,16 +46,13 @@ const creatures =
     type:"Fire",
     rarity:"Starter",
     zone:"ember",
-
-    hp:55,
-    attack:12,
-    defense:8,
-    speed:10,
-
+    hp:60,
+    attack:13,
+    defense:9,
+    speed:11,
+    evolution:"Blazetail",
     image:"images/flaretail.png",
-
-    description:
-    "A playful fire fox."
+    moves:["Scratch","Ember"]
 },
 
 {
@@ -70,16 +61,13 @@ const creatures =
     type:"Water",
     rarity:"Starter",
     zone:"reef",
-
-    hp:60,
-    attack:10,
+    hp:64,
+    attack:11,
     defense:11,
-    speed:8,
-
+    speed:9,
+    evolution:"Tsunamaw",
     image:"images/aquafang.png",
-
-    description:
-    "A shark pup that controls tides."
+    moves:["Splash Bite","Water Gun"]
 },
 
 {
@@ -88,16 +76,13 @@ const creatures =
     type:"Nature",
     rarity:"Starter",
     zone:"forest",
-
-    hp:65,
-    attack:9,
+    hp:68,
+    attack:10,
     defense:12,
-    speed:7,
-
+    speed:8,
+    evolution:"Forestitan",
     image:"images/leafhorn.png",
-
-    description:
-    "A gentle forest guardian."
+    moves:["Vine Whip","Tackle"]
 },
 
 // ================= COMMON =================
@@ -108,16 +93,12 @@ const creatures =
     type:"Electric",
     rarity:"Common",
     zone:"forest",
-
     hp:42,
-    attack:11,
-    defense:6,
-    speed:13,
-
+    attack:8,
+    defense:5,
+    speed:15,
     image:"images/sparkit.png",
-
-    description:
-    "Tiny but full of energy."
+    moves:["Spark","Scratch"]
 },
 
 {
@@ -126,16 +107,12 @@ const creatures =
     type:"Nature",
     rarity:"Common",
     zone:"forest",
-
-    hp:48,
-    attack:8,
-    defense:13,
+    hp:50,
+    attack:7,
+    defense:12,
     speed:4,
-
     image:"images/mosshell.png",
-
-    description:
-    "Its shell grows living moss."
+    moves:["Tackle","Leaf Shot"]
 },
 
 {
@@ -144,52 +121,40 @@ const creatures =
     type:"Rock",
     rarity:"Common",
     zone:"cavern",
-
-    hp:50,
-    attack:9,
-    defense:12,
-    speed:5,
-
+    hp:58,
+    attack:8,
+    defense:13,
+    speed:3,
     image:"images/pebblit.png",
-
-    description:
-    "A tiny living boulder."
+    moves:["Rock Toss","Tackle"]
 },
 
 {
     id:7,
-    name:"Bubblefin",
+    name:"Bubbloon",
     type:"Water",
     rarity:"Common",
     zone:"reef",
-
     hp:44,
     attack:8,
     defense:7,
     speed:12,
-
-    image:"images/bubblefin.png",
-
-    description:
-    "Creates bubbles to escape danger."
+    image:"images/bubbloon.png",
+    moves:["Bubble","Splash"]
 },
 
 {
     id:8,
-    name:"Ashcub",
-    type:"Fire",
+    name:"Snowcub",
+    type:"Ice",
     rarity:"Common",
-    zone:"ember",
-
-    hp:46,
-    attack:10,
+    zone:"tundra",
+    hp:48,
+    attack:9,
     defense:8,
-    speed:9,
-
-    image:"images/ashcub.png",
-
-    description:
-    "Leaves warm footprints."
+    speed:10,
+    image:"images/snowcub.png",
+    moves:["Ice Shard","Scratch"]
 },
 
 // ================= RARE =================
@@ -200,16 +165,12 @@ const creatures =
     type:"Electric",
     rarity:"Rare",
     zone:"ember",
-
-    hp:70,
+    hp:75,
     attack:16,
     defense:11,
-    speed:15,
-
+    speed:16,
     image:"images/thunderclaw.png",
-
-    description:
-    "Its claws spark during battle."
+    moves:["Thunder Fang","Scratch"]
 },
 
 {
@@ -218,16 +179,12 @@ const creatures =
     type:"Water",
     rarity:"Rare",
     zone:"reef",
-
-    hp:74,
-    attack:13,
+    hp:78,
+    attack:15,
     defense:15,
     speed:8,
-
     image:"images/crystalback.png",
-
-    description:
-    "Crystal armor protects it."
+    moves:["Aqua Tail","Bubble Beam"]
 },
 
 {
@@ -236,35 +193,28 @@ const creatures =
     type:"Rock",
     rarity:"Rare",
     zone:"cavern",
-
-    hp:80,
-    attack:15,
-    defense:17,
+    hp:82,
+    attack:17,
+    defense:18,
     speed:5,
-
     image:"images/stonejaw.png",
-
-    description:
-    "Can crush granite."
+    moves:["Rock Slide","Bash"]
 },
 
 {
     id:12,
-    name:"Blizzardon",
-    type:"Ice",
+    name:"Cloudrake",
+    type:"Air",
     rarity:"Rare",
-    zone:"tundra",
-
-    hp:78,
-    attack:15,
-    defense:14,
-    speed:11,
-
-    image:"images/blizzardon.png",
-
-    description:
-    "Its breath freezes lakes."
+    zone:"sky",
+    hp:70,
+    attack:16,
+    defense:9,
+    speed:20,
+    image:"images/cloudrake.png",
+    moves:["Gust","Sky Dive"]
 },
+
 // ================= EPIC =================
 
 {
@@ -273,86 +223,71 @@ const creatures =
     type:"Dark",
     rarity:"Epic",
     zone:"cavern",
-
     hp:96,
     attack:22,
     defense:15,
-    speed:18,
-
+    speed:20,
     image:"images/shadowfang.png",
-
-    description:"A predator that hunts silently."
+    moves:["Shadow Claw","Night Slash"]
 },
 
 {
     id:14,
-    name:"Venomwing",
-    type:"Poison",
-    rarity:"Epic",
-    zone:"swamp",
-
-    hp:88,
-    attack:21,
-    defense:13,
-    speed:20,
-
-    image:"images/venomwing.png",
-
-    description:"Its wings leave poisonous spores."
-},
-
-{
-    id:15,
-    name:"Voltiger",
-    type:"Electric",
-    rarity:"Epic",
-    zone:"factory",
-
-    hp:92,
-    attack:24,
-    defense:16,
-    speed:19,
-
-    image:"images/voltiger.png",
-
-    description:"Runs faster than lightning."
-},
-
-{
-    id:16,
     name:"Magmabear",
     type:"Fire",
     rarity:"Epic",
     zone:"volcano",
-
-    hp:104,
-    attack:25,
+    hp:108,
+    attack:24,
     defense:18,
-    speed:11,
-
+    speed:10,
     image:"images/magmabear.png",
-
-    description:"Its roar shakes volcanoes."
+    moves:["Fire Punch","Lava Burst"]
 },
 
 {
-    id:17,
-    name:"Moonfang",
-    type:"Dark",
+    id:15,
+    name:"Venomwing",
+    type:"Poison",
     rarity:"Epic",
-    zone:"temple",
+    zone:"swamp",
+    hp:94,
+    attack:20,
+    defense:14,
+    speed:22,
+    image:"images/venomwing.png",
+    moves:["Poison Sting","Toxic Slash"]
+},
 
-    hp:95,
-    attack:22,
+{
+    id:16,
+    name:"Voltiger",
+    type:"Electric",
+    rarity:"Epic",
+    zone:"factory",
+    hp:100,
+    attack:23,
     defense:16,
-    speed:17,
-
-    image:"images/moonfang.png",
-
-    description:"Only appears beneath a full moon."
+    speed:18,
+    image:"images/voltiger.png",
+    moves:["Thunder Crash","Spark"]
 },
 
 // ================= LEGENDARY =================
+
+{
+    id:17,
+    name:"Skyserpent",
+    type:"Air",
+    rarity:"Legendary",
+    zone:"sky",
+    hp:140,
+    attack:32,
+    defense:22,
+    speed:26,
+    image:"images/skyserpent.png",
+    moves:["Hurricane","Dragon Wind"]
+},
 
 {
     id:18,
@@ -360,167 +295,264 @@ const creatures =
     type:"Light",
     rarity:"Legendary",
     zone:"temple",
-
-    hp:130,
-    attack:30,
-    defense:22,
-    speed:22,
-
+    hp:145,
+    attack:34,
+    defense:24,
+    speed:21,
     image:"images/solarion.png",
-
-    description:"Guardian of the ancient sun."
+    moves:["Solar Beam","Light Burst"]
 },
 
 {
     id:19,
-    name:"Skyserpent",
-    type:"Air",
+    name:"Lunaclaw",
+    type:"Dark",
     rarity:"Legendary",
-    zone:"sky",
-
-    hp:124,
-    attack:31,
-    defense:18,
-    speed:30,
-
-    image:"images/skyserpent.png",
-
-    description:"Rules the skies."
+    zone:"temple",
+    hp:142,
+    attack:33,
+    defense:22,
+    speed:23,
+    image:"images/lunaclaw.png",
+    moves:["Moon Slash","Dark Pulse"]
 },
 
 {
     id:20,
-    name:"Titanoak",
-    type:"Nature",
+    name:"Frost Titan",
+    type:"Ice",
     rarity:"Legendary",
-    zone:"forest",
-
-    hp:145,
-    attack:26,
+    zone:"tundra",
+    hp:155,
+    attack:30,
     defense:28,
-    speed:9,
-
-    image:"images/titanoak.png",
-
-    description:"Ancient protector of forests."
+    speed:12,
+    image:"images/frosttitan.png",
+    moves:["Blizzard","Ice Hammer"]
 }
 
 ];
-// ======================================
-// RARITY ODDS
-// ======================================
+
+// =====================================
+// RARITY WEIGHTS
+// =====================================
 
 const rarityWeights =
 {
-    Common:65,
-
+    Common:60,
     Rare:25,
-
-    Epic:8,
-
-    Legendary:2
+    Epic:10,
+    Legendary:4,
+    Starter:1
 };
+
+// =====================================
+// SAVE / LOAD
+// =====================================
+
+function saveGame()
+{
+    localStorage.setItem(
+        "mythicmonSave",
+        JSON.stringify(gameData)
+    );
+}
+
+function loadGame()
+{
+    const save =
+    localStorage.getItem(
+        "mythicmonSave"
+    );
+
+    if(save)
+    {
+        gameData =
+        JSON.parse(save);
+    }
+}
+
+// =====================================
+// HELPER FUNCTIONS
+// =====================================
+
+function getCreature(name)
+{
+    return creatures.find(
+        c => c.name === name
+    );
+}
+
+function randomNumber(min,max)
+{
+    return Math.floor(
+        Math.random() *
+        (max-min+1)
+    ) + min;
+}
+
+function updateCoins()
+{
+    const display =
+    document.getElementById(
+        "coin-display"
+    );
+
+    if(display)
+    {
+        display.textContent =
+        gameData.coins;
+    }
+}
+
+console.log("Script Part 1 Loaded");
+// =====================================
+// PART 2
+// STARTERS, PACKS & COLLECTION
+// =====================================
+
+// =====================================
+// STARTER SELECTION
+// =====================================
+
+function chooseStarter(name)
+{
+    if(gameData.starter !== null)
+    {
+        return;
+    }
+
+    const starter =
+    getCreature(name);
+
+    if(!starter)
+    {
+        return;
+    }
+
+    gameData.starter = name;
+
+    gameData.collection.push(name);
+
+    gameData.unlocked.push(name);
+
+    saveGame();
+
+    const modal =
+    document.getElementById(
+        "starter-modal"
+    );
+
+    if(modal)
+    {
+        modal.style.display =
+        "none";
+    }
+
+    alert(
+        "You chose " + name + "!"
+    );
+}
+
+function checkStarter()
+{
+    const modal =
+    document.getElementById(
+        "starter-modal"
+    );
+
+    if(!modal)
+    {
+        return;
+    }
+
+    if(gameData.starter === null)
+    {
+        modal.style.display =
+        "flex";
+    }
+    else
+    {
+        modal.style.display =
+        "none";
+    }
+}
+
+// =====================================
+// WEIGHTED RARITY ROLL
+// =====================================
+
 function rollRarity()
 {
     const roll =
     Math.random() * 100;
 
-    if(roll < 65)
+    if(roll < 60)
     {
         return "Common";
     }
 
-    if(roll < 90)
+    if(roll < 85)
     {
         return "Rare";
     }
 
-    if(roll < 98)
+    if(roll < 95)
     {
         return "Epic";
     }
 
-    return "Legendary";
+    if(roll < 99)
+    {
+        return "Legendary";
+    }
+
+    return "Starter";
 }
-function getRandomCreature(zone, rarity)
+
+// =====================================
+// RANDOM CREATURE
+// =====================================
+
+function getRandomCreature(zone)
 {
-    const possible =
+    let rarity =
+    rollRarity();
+
+    let pool =
     creatures.filter(
         creature =>
         creature.zone === zone &&
         creature.rarity === rarity
     );
 
-    if(possible.length === 0)
+    if(pool.length === 0)
     {
-        return null;
-    }
-
-    return possible[
-        Math.floor(
-            Math.random() *
-            possible.length
-        )
-    ];
-}
-// ==============================
-// PULL A SINGLE CARD
-// ==============================
-
-function pullCard(zone, guaranteedRare = false)
-{
-    let rarity;
-
-    if(guaranteedRare)
-    {
-        const roll = Math.random() * 100;
-
-        if(roll < 70)
-        {
-            rarity = "Rare";
-        }
-        else if(roll < 95)
-        {
-            rarity = "Epic";
-        }
-        else
-        {
-            rarity = "Legendary";
-        }
-    }
-    else
-    {
-        rarity = rollRarity();
-    }
-
-    let card = getRandomCreature(
-        zone,
-        rarity
-    );
-
-    // If no creature exists of that rarity
-    // fall back to a Common.
-
-    if(card == null)
-    {
-        card = getRandomCreature(
-            zone,
-            "Common"
+        pool =
+        creatures.filter(
+            creature =>
+            creature.zone === zone
         );
     }
 
-    return card;
+    return pool[
+        randomNumber(
+            0,
+            pool.length - 1
+        )
+    ];
 }
-// ==============================
+
+// =====================================
 // OPEN PACK
-// ==============================
+// =====================================
 
 function openPack(zone)
 {
     if(gameData.coins < 10)
     {
         alert(
-            "You need 10 coins."
+            "You don't have enough coins."
         );
 
         return;
@@ -530,30 +562,15 @@ function openPack(zone)
 
     updateCoins();
 
-    const pack = [];
+    let pulls = [];
 
-    // First four cards
-
-    for(let i = 0; i < 4; i++)
+    for(let i = 0; i < 5; i++)
     {
-        pack.push(
-            pullCard(zone)
-        );
-    }
+        const card =
+        getRandomCreature(zone);
 
-    // Fifth card guaranteed Rare+
+        pulls.push(card);
 
-    pack.push(
-        pullCard(
-            zone,
-            true
-        )
-    );
-
-    // Save cards
-
-    pack.forEach(card =>
-    {
         gameData.collection.push(
             card.name
         );
@@ -568,54 +585,112 @@ function openPack(zone)
                 card.name
             );
         }
-    });
+    }
 
     saveGame();
 
-    startPackReveal(pack);
+    revealCards(pulls);
 }
-// ==============================
-// PACK REVEAL
-// ==============================
+
+// =====================================
+// CARD REVEAL
+// =====================================
 
 let currentPack = [];
 
-let revealIndex = 0;
+let currentReveal = 0;
 
-function startPackReveal(cards)
+function revealCards(cards)
 {
     currentPack = cards;
 
-    revealIndex = 0;
+    currentReveal = 0;
 
     showCard(
-        currentPack[
-            revealIndex
-        ]
+        currentPack[0]
     );
 }
-function nextCard()
+
+function showCard(card)
 {
-    revealIndex++;
+    let overlay =
+    document.getElementById(
+        "pack-overlay"
+    );
+
+    if(!overlay)
+    {
+        overlay =
+        document.createElement(
+            "div"
+        );
+
+        overlay.id =
+        "pack-overlay";
+
+        document.body.appendChild(
+            overlay
+        );
+    }
+
+    overlay.style.display =
+    "flex";
+
+    overlay.innerHTML =
+    `
+    <div class="reveal-card ${card.rarity.toLowerCase()}">
+
+        <div class="card-art">
+
+            <img
+            src="${card.image}"
+            onerror="this.style.display='none'">
+
+        </div>
+
+        <h2>
+            ${card.name}
+        </h2>
+
+        <p>
+            ${card.type}
+        </p>
+
+        <h3>
+            ${card.rarity}
+        </h3>
+
+        <button onclick="nextReveal()">
+
+            Next Card
+
+        </button>
+
+    </div>
+    `;
+}
+
+function nextReveal()
+{
+    currentReveal++;
 
     if(
-        revealIndex >=
+        currentReveal >=
         currentPack.length
     )
     {
         closePack();
-
-        showCollection();
 
         return;
     }
 
     showCard(
         currentPack[
-            revealIndex
+            currentReveal
         ]
     );
 }
+
 function closePack()
 {
     const overlay =
@@ -625,327 +700,246 @@ function closePack()
 
     if(overlay)
     {
-        overlay.remove();
-    }
-}
-// ==============================
-// SHOW CARD
-// ==============================
-
-function showCard(card)
-{
-    closePack();
-
-    const overlay =
-    document.createElement("div");
-
-    overlay.id = "pack-overlay";
-
-    overlay.innerHTML =
-
-    `
-    <div class="flash"></div>
-
-    <div class="reveal-card ${card.rarity.toLowerCase()} fade-in">
-    ...
-    `;
-    <div class="pack-opening">
-
-        <div id="booster-pack"
-        class="booster-pack">
-
-            <div class="pack-front">
-
-                MythicMon
-
-            </div>
-
-        </div>
-
-    </div>
-    `;
-
-    document.body.appendChild(
-        overlay
-    );
-
-    const pack =
-    document.getElementById(
-        "booster-pack"
-    );
-
-    setTimeout(function()
-    {
-        pack.classList.add(
-            "open"
-        );
-
-    },800);
-
-    setTimeout(function()
-    {
-        overlay.innerHTML =
-
-        `
-        <div class="reveal-card ${card.rarity.toLowerCase()} fade-in">
-
-            <div class="card-glow"></div>
-
-            <div class="card-art">
-
-                <img
-                src="${card.image}"
-                onerror="this.style.display='none'">
-
-            </div>
-
-            <h2>
-
-                ${card.name}
-
-            </h2>
-
-            <h3>
-
-                ${card.type}
-
-            </h3>
-
-            <p>
-
-                ${card.rarity}
-
-            </p>
-
-            <button onclick="nextCard()">
-
-                Continue
-
-            </button>
-
-        </div>
-        `;
-
-    },1800);
-enableCardTilt();
-const left =
-currentPack.length -
-revealIndex - 1;
-${left}
-Cards Remaining
-}
-
-// ======================================
-// SAVE GAME
-// ======================================
-
-function saveGame()
-{
-    localStorage.setItem(
-        "mythicmon_save",
-        JSON.stringify(gameData)
-    );
-}
-
-// ======================================
-// LOAD GAME
-// ======================================
-
-function loadGame()
-{
-    const save =
-    localStorage.getItem(
-        "mythicmon_save"
-    );
-
-    if(save)
-    {
-        gameData =
-        JSON.parse(save);
+        overlay.style.display =
+        "none";
     }
 }
 
-// ======================================
-// ACCOUNT
-// ======================================
-
-function createAccount(username)
-{
-    gameData.username = username;
-
-    saveGame();
-}
-
-function hasAccount()
-{
-    return gameData.username !== "";
-}
-
-// ======================================
-// COINS
-// ======================================
-
-function updateCoins()
-{
-    const coinDisplay =
-    document.getElementById(
-        "coin-display"
-    );
-
-    if(coinDisplay)
-    {
-        coinDisplay.textContent =
-        gameData.coins;
-    }
-}
-
-// ======================================
-// FIND CREATURE
-// ======================================
-
-function getCreature(name)
-{
-    return creatures.find(
-        creature =>
-        creature.name === name
-    );
-}
-
-// ======================================
+// =====================================
 // COLLECTION
-// ======================================
+// =====================================
 
-function addToCollection(name)
+function showCollection()
 {
-    gameData.collection.push(name);
+    const grid =
+    document.getElementById(
+        "collection-grid"
+    );
 
-    if(
-        !gameData.unlocked.includes(name)
-    )
-    {
-        gameData.unlocked.push(name);
-    }
-
-    saveGame();
-}
-
-// ======================================
-// STARTER
-// ======================================
-
-function chooseStarter(name)
-{
-    if(gameData.starter)
+    if(!grid)
     {
         return;
     }
 
-    gameData.starter = name;
+    grid.innerHTML = "";
 
-    addToCollection(name);
-
-    saveGame();
-
-    const modal =
-    document.getElementById(
-        "starter-modal"
-    );
-
-    if(modal)
-    {
-        modal.style.display = "none";
-    }
-
-    console.log(
-        "Starter chosen:",
-        name
-    );
-}
-
-// ======================================
-// SHOW STARTER MODAL
-// ======================================
-
-function checkStarter()
-{
-    const modal =
-    document.getElementById(
-        "starter-modal"
-    );
-
-    if(
-        modal &&
-        gameData.starter === null
-    )
-    {
-        modal.style.display = "flex";
-    }
-}
-function enableCardTilt()
-{
-    const card =
-    document.querySelector(
-        ".reveal-card"
-    );
-
-    if(!card)
-    {
-        return;
-    }
-
-    card.addEventListener(
-        "mousemove",
-
-        function(event)
+    gameData.collection.forEach(
+        name =>
         {
-            const rect =
-            card.getBoundingClientRect();
+            const creature =
+            getCreature(name);
 
-            const x =
-            event.clientX -
-            rect.left;
+            if(!creature)
+            {
+                return;
+            }
 
-            const y =
-            event.clientY -
-            rect.top;
-
-            const rotateY =
-            ((x / rect.width) - .5) * 18;
-
-            const rotateX =
-            ((y / rect.height) - .5) * -18;
-
-            card.style.transform =
+            grid.innerHTML +=
             `
-            perspective(1000px)
-            rotateX(${rotateX}deg)
-            rotateY(${rotateY}deg)
-            scale(1.03)
+            <div class="collection-card">
+
+                <div class="art">
+
+                    <img
+                    src="${creature.image}"
+                    onerror="this.style.display='none'">
+
+                </div>
+
+                <div class="card-info">
+
+                    <h2>
+                        ${creature.name}
+                    </h2>
+
+                    <p>
+                        ${creature.type}
+                    </p>
+
+                    <p>
+                        ${creature.rarity}
+                    </p>
+
+                </div>
+
+            </div>
             `;
         }
     );
+}
 
-    card.addEventListener(
-        "mouseleave",
+console.log("Script Part 2 Loaded");
+// =====================================
+// PART 3
+// SAFARI & GAME PROGRESSION
+// =====================================
 
-        function()
-        {
-            card.style.transform =
-            "";
-        }
+// =====================================
+// ENTER SAFARI
+// =====================================
+
+function enterSafari(zone)
+{
+    if(gameData.starter === null)
+    {
+        alert(
+            "Choose a starter first!"
+        );
+
+        return;
+    }
+
+    localStorage.setItem(
+        "currentZone",
+        zone
+    );
+
+    window.location.href =
+    "battle.html";
+}
+
+// =====================================
+// WIN BATTLE
+// =====================================
+
+function battleReward(creatureName)
+{
+    const creature =
+    getCreature(creatureName);
+
+    if(!creature)
+    {
+        return;
+    }
+
+    gameData.coins += 25;
+
+    if(
+        !gameData.unlocked.includes(
+            creature.name
+        )
+    )
+    {
+        gameData.unlocked.push(
+            creature.name
+        );
+    }
+
+    if(
+        !gameData.collection.includes(
+            creature.name
+        )
+    )
+    {
+        gameData.collection.push(
+            creature.name
+        );
+    }
+
+    saveGame();
+
+    updateCoins();
+
+    showCollection();
+}
+
+// =====================================
+// PLAYER INFO
+// =====================================
+
+function getStarter()
+{
+    if(
+        gameData.starter === null
+    )
+    {
+        return null;
+    }
+
+    return getCreature(
+        gameData.starter
     );
 }
 
-// ======================================
-// PAGE STARTUP
-// ======================================
+// =====================================
+// RESET SAVE
+// =====================================
 
-loadGame();
+function resetGame()
+{
+    if(
+        !confirm(
+            "Delete your save?"
+        )
+    )
+    {
+        return;
+    }
 
-updateCoins();
+    localStorage.removeItem(
+        SAVE_KEY
+    );
 
-checkStarter();
+    location.reload();
+}
+
+// =====================================
+// DEBUG
+// =====================================
+
+function giveCoins(amount)
+{
+    gameData.coins += amount;
+
+    saveGame();
+
+    updateCoins();
+}
+
+function unlockEverything()
+{
+    creatures.forEach(
+        creature =>
+        {
+            if(
+                !gameData.unlocked.includes(
+                    creature.name
+                )
+            )
+            {
+                gameData.unlocked.push(
+                    creature.name
+                );
+            }
+        }
+    );
+
+    saveGame();
+}
+
+// =====================================
+// STARTUP
+// =====================================
+
+window.addEventListener(
+    "DOMContentLoaded",
+
+    function()
+    {
+        loadGame();
+
+        updateCoins();
+
+        checkStarter();
+
+        showCollection();
+
+        console.log(
+            "MythicMon Loaded Successfully"
+        );
+    }
+);
 
 console.log(
-    "Script Part 1 Loaded"
+    "Script Part 3 Loaded"
 );
