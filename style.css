@@ -938,3 +938,211 @@ button:hover{
         opacity:0;
     }
 }
+.reveal-card::before
+{
+    content:"";
+
+    position:absolute;
+
+    top:-60%;
+
+    left:-80%;
+
+    width:60%;
+
+    height:240%;
+
+    transform:
+    rotate(25deg);
+
+    background:
+    linear-gradient(
+        transparent,
+        rgba(255,255,255,.45),
+        transparent
+    );
+
+    animation:
+    shine
+    3s
+    infinite;
+
+    pointer-events:none;
+}
+
+@keyframes shine
+{
+    from
+    {
+        left:-80%;
+    }
+
+    to
+    {
+        left:160%;
+    }
+}
+.epic::after,
+.legendary::after
+{
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:25px;
+
+    background:
+    linear-gradient(
+        120deg,
+
+        rgba(255,0,255,.18),
+
+        rgba(0,255,255,.18),
+
+        rgba(255,255,0,.18),
+
+        rgba(255,0,255,.18)
+    );
+
+    mix-blend-mode:screen;
+
+    animation:
+    holo
+    5s linear infinite;
+
+    pointer-events:none;
+}
+
+@keyframes holo
+{
+    from
+    {
+        background-position:
+        0px;
+    }
+
+    to
+    {
+        background-position:
+        900px;
+    }
+}
+.sparkles
+{
+    position:absolute;
+
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+}
+
+.sparkles::before,
+.sparkles::after
+{
+    content:"✨";
+
+    position:absolute;
+
+    font-size:28px;
+
+    animation:
+    sparkle
+    2s infinite;
+}
+
+.sparkles::before
+{
+    left:18%;
+
+    top:22%;
+}
+
+.sparkles::after
+{
+    right:15%;
+
+    bottom:25%;
+}
+
+@keyframes sparkle
+{
+    0%
+    {
+        opacity:0;
+
+        transform:
+        scale(.5);
+    }
+
+    50%
+    {
+        opacity:1;
+
+        transform:
+        scale(1.4);
+    }
+
+    100%
+    {
+        opacity:0;
+
+        transform:
+        scale(.5);
+    }
+}
+.rarity-banner
+{
+    padding:8px;
+
+    border-radius:50px;
+
+    font-weight:bold;
+
+    width:150px;
+
+    margin:auto;
+
+    background:
+    rgba(255,255,255,.2);
+}
+.reveal-card
+{
+    box-shadow:
+
+    0 30px 80px rgba(0,0,0,.55),
+
+    0 0 45px rgba(255,255,255,.2);
+}
+.reveal-card
+{
+    animation:
+
+    cardFlip .8s,
+
+    floatCard 3s ease-in-out infinite;
+}
+
+@keyframes floatCard
+{
+    0%
+    {
+        transform:
+        translateY(0px);
+    }
+
+    50%
+    {
+        transform:
+        translateY(-12px);
+    }
+
+    100%
+    {
+        transform:
+        translateY(0px);
+    }
+}
