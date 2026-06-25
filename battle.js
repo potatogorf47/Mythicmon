@@ -1,7 +1,8 @@
-console.log("BATTLE JS START");
 let playerHP = 100;
-let enemyHP = 100;
+let playerMaxHP = 100;
 
+let enemyHP = 100;
+let enemyMaxHP = 100;
 let currentEnemy = null;
 
 
@@ -31,7 +32,8 @@ function startBattle()
     ];
 
     playerHP = 100;
-    enemyHP = currentEnemy.hp;
+    enemyMaxHP = currentEnemy.hp;
+    enemyHP = enemyMaxHP;
 
     document.getElementById(
         "enemy-name"
@@ -46,30 +48,37 @@ function updateHP()
     document.getElementById(
         "enemy-hp-text"
     ).textContent =
-    enemyHP;
+    enemyHP + "/" + enemyMaxHP;
 
     document.getElementById(
         "player-hp-text"
     ).textContent =
-    playerHP;
+    playerHP + "/" + playerMaxHP;
+
+    const enemyPercent =
+    (enemyHP / enemyMaxHP) * 100;
+
+    const playerPercent =
+    (playerHP / playerMaxHP) * 100;
 
     document.getElementById(
         "enemy-hp-fill"
     ).style.width =
-    enemyHP + "%";
+    enemyPercent + "%";
 
     document.getElementById(
         "player-hp-fill"
     ).style.width =
-    playerHP + "%";
+    playerPercent + "%";
 }
 
 function attackEnemy()
 {
     const playerDamage =
     Math.floor(
-        Math.random() * 12
-    ) + 8;
+        Math.random() * 5
+    ) +
+    starterCreature.attack;
 
     enemyHP -= playerDamage;
 
@@ -81,8 +90,9 @@ function attackEnemy()
 
     const enemyDamage =
     Math.floor(
-        Math.random() * 8
-    ) + 4;
+        Math.random() * 4
+    ) +
+    currentEnemy.attack;
 
     playerHP -= enemyDamage;
 
