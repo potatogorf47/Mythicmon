@@ -681,3 +681,225 @@ button:hover{
 {
     transform: scale(1.05);
 }
+.pack-opening
+{
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    width:100%;
+    height:100%;
+}
+
+.booster-pack
+{
+    width:260px;
+
+    height:380px;
+
+    border-radius:25px;
+
+    background:
+    linear-gradient(
+    135deg,
+    #9b5cff,
+    #351070
+    );
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:42px;
+
+    font-weight:bold;
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:.7s;
+
+    animation:
+    packFloat
+    1.2s
+    infinite ease-in-out;
+}
+
+@keyframes packFloat
+{
+    0%
+    {
+        transform:
+        translateY(0px);
+    }
+
+    50%
+    {
+        transform:
+        translateY(-15px);
+    }
+
+    100%
+    {
+        transform:
+        translateY(0px);
+    }
+}
+
+.booster-pack.open
+{
+    transform:
+    scale(1.2)
+    rotate(6deg);
+
+    opacity:0;
+
+    filter:
+    brightness(2);
+}
+.fade-in
+{
+    animation:
+    reveal
+    .45s ease;
+}
+
+@keyframes reveal
+{
+    from
+    {
+        transform:
+        scale(.6)
+        rotateY(90deg);
+
+        opacity:0;
+    }
+
+    to
+    {
+        transform:
+        scale(1)
+        rotateY(0deg);
+
+        opacity:1;
+    }
+}
+.card-art
+{
+    width:230px;
+
+    height:230px;
+
+    margin:auto;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    background:#ffffff22;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+}
+
+.card-art img
+{
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+}
+.card-glow
+{
+    position:absolute;
+
+    inset:-25px;
+
+    border-radius:30px;
+
+    filter:blur(40px);
+
+    opacity:.45;
+
+    z-index:-1;
+}
+
+.legendary .card-glow
+{
+    background:
+    gold;
+
+    animation:
+    pulse
+    1s infinite;
+}
+
+.epic .card-glow
+{
+    background:
+    #b95cff;
+}
+
+.rare .card-glow
+{
+    background:
+    #4db7ff;
+}
+
+.common .card-glow
+{
+    background:
+    #888;
+}
+
+@keyframes pulse
+{
+    0%
+    {
+        transform:scale(1);
+    }
+
+    50%
+    {
+        transform:scale(1.08);
+    }
+
+    100%
+    {
+        transform:scale(1);
+    }
+}
+.reveal-card
+{
+    position:relative;
+
+    width:330px;
+
+    height:470px;
+
+    border-radius:25px;
+
+    padding:25px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    text-align:center;
+
+    color:white;
+
+    box-shadow:
+    0 0 60px rgba(255,255,255,.25);
+}
