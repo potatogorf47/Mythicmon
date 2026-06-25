@@ -1,102 +1,103 @@
-// ======================
-// BATTLE DATA
-// ======================
+let playerHP = 100;
+let enemyHP = 100;
 
-let playerCreature;
-let enemyCreature;
+let currentEnemy = null;
 
-let playerHP;
-let enemyHP;
-
-// ======================
-// START BATTLE
-// ======================
+const creatures =
+[
+    {
+        name:"Sparkit",
+        zone:"forest",
+        hp:40,
+        attack:8
+    },
+    {
+        name:"Mosshell",
+        zone:"forest",
+        hp:45,
+        attack:7
+    },
+    {
+        name:"Thunderclaw",
+        zone:"ember",
+        hp:70,
+        attack:14
+    },
+    {
+        name:"Crystalback",
+        zone:"reef",
+        hp:75,
+        attack:12
+    }
+];
 
 function startBattle()
 {
-    loadGame();
-
     const zone =
     localStorage.getItem(
         "currentZone"
     );
 
-    const enemies =
+    const options =
     creatures.filter(
         c => c.zone === zone
     );
 
-    enemyCreature =
-    enemies[
+    if(options.length === 0)
+    {
+        return;
+    }
+
+    currentEnemy =
+    options[
         Math.floor(
             Math.random() *
-            enemies.length
+            options.length
         )
     ];
 
-    playerCreature =
-    creatures.find(
-        c =>
-        c.name === gameData.starter
-    );
+    playerHP = 100;
+    enemyHP = currentEnemy.hp;
 
-    playerHP =
-    playerCreature.hp;
-
-    enemyHP =
-    enemyCreature.hp;
-
-    updateBattleScreen();
-}
-
-// ======================
-// UPDATE SCREEN
-// ======================
-
-function updateBattleScreen()
-{
     document.getElementById(
         "enemy-name"
     ).textContent =
-    enemyCreature.name;
+    currentEnemy.name;
 
-    document.getElementById(
-        "player-name"
-    ).textContent =
-    playerCreature.name;
-
-    document.getElementById(
-        "enemy-hp"
-    ).style.width =
-    (enemyHP /
-    enemyCreature.hp) *
-    100 + "%";
-
-    document.getElementById(
-        "player-hp"
-    ).style.width =
-    (playerHP /
-    playerCreature.hp) *
-    100 + "%";
-
-    document.getElementById(
-        "battle-log"
-    ).innerHTML =
-    `
-    A wild
-    ${enemyCreature.name}
-    appeared!
-    `;
+    updateHP();
 }
 
-// ======================
-// ATTACK
-// ======================
-
-function attack()
+function updateHP()
 {
-    enemyHP -=
-    playerCreature.attack;
+    document.getElementById(
+        "enemy-hp-text"
+    ).textContent =
+    enemyHP;
+
+    document.getElementById(
+        "player-hp-text"
+    ).textContent =
+    playerHP;
+
+    document.getElementById(
+        "enemy-hp-fill"
+    ).style.width =
+    enemyHP + "%";
+
+    document.getElementById(
+        "player-hp-fill"
+    ).style.width =
+    playerHP + "%";
+}
+
+function attackEnemy()
+{
+    const playerDamage =
+    Math.floor(
+        Math.random() * 12
+    ) + 8;
+
+    enemyHP -= playerDamage;
 
     if(enemyHP <= 0)
     {
@@ -104,96 +105,43 @@ function attack()
         return;
     }
 
-    playerHP -=
-    enemyCreature.attack;
+    const enemyDamage =
+    Math.floor(
+        Math.random() * 8
+    ) + 4;
+
+    playerHP -= enemyDamage;
+
+    updateHP();
 
     if(playerHP <= 0)
     {
         loseBattle();
-        return;
     }
-
-    document.getElementById(
-        "battle-log"
-    ).innerHTML =
-    `
-    ${playerCreature.name}
-    attacked!
-
-    ${enemyCreature.name}
-    fought back!
-    `;
-
-    updateBattleScreen();
 }
-
-// ======================
-// WIN
-// ======================
 
 function winBattle()
 {
-    if(
-        !gameData.unlocked.includes(
-            enemyCreature.name
-        )
-    )
-    {
-        gameData.unlocked.push(
-            enemyCreature.name
-        );
-    }
+    alert(
+        "You defeated " +
+        currentEnemy.name
+    );
 
-    gameData.coins += 25;
-
-    saveGame();
-
-    document.getElementById(
-        "battle-log"
-    ).innerHTML =
-    `
-    <h2>
-        Victory!
-    </h2>
-
-    <p>
-        ${enemyCreature.name}
-        unlocked!
-    </p>
-
-    <p>
-        +25 Coins
-    </p>
-
-    <button
-    onclick="
-    location.href=
-    'safari.html'
-    ">
-        Back
-    </button>
-    `;
+    window.location.href =
+    "safari.html";
 }
-
-// ======================
-// LOSE
-// ======================
 
 function loseBattle()
 {
-    document.getElementById(
-        "battle-log"
-    ).innerHTML =
-    `
-    <h2>
-        Defeat
-    </h2>
+    alert(
+        "You were defeated!"
+    );
 
-    <button
-    onclick="
-    startBattle()
-    ">
-        Try Again
-    </button>
-    `;
+    startBattle();
 }
+
+window.onload =
+function()
+{
+    startBattle();
+};
