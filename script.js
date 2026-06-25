@@ -62,7 +62,7 @@ const creatures = [
         zone: "reef",
         hp: 75,
         attack: 12
-    }
+    },
     {
         name: "Fireclaw",
         rarity: "Legendary",
