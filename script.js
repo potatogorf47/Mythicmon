@@ -642,7 +642,13 @@ function showCard(card)
     overlay.id = "pack-overlay";
 
     overlay.innerHTML =
+
     `
+    <div class="flash"></div>
+
+    <div class="reveal-card ${card.rarity.toLowerCase()} fade-in">
+    ...
+    `;
     <div class="pack-opening">
 
         <div id="booster-pack"
