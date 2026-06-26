@@ -338,59 +338,42 @@ function openPack(zone)
 {
     if(gameData.coins < 10)
     {
-        alert(
-            "Not enough coins!"
-        );
-
+        alert("Not enough coins!");
         return;
     }
 
-    removeCoins(10);
+    gameData.coins -= 10;
 
-    const pulls = [];
+    updateCoins();
 
-    while(
-        pulls.length < 5
-    )
+    const available =
+    creatures.filter(
+
+        creature =>
+
+        creature.zone === zone
+
+    );
+
+    if(available.length === 0)
     {
-        const rarity =
-        rollRarity();
-
-        const options =
-        creatures.filter(
-            creature =>
-            creature.zone === zone &&
-            creature.rarity === rarity
-        );
-
-        if(
-            options.length === 0
-        )
-        {
-            continue;
-        }
-
-        const card =
-        options[
-            Math.floor(
-                Math.random() *
-                options.length
-            )
-        ];
-
-        pulls.push(card);
-
-        addCreature(
-            card.name
-        );
+        alert("No creatures found.");
+        return;
     }
+
+    const pull =
+    chooseCreatureByRarity(
+        available
+    );
+
+    addCreature(
+        pull.name
+    );
 
     saveGame();
 
-    showCollection();
-
-    showPackOpening(
-        pulls
+    showCard(
+        pull
     );
 }
 // =====================================
