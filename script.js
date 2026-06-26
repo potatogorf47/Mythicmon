@@ -280,56 +280,62 @@ function chooseStarter(name)
 }
 
 // =====================================
-// RARITY CHANCES
+// RARITY WEIGHTS
 // =====================================
 
-const rarityTable =
-[
-    {
-        rarity:"Legendary",
-        chance:2
-    },
-
-    {
-        rarity:"Epic",
-        chance:8
-    },
-
-    {
-        rarity:"Rare",
-        chance:25
-    },
-
-    {
-        rarity:"Common",
-        chance:65
-    }
-];
-
-// =====================================
-// ROLL RARITY
-// =====================================
-
-function rollRarity()
+function chooseCreatureByRarity(list)
 {
     const roll =
     Math.random() * 100;
 
-    let total = 0;
+    let rarity;
 
-    for(const entry of rarityTable)
+    if(roll < 60)
     {
-        total += entry.chance;
-
-        if(roll <= total)
-        {
-            return entry.rarity;
-        }
+        rarity = "Common";
     }
 
-    return "Common";
-}
+    else if(roll < 85)
+    {
+        rarity = "Rare";
+    }
 
+    else if(roll < 95)
+    {
+        rarity = "Epic";
+    }
+
+    else if(roll < 99.5)
+    {
+        rarity = "Legendary";
+    }
+
+    else
+    {
+        rarity = "Mythic";
+    }
+
+    let possible =
+    list.filter(
+
+        creature =>
+
+        creature.rarity === rarity
+
+    );
+
+    if(possible.length === 0)
+    {
+        possible = list;
+    }
+
+    return possible[
+        Math.floor(
+            Math.random() *
+            possible.length
+        )
+    ];
+}
 // =====================================
 // OPEN PACK
 // =====================================
