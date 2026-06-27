@@ -1,178 +1,50 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
+
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>MythicMon</title>
 
-    <link rel="stylesheet"
-    href="style.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/cards.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/menus.css">
+    <link rel="stylesheet" href="css/responsive.css">
 
 </head>
-
 <body>
 
-<nav>
+    <!-- ========================================= -->
+    <!-- LOADING SCREEN -->
+    <!-- ========================================= -->
 
-    <div class="logo">
-        MythicMon
-    </div>
+    <div id="loadingScreen" class="loading-screen">
 
-    <div class="nav-links">
+        <div class="loading-content">
 
-        <a href="index.html">
-            Shop
-        </a>
+            <h1 class="logo">
+                MYTHICMON
+            </h1>
 
-        <a href="safari.html">
-            Safari
-        </a>
-
-        <a href="collection.html">
-            Collection
-        </a>
-
-    </div>
-
-    <div class="currency">
-
-        Coins:
-        <span id="coin-display">
-            100
-        </span>
-
-    </div>
-
-</nav>
-
-<section class="hero">
-
-    <h1>
-        Pack Shop
-    </h1>
-
-    <p>
-        Open packs and collect MythicMon.
-    </p>
-
-</section>
-
-<section class="pack-section">
-
-    <div class="pack-grid">
-
-        <div class="pack-card forest-pack">
-
-            <h2>
-                Verdant Pack
-            </h2>
-
-            <p>
-                Forest Creatures
+            <p class="loading-text">
+                Loading Adventure...
             </p>
 
-            <button
-            onclick="openPack('forest')">
+            <div class="loading-bar">
 
-                Open Pack
-
-            </button>
-
-        </div>
-
-        <div class="pack-card ember-pack">
-
-            <h2>
-                Ember Pack
-            </h2>
-
-            <p>
-                Fire Creatures
-            </p>
-
-            <button
-            onclick="openPack('ember')">
-
-                Open Pack
-
-            </button>
-
-        </div>
-
-        <div class="pack-card reef-pack">
-
-            <h2>
-                Reef Pack
-            </h2>
-
-            <p>
-                Water Creatures
-            </p>
-
-            <button
-            onclick="openPack('reef')">
-
-                Open Pack
-
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- STARTER MODAL -->
-
-<div id="starter-modal">
-
-    <div class="starter-box">
-
-        <h1>
-            Choose Your Starter
-        </h1>
-
-        <div class="starter-grid">
-
-            <div
-            class="starter-card"
-            onclick="chooseStarter('Flaretail')">
-
-                <h2>
-                    Flaretail
-                </h2>
-
-                <p>
-                    Fire Type
-                </p>
-
-            </div>
-
-            <div
-            class="starter-card"
-            onclick="chooseStarter('Aquafang')">
-
-                <h2>
-                    Aquafang
-                </h2>
-
-                <p>
-                    Water Type
-                </p>
-
-            </div>
-
-            <div
-            class="starter-card"
-            onclick="chooseStarter('Leafhorn')">
-
-                <h2>
-                    Leafhorn
-                </h2>
-
-                <p>
-                    Nature Type
-                </p>
+                <div
+                    id="loadingProgress"
+                    class="loading-progress"
+                ></div>
 
             </div>
 
@@ -180,10 +52,336 @@
 
     </div>
 
-</div>
+    <!-- ========================================= -->
+    <!-- TITLE SCREEN -->
+    <!-- ========================================= -->
 
-<script src="script.js"></script>
+    <main id="titleScreen" class="title-screen hidden">
+
+        <div class="background-layer"></div>
+
+        <div class="title-content">
+
+            <h1 class="game-title">
+                MythicMon
+            </h1>
+
+            <p class="game-subtitle">
+                Collect. Explore. Create.
+            </p>
+
+            <div class="main-menu">
+
+                <button
+                    id="continueBtn"
+                    class="menu-button primary"
+                >
+                    Continue Adventure
+                </button>
+
+                <button
+                    id="newGameBtn"
+                    class="menu-button"
+                >
+                    New Adventure
+                </button>
+
+                <button
+                    id="collectionBtn"
+                    class="menu-button"
+                >
+                    Collection
+                </button>
+
+                <button
+                    id="settingsBtn"
+                    class="menu-button"
+                >
+                    Settings
+                </button>
+
+                <button
+                    id="creditsBtn"
+                    class="menu-button"
+                >
+                    Credits
+                </button>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- ========================================= -->
+    <!-- PROFILE SELECT -->
+    <!-- ========================================= -->
+
+    <section
+        id="profileScreen"
+        class="profile-screen hidden"
+    >
+
+        <div class="panel large-panel">
+
+            <h2>
+                Select Profile
+            </h2>
+
+            <div
+                id="profileContainer"
+                class="profile-grid"
+            >
+
+                <!-- Generated by JS -->
+
+            </div>
+
+            <button
+                id="createProfileBtn"
+                class="menu-button primary"
+            >
+                Create Profile
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- ========================================= -->
+    <!-- MAIN HUB -->
+    <!-- ========================================= -->
+
+    <section
+        id="hubScreen"
+        class="hub-screen hidden"
+    >
+
+        <!-- Top Bar -->
+
+        <header class="top-bar">
+
+            <div class="player-section">
+
+                <span id="playerName">
+                    Trainer
+                </span>
+
+                <span id="playerLevel">
+                    Lv. 1
+                </span>
+
+            </div>
+
+            <div class="currency-section">
+
+                <span id="coinDisplay">
+                    🪙 0
+                </span>
+
+                <span id="gemDisplay">
+                    💎 0
+                </span>
+
+            </div>
+
+        </header>
+
+        <!-- Main Content -->
+
+        <div class="hub-container">
+
+            <h1 class="hub-title">
+                Adventure Hub
+            </h1>
+
+            <div class="hub-grid">
+
+                <button
+                    class="hub-card"
+                    data-screen="adventure"
+                >
+                    <span class="card-icon">
+                        🌎
+                    </span>
+
+                    <span class="card-title">
+                        Adventure
+                    </span>
+
+                    <span class="card-description">
+                        Explore the official world.
+                    </span>
+                </button>
+
+                <button
+                    class="hub-card"
+                    data-screen="safari"
+                >
+                    <span class="card-icon">
+                        🌿
+                    </span>
+
+                    <span class="card-title">
+                        Safari
+                    </span>
+
+                    <span class="card-description">
+                        Discover living creatures.
+                    </span>
+                </button>
+
+                <button
+                    class="hub-card"
+                    data-screen="collection"
+                >
+                    <span class="card-icon">
+                        📚
+                    </span>
+
+                    <span class="card-title">
+                        Collection
+                    </span>
+
+                    <span class="card-description">
+                        View every MythicMon.
+                    </span>
+                </button>
+
+                <button
+                    class="hub-card"
+                    data-screen="packs"
+                >
+                    <span class="card-icon">
+                        🃏
+                    </span>
+
+                    <span class="card-title">
+                        Packs
+                    </span>
+
+                    <span class="card-description">
+                        Open booster packs.
+                    </span>
+                </button>
+
+                <button
+                    class="hub-card"
+                    data-screen="battleTower"
+                >
+                    <span class="card-icon">
+                        🏆
+                    </span>
+
+                    <span class="card-title">
+                        Battle Tower
+                    </span>
+
+                    <span class="card-description">
+                        Face powerful opponents.
+                    </span>
+                </button>
+
+                <button
+                    class="hub-card"
+                    data-screen="editor"
+                >
+                    <span class="card-icon">
+                        🏗
+                    </span>
+
+                    <span class="card-title">
+                        Map Creator
+                    </span>
+
+                    <span class="card-description">
+                        Build platforming adventures.
+                    </span>
+                </button>
+
+                <button
+                    class="hub-card"
+                    data-screen="campaigns"
+                >
+                    <span class="card-icon">
+                        🌐
+                    </span>
+
+                    <span class="card-title">
+                        Campaign Browser
+                    </span>
+
+                    <span class="card-description">
+                        Play community worlds.
+                    </span>
+                </button>
+
+                <button
+                    class="hub-card"
+                    data-screen="settings"
+                >
+                    <span class="card-icon">
+                        ⚙
+                    </span>
+
+                    <span class="card-title">
+                        Settings
+                    </span>
+
+                    <span class="card-description">
+                        Customize your game.
+                    </span>
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ========================================= -->
+    <!-- MODAL -->
+    <!-- ========================================= -->
+
+    <div
+        id="modalOverlay"
+        class="modal-overlay hidden"
+    >
+
+        <div class="modal-window">
+
+            <button
+                id="closeModalBtn"
+                class="close-button"
+            >
+                ✕
+            </button>
+
+            <div id="modalContent">
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ========================================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ========================================= -->
+
+    <script src="js/config.js"></script>
+
+    <script src="js/helpers.js"></script>
+
+    <script src="js/player/player.js"></script>
+
+    <script src="js/player/collection.js"></script>
+
+    <script src="js/player/inventory.js"></script>
+
+    <script src="js/save/saveManager.js"></script>
+
+    <script src="js/main.js"></script>
 
 </body>
-
 </html>
