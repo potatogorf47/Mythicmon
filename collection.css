@@ -1,0 +1,368 @@
+/* ==========================================================
+   MYTHICMON
+   COLLECTION
+   ========================================================== */
+
+/* ==========================================================
+   PAGE
+   ========================================================== */
+
+.collection-screen
+{
+    width:100%;
+    height:100%;
+
+    display:flex;
+
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            180deg,
+            #182230,
+            #10151b
+        );
+}
+
+/* ==========================================================
+   SIDEBAR
+   ========================================================== */
+
+.collection-sidebar
+{
+    width:340px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:var(--space-lg);
+
+    padding:var(--space-lg);
+
+    background:
+        rgba(18,24,34,.95);
+
+    border-right:
+        var(--panel-border);
+
+    overflow-y:auto;
+}
+
+/* ==========================================================
+   SEARCH
+   ========================================================== */
+
+.collection-search
+{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:var(--space-sm);
+}
+
+.collection-search input
+{
+    padding:14px;
+
+    border-radius:
+        var(--border-radius-medium);
+
+    background:
+        var(--color-panel);
+
+    color:
+        var(--color-text);
+
+    border:
+        var(--panel-border);
+}
+
+/* ==========================================================
+   FILTERS
+   ========================================================== */
+
+.filter-group
+{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+}
+
+/* ==========================================================
+   COLLECTION GRID
+   ========================================================== */
+
+.collection-content
+{
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    padding:var(--space-xl);
+
+    overflow-y:auto;
+}
+
+.collection-grid
+{
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fill,minmax(260px,1fr));
+
+    gap:28px;
+}
+
+/* ==========================================================
+   CREATURE CARD
+   ========================================================== */
+
+.collection-card
+{
+    position:relative;
+
+    display:flex;
+
+    flex-direction:column;
+
+    overflow:hidden;
+
+    border-radius:
+        var(--border-radius-large);
+
+    background:
+        var(--color-panel);
+
+    border:
+        var(--panel-border);
+
+    transition:
+        transform .25s,
+        box-shadow .25s;
+}
+
+.collection-card:hover
+{
+    transform:
+        translateY(-10px);
+
+    box-shadow:
+        var(--shadow-large);
+}
+
+/* ==========================================================
+   ART
+   ========================================================== */
+
+.collection-art
+{
+    width:100%;
+
+    aspect-ratio:1;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:
+        linear-gradient(
+            180deg,
+            #2f435a,
+            #1d2936
+        );
+}
+
+.collection-art img
+{
+    width:88%;
+
+    height:88%;
+
+    object-fit:contain;
+}
+
+/* ==========================================================
+   INFO
+   ========================================================== */
+
+.collection-info
+{
+    padding:20px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+}
+
+/* ==========================================================
+   MASTERY
+   ========================================================== */
+
+.mastery-bar
+{
+    height:10px;
+
+    border-radius:999px;
+
+    overflow:hidden;
+
+    background:
+        rgba(255,255,255,.08);
+}
+
+.mastery-fill
+{
+    height:100%;
+
+    width:40%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #47d567,
+            #8cffab
+        );
+}
+
+/* ==========================================================
+   BADGES
+   ========================================================== */
+
+.badge-container
+{
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:8px;
+}
+
+.badge
+{
+    padding:5px 10px;
+
+    border-radius:999px;
+
+    background:
+        rgba(255,255,255,.08);
+
+    font-size:.8rem;
+}
+
+/* ==========================================================
+   SHOWCASE
+   ========================================================== */
+
+.showcase-panel
+{
+    width:420px;
+
+    border-left:
+        var(--panel-border);
+
+    background:
+        rgba(16,22,30,.95);
+
+    display:flex;
+
+    flex-direction:column;
+
+    padding:var(--space-xl);
+
+    overflow-y:auto;
+}
+
+/* ==========================================================
+   LARGE ART
+   ========================================================== */
+
+.showcase-image
+{
+    width:100%;
+
+    aspect-ratio:1;
+
+    border-radius:
+        var(--border-radius-large);
+
+    background:
+        linear-gradient(
+            180deg,
+            #324962,
+            #1b2531
+        );
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin-bottom:20px;
+}
+
+/* ==========================================================
+   STATS
+   ========================================================== */
+
+.stat-row
+{
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:10px;
+}
+
+/* ==========================================================
+   DISCOVERY
+   ========================================================== */
+
+.discovery-section
+{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+    margin-top:20px;
+}
+
+/* ==========================================================
+   NOTES
+   ========================================================== */
+
+.field-notes
+{
+    padding:16px;
+
+    border-radius:
+        var(--border-radius-medium);
+
+    background:
+        rgba(255,255,255,.05);
+
+    line-height:1.6;
+}
+
+/* ==========================================================
+   UNKNOWN
+   ========================================================== */
+
+.unknown
+{
+    filter:grayscale(1);
+
+    opacity:.35;
+}
