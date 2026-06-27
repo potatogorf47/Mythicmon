@@ -1,0 +1,367 @@
+/* ==========================================================
+   MYTHICMON
+   SAFARI
+   ========================================================== */
+
+/* ==========================================================
+   MAIN LAYOUT
+   ========================================================== */
+
+.safari-layout
+{
+    display: grid;
+
+    grid-template-columns:
+        320px
+        1fr
+        320px;
+
+    width: 100%;
+
+    height: calc(100vh - 72px);
+
+    overflow: hidden;
+}
+
+/* ==========================================================
+   MAIN WORLD
+   ========================================================== */
+
+.safari-main
+{
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            180deg,
+            #4d92d9 0%,
+            #7bc96f 45%,
+            #4f8d4f 100%
+        );
+}
+
+/* ==========================================================
+   SAFARI CANVAS
+   ========================================================== */
+
+#safariCanvas
+{
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    image-rendering: auto;
+
+    cursor: crosshair;
+}
+
+/* ==========================================================
+   SIDE PANELS
+   ========================================================== */
+
+.left-sidebar,
+.right-sidebar
+{
+    backdrop-filter: blur(12px);
+
+    background:
+        rgba(20,25,35,.88);
+}
+
+/* ==========================================================
+   PARTY
+   ========================================================== */
+
+#partyContainer
+{
+    display: flex;
+
+    flex-direction: column;
+
+    gap: var(--space-sm);
+}
+
+/* ==========================================================
+   ABILITIES
+   ========================================================== */
+
+#abilityContainer
+{
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: var(--space-sm);
+}
+
+/* ==========================================================
+   QUESTS
+   ========================================================== */
+
+#questPanel
+{
+    display: flex;
+
+    flex-direction: column;
+
+    gap: var(--space-md);
+}
+
+/* ==========================================================
+   CREATURE INFO
+   ========================================================== */
+
+#selectedCreature
+{
+    display: flex;
+
+    flex-direction: column;
+
+    gap: var(--space-sm);
+
+    min-height: 180px;
+}
+
+/* ==========================================================
+   MINIMAP
+   ========================================================== */
+
+#miniMap
+{
+    width: 100%;
+
+    border-radius:
+        var(--border-radius-medium);
+
+    border:
+        var(--panel-border);
+
+    background:
+        rgba(0,0,0,.15);
+}
+
+/* ==========================================================
+   TERRITORY WARNING
+   ========================================================== */
+
+#territoryBanner
+{
+    position: absolute;
+
+    top: 24px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background:
+        rgba(255,80,80,.9);
+
+    color: white;
+
+    padding:
+        14px 26px;
+
+    border-radius:
+        999px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    box-shadow:
+        var(--shadow-large);
+
+    z-index:
+        var(--z-ui);
+}
+
+/* ==========================================================
+   ALPHA WARNING
+   ========================================================== */
+
+#alphaBanner
+{
+    position: absolute;
+
+    bottom: 36px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    padding:
+        18px 32px;
+
+    border-radius:
+        999px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #ffd84a,
+            #ffbb22
+        );
+
+    color: black;
+
+    font-weight: bold;
+
+    font-size:
+        var(--font-size-lg);
+
+    box-shadow:
+
+        0 0 35px
+        rgba(255,220,60,.55);
+
+    z-index:
+        var(--z-ui);
+}
+
+/* ==========================================================
+   CREATURE POPUP
+   ========================================================== */
+
+.popup
+{
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background:
+        rgba(0,0,0,.45);
+
+    z-index:
+        var(--z-popup);
+}
+
+.popup-card
+{
+    width: 420px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: var(--space-lg);
+
+    padding: var(--space-xl);
+
+    border-radius:
+        var(--border-radius-large);
+
+    background:
+        var(--color-panel);
+
+    border:
+        var(--panel-border);
+
+    box-shadow:
+        var(--shadow-large);
+}
+
+/* ==========================================================
+   POPUP BUTTONS
+   ========================================================== */
+
+.popup-buttons
+{
+    display: grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap: var(--space-md);
+}
+
+/* ==========================================================
+   WEATHER OVERLAY
+   ========================================================== */
+
+.weather-overlay
+{
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: .6;
+}
+
+/* ==========================================================
+   TIME OF DAY
+   ========================================================== */
+
+.day
+{
+    filter: brightness(1);
+}
+
+.sunset
+{
+    filter:
+        brightness(.95)
+        sepia(.15);
+}
+
+.night
+{
+    filter:
+        brightness(.6)
+        hue-rotate(12deg);
+}
+
+.storm
+{
+    filter:
+        brightness(.75)
+        contrast(1.2);
+}
+
+/* ==========================================================
+   DISCOVERY
+   ========================================================== */
+
+.discovery-banner
+{
+    position: absolute;
+
+    top: 90px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    padding:
+        16px 30px;
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(25,25,35,.92);
+
+    border:
+        var(--panel-border);
+
+    box-shadow:
+        var(--shadow-large);
+
+    font-size:
+        var(--font-size-lg);
+
+    z-index:
+        var(--z-ui);
+}
