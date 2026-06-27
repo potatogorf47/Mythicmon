@@ -1,0 +1,324 @@
+/* ==========================================================
+   MYTHICMON
+   MENU SYSTEM
+   ========================================================== */
+
+/* ==========================================================
+   TITLE SCREEN
+   ========================================================== */
+
+.title-screen
+{
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #20364d 0%,
+            #12151c 70%
+        );
+}
+
+/* ==========================================================
+   BACKGROUND LAYER
+   ========================================================== */
+
+.background-layer
+{
+    position: absolute;
+
+    inset: 0;
+
+    opacity: .25;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(circle,
+        rgba(255,255,255,.08),
+        transparent 60%);
+
+    animation:
+        backgroundFloat
+        18s
+        linear
+        infinite;
+}
+
+@keyframes backgroundFloat
+{
+    from
+    {
+        transform:translateY(0);
+    }
+
+    50%
+    {
+        transform:translateY(-20px);
+    }
+
+    to
+    {
+        transform:translateY(0);
+    }
+}
+
+/* ==========================================================
+   TITLE CONTENT
+   ========================================================== */
+
+.title-content
+{
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: var(--space-xl);
+}
+
+/* ==========================================================
+   GAME TITLE
+   ========================================================== */
+
+.game-title
+{
+    font-size: 5rem;
+
+    letter-spacing: 4px;
+
+    color: white;
+
+    text-shadow:
+
+        0 0 15px rgba(255,255,255,.25),
+
+        0 0 40px rgba(79,214,110,.35);
+}
+
+/* ==========================================================
+   SUBTITLE
+   ========================================================== */
+
+.game-subtitle
+{
+    font-size: 1.2rem;
+
+    color: var(--color-text-light);
+
+    letter-spacing: 2px;
+}
+
+/* ==========================================================
+   MAIN MENU
+   ========================================================== */
+
+.main-menu
+{
+    display: flex;
+
+    flex-direction: column;
+
+    gap: var(--space-md);
+
+    width: 320px;
+}
+
+/* ==========================================================
+   PROFILE SCREEN
+   ========================================================== */
+
+.profile-screen
+{
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    background:
+        rgba(0,0,0,.45);
+
+    backdrop-filter: blur(12px);
+}
+
+/* ==========================================================
+   PROFILE GRID
+   ========================================================== */
+
+.profile-grid
+{
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(220px,1fr));
+
+    gap: var(--space-lg);
+
+    margin:
+        var(--space-xl)
+        0;
+}
+
+/* ==========================================================
+   PROFILE CARD
+   ========================================================== */
+
+.profile-card
+{
+    background: var(--color-panel);
+
+    border: var(--panel-border);
+
+    border-radius:
+        var(--border-radius-large);
+
+    padding: var(--space-lg);
+
+    transition:
+        transform var(--transition-medium),
+        box-shadow var(--transition-medium);
+
+    cursor: pointer;
+}
+
+.profile-card:hover
+{
+    transform:
+        translateY(-8px);
+
+    box-shadow:
+        var(--shadow-large);
+}
+
+/* ==========================================================
+   HUB
+   ========================================================== */
+
+.hub-screen
+{
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    background:
+        linear-gradient(
+            180deg,
+            #182331,
+            #11161d
+        );
+}
+
+/* ==========================================================
+   HUB TITLE
+   ========================================================== */
+
+.hub-title
+{
+    text-align: center;
+
+    font-size: 3rem;
+}
+
+/* ==========================================================
+   MODAL
+   ========================================================== */
+
+.modal-window
+{
+    animation:
+        menuOpen
+        .25s ease;
+}
+
+@keyframes menuOpen
+{
+    from
+    {
+        transform:
+            scale(.92);
+
+        opacity:0;
+    }
+
+    to
+    {
+        transform:none;
+
+        opacity:1;
+    }
+}
+
+/* ==========================================================
+   TOOLTIP
+   ========================================================== */
+
+.tooltip
+{
+    position:absolute;
+
+    background:var(--color-background-light);
+
+    border:var(--panel-border);
+
+    padding:10px 16px;
+
+    border-radius:
+        var(--border-radius-small);
+
+    font-size:
+        var(--font-size-sm);
+
+    box-shadow:
+        var(--shadow-medium);
+
+    pointer-events:none;
+
+    z-index:
+        var(--z-popup);
+}
+
+/* ==========================================================
+   MENU DIVIDER
+   ========================================================== */
+
+.menu-divider
+{
+    width:100%;
+
+    height:2px;
+
+    background:
+
+        linear-gradient(
+
+            to right,
+
+            transparent,
+
+            var(--color-border),
+
+            transparent
+
+        );
+}
