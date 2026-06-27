@@ -1,109 +1,350 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
-<title>Safari</title>
+    <meta charset="UTF-8">
 
-<link rel="stylesheet"
-href="style.css">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>MythicMon Safari</title>
+
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/cards.css">
+    <link rel="stylesheet" href="css/safari.css">
 
 </head>
 
 <body>
 
-<nav>
+<!-- ========================================= -->
+<!-- TOP BAR -->
+<!-- ========================================= -->
 
-<div class="logo">
-MythicMon
+<header class="top-bar">
+
+    <div class="left-top">
+
+        <button id="backButton">
+
+            ← Hub
+
+        </button>
+
+    </div>
+
+    <div class="center-top">
+
+        <span id="zoneName">
+
+            Emerald Forest
+
+        </span>
+
+    </div>
+
+    <div class="right-top">
+
+        <span id="weatherDisplay">
+
+            ☀ Clear
+
+        </span>
+
+        <span id="timeDisplay">
+
+            Morning
+
+        </span>
+
+    </div>
+
+</header>
+
+<!-- ========================================= -->
+<!-- MAIN LAYOUT -->
+<!-- ========================================= -->
+
+<div class="safari-layout">
+
+<!-- ========================================= -->
+<!-- LEFT SIDEBAR -->
+<!-- ========================================= -->
+
+<aside class="left-sidebar">
+
+    <section class="panel">
+
+        <h2>
+
+            Party
+
+        </h2>
+
+        <div id="partyContainer">
+
+        </div>
+
+    </section>
+
+    <section class="panel">
+
+        <h2>
+
+            Active Abilities
+
+        </h2>
+
+        <div id="abilityContainer">
+
+        </div>
+
+    </section>
+
+</aside>
+
+<!-- ========================================= -->
+<!-- SAFARI VIEW -->
+<!-- ========================================= -->
+
+<main class="safari-main">
+
+    <canvas
+
+        id="safariCanvas"
+
+        width="1600"
+
+        height="900"
+
+    ></canvas>
+
+    <!-- Territory Warning -->
+
+    <div
+
+        id="territoryBanner"
+
+        class="hidden"
+
+    >
+
+        ⚠ Entering Territory
+
+    </div>
+
+    <!-- Alpha Warning -->
+
+    <div
+
+        id="alphaBanner"
+
+        class="hidden"
+
+    >
+
+        ★ Alpha Nearby ★
+
+    </div>
+
+</main>
+
+<!-- ========================================= -->
+<!-- RIGHT SIDEBAR -->
+<!-- ========================================= -->
+
+<aside class="right-sidebar">
+
+    <section class="panel">
+
+        <h2>
+
+            Creature
+
+        </h2>
+
+        <div id="selectedCreature">
+
+            Click a creature...
+
+        </div>
+
+    </section>
+
+    <section class="panel">
+
+        <h2>
+
+            Objective
+
+        </h2>
+
+        <div id="questPanel">
+
+        </div>
+
+    </section>
+
+    <section class="panel">
+
+        <h2>
+
+            Minimap
+
+        </h2>
+
+        <canvas
+
+            id="miniMap"
+
+            width="250"
+
+            height="250"
+
+        ></canvas>
+
+    </section>
+
+</aside>
+
 </div>
 
-<div class="nav-links">
+<!-- ========================================= -->
+<!-- CREATURE POPUP -->
+<!-- ========================================= -->
 
-<a href="index.html">
-Shop
-</a>
+<div
 
-<a href="safari.html">
-Safari
-</a>
+    id="creaturePopup"
 
-<a href="collection.html">
-Collection
-</a>
+    class="popup hidden"
+
+>
+
+    <div class="popup-card">
+
+        <h2
+
+            id="popupName"
+
+        >
+
+            Sparkit
+
+        </h2>
+
+        <p
+
+            id="popupLevel"
+
+        >
+
+            Lv. 5
+
+        </p>
+
+        <p
+
+            id="popupMood"
+
+        >
+
+            😊 Curious
+
+        </p>
+
+        <div class="popup-buttons">
+
+            <button
+
+                id="battleButton"
+
+            >
+
+                Battle
+
+            </button>
+
+            <button
+
+                id="observeButton"
+
+            >
+
+                Observe
+
+            </button>
+
+            <button
+
+                id="feedButton"
+
+            >
+
+                Feed
+
+            </button>
+
+            <button
+
+                id="photoButton"
+
+            >
+
+                Photograph
+
+            </button>
+
+            <button
+
+                id="cancelPopup"
+
+            >
+
+                Cancel
+
+            </button>
+
+        </div>
+
+    </div>
 
 </div>
 
-</nav>
+<!-- ========================================= -->
+<!-- JAVASCRIPT -->
+<!-- ========================================= -->
 
-<h1 class="page-title">
+<script src="js/config.js"></script>
 
-Safari Zones
+<script src="js/helpers.js"></script>
 
-</h1>
+<script src="js/player/player.js"></script>
 
-<div class="safari-grid">
+<script src="js/player/inventory.js"></script>
 
-<div class="safari-card forest">
+<script src="js/player/collection.js"></script>
 
-<h2>
-Verdant Forest
-</h2>
+<script src="js/safari/weatherSystem.js"></script>
 
-<p>
-Common Nature Creatures
-</p>
+<script src="js/safari/territoryManager.js"></script>
 
-<button
-onclick="enterSafari('forest')">
+<script src="js/safari/ecosystem.js"></script>
 
-Enter
+<script src="js/safari/spawnManager.js"></script>
 
-</button>
+<script src="js/safari/safariAI.js"></script>
 
-</div>
-
-<div class="safari-card ember">
-
-<h2>
-Ember Valley
-</h2>
-
-<p>
-Fire Creatures
-</p>
-
-<button
-onclick="enterSafari('ember')">
-
-Enter
-
-</button>
-
-</div>
-
-<div class="safari-card reef">
-
-<h2>
-Tidal Reef
-</h2>
-
-<p>
-Water Creatures
-</p>
-
-<button
-onclick="enterSafari('reef')">
-
-Enter
-
-</button>
-
-</div>
-
-</div>
-
-<script src="script.js"></script>
+<script src="js/safari.js"></script>
 
 </body>
+
 </html>
