@@ -1,0 +1,278 @@
+/* ==========================================================
+   MYTHICMON
+   CARD SYSTEM
+   ========================================================== */
+
+/* ==========================================================
+   BASE CARD
+   ========================================================== */
+
+.card
+{
+    background: var(--color-panel);
+
+    border: var(--panel-border);
+
+    border-radius: var(--border-radius-large);
+
+    box-shadow: var(--shadow-medium);
+
+    overflow: hidden;
+
+    transition:
+        transform var(--transition-medium),
+        box-shadow var(--transition-medium),
+        border-color var(--transition-medium);
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+.card:hover
+{
+    transform: translateY(-6px);
+
+    box-shadow: var(--shadow-large);
+}
+
+/* ==========================================================
+   CREATURE CARD
+   ========================================================== */
+
+.creature-card
+{
+    width: var(--card-width);
+
+    min-height: var(--card-height);
+
+    cursor: pointer;
+
+    position: relative;
+}
+
+.creature-card:hover
+{
+    transform:
+        translateY(-8px)
+        scale(1.02);
+}
+
+/* ==========================================================
+   CARD IMAGE
+   ========================================================== */
+
+.card-image
+{
+    width: 100%;
+
+    aspect-ratio: 1;
+
+    background: var(--color-background-light);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    overflow: hidden;
+}
+
+.card-image img
+{
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+}
+
+/* ==========================================================
+   CARD BODY
+   ========================================================== */
+
+.card-body
+{
+    display: flex;
+
+    flex-direction: column;
+
+    gap: var(--space-sm);
+
+    padding: var(--space-md);
+
+    flex: 1;
+}
+
+/* ==========================================================
+   CARD TITLE
+   ========================================================== */
+
+.card-title
+{
+    font-size: var(--font-size-lg);
+
+    font-weight: bold;
+
+    color: var(--color-text);
+}
+
+/* ==========================================================
+   CARD SUBTITLE
+   ========================================================== */
+
+.card-subtitle
+{
+    color: var(--color-text-light);
+
+    font-size: var(--font-size-sm);
+}
+
+/* ==========================================================
+   CARD FOOTER
+   ========================================================== */
+
+.card-footer
+{
+    margin-top: auto;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding-top: var(--space-sm);
+}
+
+/* ==========================================================
+   MINI CARD
+   ========================================================== */
+
+.mini-card
+{
+    width: var(--mini-card-width);
+
+    min-height: var(--mini-card-height);
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: var(--space-sm);
+}
+
+/* ==========================================================
+   SELECTED CARD
+   ========================================================== */
+
+.selected
+{
+    border-color: var(--color-primary);
+
+    box-shadow: var(--shadow-glow);
+}
+
+/* ==========================================================
+   LOCKED CARD
+   ========================================================== */
+
+.locked
+{
+    filter: grayscale(1);
+
+    opacity: .55;
+}
+
+/* ==========================================================
+   SHINY CARD
+   ========================================================== */
+
+.shiny
+{
+    border-color: var(--rarity-legendary);
+
+    box-shadow:
+        0 0 18px
+        rgba(255,214,77,.45);
+}
+
+/* ==========================================================
+   QUEST CARD
+   ========================================================== */
+
+.quest-card
+{
+    padding: var(--space-lg);
+
+    gap: var(--space-md);
+}
+
+/* ==========================================================
+   CAMPAIGN CARD
+   ========================================================== */
+
+.campaign-card
+{
+    cursor: pointer;
+
+    min-height: 280px;
+}
+
+.campaign-card:hover
+{
+    transform:
+        translateY(-8px)
+        scale(1.015);
+}
+
+/* ==========================================================
+   PACK CARD
+   ========================================================== */
+
+.pack-card
+{
+    cursor: pointer;
+}
+
+.pack-card:hover
+{
+    transform:
+        scale(1.05)
+        rotate(-1deg);
+}
+
+/* ==========================================================
+   INVENTORY SLOT
+   ========================================================== */
+
+.inventory-slot
+{
+    width: 72px;
+
+    height: 72px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: var(--color-background-light);
+
+    border: var(--panel-border);
+
+    border-radius: var(--border-radius-small);
+}
+
+.inventory-slot:hover
+{
+    border-color: var(--color-primary);
+}
