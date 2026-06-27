@@ -1,0 +1,306 @@
+/* ==========================================================
+   MYTHICMON
+   BUTTON SYSTEM
+   ========================================================== */
+
+/* ==========================================================
+   BASE BUTTON
+   ========================================================== */
+
+button,
+.menu-button,
+.hub-card
+{
+    font-family: var(--font-main);
+
+    border: none;
+
+    border-radius: var(--button-radius);
+
+    cursor: pointer;
+
+    transition:
+        transform var(--transition-fast),
+        background var(--transition-medium),
+        box-shadow var(--transition-medium),
+        opacity var(--transition-medium);
+
+    user-select: none;
+}
+
+/* ==========================================================
+   DEFAULT BUTTON
+   ========================================================== */
+
+.menu-button
+{
+    min-height: var(--button-height);
+
+    padding: var(--button-padding);
+
+    background: var(--color-panel);
+
+    color: var(--color-text);
+
+    border: var(--panel-border);
+
+    font-weight: 600;
+
+    box-shadow: var(--shadow-small);
+}
+
+.menu-button:hover
+{
+    background: var(--color-panel-hover);
+
+    transform: translateY(-3px);
+
+    box-shadow: var(--shadow-medium);
+}
+
+.menu-button:active
+{
+    transform: scale(.96);
+}
+
+/* ==========================================================
+   PRIMARY
+   ========================================================== */
+
+.primary
+{
+    background: var(--color-primary);
+
+    color: white;
+}
+
+.primary:hover
+{
+    background: var(--color-primary-light);
+
+    box-shadow: var(--shadow-glow);
+}
+
+/* ==========================================================
+   SECONDARY
+   ========================================================== */
+
+.secondary
+{
+    background: var(--color-secondary);
+
+    color: white;
+}
+
+.secondary:hover
+{
+    filter: brightness(1.1);
+}
+
+/* ==========================================================
+   DANGER
+   ========================================================== */
+
+.danger
+{
+    background: var(--color-danger);
+
+    color: white;
+}
+
+.danger:hover
+{
+    filter: brightness(1.1);
+}
+
+/* ==========================================================
+   SMALL BUTTON
+   ========================================================== */
+
+.small-button
+{
+    min-height: 38px;
+
+    padding: 0 18px;
+
+    font-size: var(--font-size-sm);
+}
+
+/* ==========================================================
+   ICON BUTTON
+   ========================================================== */
+
+.icon-button
+{
+    width: 48px;
+
+    height: 48px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: var(--color-panel);
+
+    border: var(--panel-border);
+
+    border-radius: 50%;
+}
+
+.icon-button:hover
+{
+    background: var(--color-panel-hover);
+
+    transform: rotate(8deg) scale(1.08);
+}
+
+/* ==========================================================
+   CLOSE BUTTON
+   ========================================================== */
+
+.close-button
+{
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 50%;
+
+    background: var(--color-danger);
+
+    color: white;
+
+    font-weight: bold;
+}
+
+.close-button:hover
+{
+    transform: rotate(90deg);
+
+    filter: brightness(1.15);
+}
+
+/* ==========================================================
+   HUB CARD BUTTONS
+   ========================================================== */
+
+.hub-card
+{
+    background: var(--color-panel);
+
+    border: var(--panel-border);
+
+    border-radius: var(--border-radius-large);
+
+    padding: var(--space-xl);
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: var(--space-md);
+
+    text-align: left;
+
+    box-shadow: var(--shadow-medium);
+
+    min-height: 240px;
+}
+
+.hub-card:hover
+{
+    background: var(--color-panel-hover);
+
+    transform: translateY(-6px);
+
+    box-shadow: var(--shadow-large);
+}
+
+.hub-card:active
+{
+    transform: scale(.98);
+}
+
+/* ==========================================================
+   CARD CONTENT
+   ========================================================== */
+
+.card-icon
+{
+    font-size: 3rem;
+}
+
+.card-title
+{
+    font-size: var(--font-size-xl);
+
+    font-weight: bold;
+}
+
+.card-description
+{
+    color: var(--color-text-light);
+
+    line-height: 1.5;
+}
+
+/* ==========================================================
+   DISABLED
+   ========================================================== */
+
+button:disabled
+{
+    opacity: .45;
+
+    cursor: default;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+/* ==========================================================
+   TOGGLE BUTTON
+   ========================================================== */
+
+.toggle-button
+{
+    background: var(--color-panel);
+
+    border: var(--panel-border);
+
+    padding: 12px 22px;
+
+    border-radius: 999px;
+}
+
+.toggle-button.active
+{
+    background: var(--color-primary);
+
+    color: white;
+}
+
+/* ==========================================================
+   NAVIGATION BUTTON
+   ========================================================== */
+
+.nav-button
+{
+    background: transparent;
+
+    color: var(--color-text-light);
+
+    padding: 10px 16px;
+
+    border-radius: 12px;
+}
+
+.nav-button:hover
+{
+    background: rgba(255,255,255,.08);
+
+    color: white;
+}
