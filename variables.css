@@ -1,0 +1,222 @@
+/* ==========================================================
+   MYTHICMON
+   DESIGN VARIABLES
+   ========================================================== */
+
+:root
+{
+
+/* ==========================================================
+   COLORS
+   ========================================================== */
+
+--color-primary: #4FD66E;
+--color-primary-dark: #2C9B47;
+--color-primary-light: #87F7A3;
+
+--color-secondary: #4AB8FF;
+--color-secondary-dark: #257CC4;
+
+--color-accent: #FFD64D;
+--color-danger: #FF6262;
+--color-warning: #FFB347;
+
+--color-background: #12151C;
+--color-background-light: #1B2029;
+--color-background-dark: #0B0E13;
+
+--color-panel: #232A36;
+--color-panel-hover: #2D3644;
+
+--color-border: #3C4657;
+
+--color-text: #F4F7FB;
+--color-text-light: #B9C3D2;
+--color-text-dark: #7A8596;
+
+
+/* ==========================================================
+   SHADOWS
+   ========================================================== */
+
+--shadow-small:
+0 2px 5px rgba(0,0,0,.25);
+
+--shadow-medium:
+0 8px 20px rgba(0,0,0,.30);
+
+--shadow-large:
+0 16px 40px rgba(0,0,0,.40);
+
+--shadow-glow:
+0 0 25px rgba(79,214,110,.40);
+
+
+/* ==========================================================
+   BORDERS
+   ========================================================== */
+
+--border-width:2px;
+
+--border-radius-small:8px;
+--border-radius-medium:14px;
+--border-radius-large:22px;
+
+--panel-border:
+
+var(--border-width)
+
+solid
+
+var(--color-border);
+
+
+/* ==========================================================
+   SPACING
+   ========================================================== */
+
+--space-xxs:4px;
+--space-xs:8px;
+--space-sm:12px;
+--space-md:20px;
+--space-lg:30px;
+--space-xl:45px;
+--space-xxl:70px;
+
+
+/* ==========================================================
+   FONT
+   ========================================================== */
+
+--font-main:
+
+"Segoe UI",
+
+Tahoma,
+
+sans-serif;
+
+--font-title:
+
+Trebuchet MS,
+
+sans-serif;
+
+--font-size-xs:.75rem;
+--font-size-sm:.9rem;
+--font-size-md:1rem;
+--font-size-lg:1.25rem;
+--font-size-xl:1.75rem;
+--font-size-xxl:2.5rem;
+--font-size-title:4rem;
+
+
+/* ==========================================================
+   BUTTONS
+   ========================================================== */
+
+--button-height:52px;
+
+--button-radius:16px;
+
+--button-padding:
+
+0
+
+26px;
+
+
+/* ==========================================================
+   PANELS
+   ========================================================== */
+
+--panel-padding:20px;
+
+--panel-gap:18px;
+
+
+/* ==========================================================
+   ANIMATIONS
+   ========================================================== */
+
+--transition-fast:.15s;
+
+--transition-medium:.25s;
+
+--transition-slow:.45s;
+
+
+/* ==========================================================
+   Z INDEX
+   ========================================================== */
+
+--z-background:0;
+--z-game:10;
+--z-ui:100;
+--z-popup:500;
+--z-modal:1000;
+--z-loading:5000;
+
+
+/* ==========================================================
+   SAFARI
+   ========================================================== */
+
+--territory-color:
+
+rgba(255,80,80,.25);
+
+--alpha-color:
+
+rgba(255,220,70,.30);
+
+--fog-color:
+
+rgba(210,220,255,.15);
+
+
+/* ==========================================================
+   RARITIES
+   ========================================================== */
+
+--rarity-common:#BBBBBB;
+
+--rarity-uncommon:#6ED46E;
+
+--rarity-rare:#4AB8FF;
+
+--rarity-epic:#A766FF;
+
+--rarity-legendary:#FFD64D;
+
+--rarity-mythic:#FF7DDA;
+
+
+/* ==========================================================
+   STATUS EFFECTS
+   ========================================================== */
+
+--burn:#FF6542;
+
+--freeze:#70D7FF;
+
+--poison:#B35EFF;
+
+--sleep:#8F97A5;
+
+--paralysis:#FFE45C;
+
+
+/* ==========================================================
+   CARD SIZES
+   ========================================================== */
+
+--card-width:260px;
+
+--card-height:360px;
+
+--mini-card-width:90px;
+
+--mini-card-height:120px;
+
+}
