@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>MythicMon Profile</title>
+
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/buttons.css">
+<link rel="stylesheet" href="css/cards.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/collection.css">
+<link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<header class="top-bar">
+
+<button onclick="location.href='home.html'">
+
+← Return Home
+
+</button>
+
+<h1>
+
+Explorer Passport
+
+</h1>
+
+<button id="editProfileButton">
+
+Edit Profile
+
+</button>
+
+</header>
+
+<main>
+
+<section class="card">
+
+<div class="card-body">
+
+<div class="profile-header">
+
+<img
+id="profileAvatar"
+src="assets/ui/avatarPlaceholder.png"
+alt="Explorer Avatar">
+
+<div>
+
+<h2 id="playerName">
+
+Explorer
+
+</h2>
+
+<p id="playerTitle">
+
+Rookie Explorer
+
+</p>
+
+<p id="playerCreatorRank">
+
+Creator Rank: Beginner Builder
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="collection-grid">
+
+<div class="collection-card">
+
+<div class="collection-info">
+
+<h3>Creatures Found</h3>
+
+<h2 id="creaturesFound">
+
+0
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="collection-card">
+
+<div class="collection-info">
+
+<h3>Shinies Found</h3>
+
+<h2 id="shiniesFound">
+
+0
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="collection-card">
+
+<div class="collection-info">
+
+<h3>Battles Won</h3>
+
+<h2 id="battlesWon">
+
+0
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="collection-card">
+
+<div class="collection-info">
+
+<h3>Worlds Published</h3>
+
+<h2 id="worldsPublished">
+
+0
+
+</h2>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="card">
+
+<div class="card-body">
+
+<h2>
+
+Recent Achievements
+
+</h2>
+
+<div
+id="achievementList"
+class="badge-container">
+
+</div>
+
+</div>
+
+</section>
+
+<section class="card">
+
+<div class="card-body">
+
+<h2>
+
+Recent Expeditions
+
+</h2>
+
+<div
+id="recentExpeditions"
+class="collection-grid">
+
+</div>
+
+</div>
+
+</section>
+
+<section class="card">
+
+<div class="card-body">
+
+<h2>
+
+Favorite MythicMon
+
+</h2>
+
+<div
+id="favoriteCreature">
+
+</div>
+
+</div>
+
+</section>
+
+<section class="card">
+
+<div class="card-body">
+
+<h2>
+
+Published Worlds
+
+</h2>
+
+<div
+id="publishedWorlds"
+class="collection-grid">
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+<script type="module"
+src="js/profilePage.js"></script>
+
+</body>
+
+</html>
