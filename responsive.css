@@ -1,0 +1,211 @@
+/* ==========================================================
+   MYTHICMON
+   RESPONSIVE LAYOUT
+   ========================================================== */
+
+/* ==========================================================
+   LARGE DESKTOP
+   ========================================================== */
+
+@media (min-width:1800px)
+{
+    .container
+    {
+        max-width:1700px;
+    }
+
+    .collection-grid
+    {
+        grid-template-columns:
+            repeat(auto-fill,minmax(300px,1fr));
+    }
+
+    .hub-grid
+    {
+        grid-template-columns:
+            repeat(5,1fr);
+    }
+}
+
+/* ==========================================================
+   DESKTOP
+   ========================================================== */
+
+@media (max-width:1400px)
+{
+
+.editor-screen
+{
+    grid-template-columns:
+        300px
+        1fr
+        280px;
+}
+
+.safari-layout
+{
+    grid-template-columns:
+        280px
+        1fr
+        280px;
+}
+
+}
+
+/* ==========================================================
+   SMALL DESKTOP
+   ========================================================== */
+
+@media (max-width:1200px)
+{
+
+.collection-grid
+{
+    grid-template-columns:
+        repeat(auto-fill,minmax(220px,1fr));
+}
+
+.showcase-panel
+{
+    width:340px;
+}
+
+}
+
+/* ==========================================================
+   TABLET
+   ========================================================== */
+
+@media (max-width:1000px)
+{
+
+.left-sidebar,
+.right-sidebar,
+.collection-sidebar,
+.showcase-panel,
+.editor-properties
+{
+    display:none;
+}
+
+.safari-layout,
+.editor-screen
+{
+    grid-template-columns:1fr;
+}
+
+.collection-screen
+{
+    flex-direction:column;
+}
+
+.move-panel
+{
+    grid-template-columns:1fr;
+}
+
+}
+
+/* ==========================================================
+   SMALL TABLET
+   ========================================================== */
+
+@media (max-width:768px)
+{
+
+.top-bar
+{
+    height:auto;
+
+    padding:12px;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+}
+
+.game-title
+{
+    font-size:3rem;
+}
+
+.main-menu
+{
+    width:90%;
+}
+
+.collection-grid
+{
+    grid-template-columns:
+        repeat(auto-fill,minmax(180px,1fr));
+}
+
+.hub-grid
+{
+    grid-template-columns:1fr;
+}
+
+}
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
+@media (max-width:600px)
+{
+
+body
+{
+    font-size:14px;
+}
+
+.game-title
+{
+    font-size:2.3rem;
+}
+
+.menu-button
+{
+    width:100%;
+}
+
+.move-button
+{
+    min-height:70px;
+}
+
+.popup-card
+{
+    width:95%;
+}
+
+.collection-grid
+{
+    grid-template-columns:1fr;
+}
+
+}
+
+/* ==========================================================
+   VERY SMALL
+   ========================================================== */
+
+@media (max-width:400px)
+{
+
+.top-bar
+{
+    gap:8px;
+}
+
+.card-title
+{
+    font-size:1rem;
+}
+
+.game-title
+{
+    font-size:2rem;
+}
+
+}
