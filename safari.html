@@ -3,313 +3,202 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-    <title>MythicMon Safari</title>
+<title>MythicMon Safari</title>
 
-    <!-- CSS -->
-
-    <link rel="stylesheet" href="css/variables.css">
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/buttons.css">
-    <link rel="stylesheet" href="css/cards.css">
-    <link rel="stylesheet" href="css/safari.css">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/buttons.css">
+<link rel="stylesheet" href="css/cards.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/safari.css">
+<link rel="stylesheet" href="css/responsive.css">
 
 </head>
 
 <body>
 
-<!-- ========================================= -->
-<!-- TOP BAR -->
-<!-- ========================================= -->
-
-<header class="top-bar">
-
-    <div class="left-top">
-
-        <button id="backButton">
-
-            ← Hub
-
-        </button>
-
-    </div>
-
-    <div class="center-top">
-
-        <span id="zoneName">
-
-            Emerald Forest
-
-        </span>
-
-    </div>
-
-    <div class="right-top">
-
-        <span id="weatherDisplay">
-
-            ☀ Clear
-
-        </span>
-
-        <span id="timeDisplay">
-
-            Morning
-
-        </span>
-
-    </div>
-
-</header>
-
-<!-- ========================================= -->
-<!-- MAIN LAYOUT -->
-<!-- ========================================= -->
-
 <div class="safari-layout">
 
-<!-- ========================================= -->
-<!-- LEFT SIDEBAR -->
-<!-- ========================================= -->
+    <!-- ================================= -->
+    <!-- LEFT SIDEBAR -->
+    <!-- ================================= -->
 
-<aside class="left-sidebar">
+    <aside class="left-sidebar">
 
-    <section class="panel">
+        <h2>Expedition</h2>
 
-        <h2>
+        <button onclick="location.href='home.html'">
+            ← Return Home
+        </button>
 
-            Party
+        <hr>
 
-        </h2>
+        <h3>Party</h3>
 
-        <div id="partyContainer">
+        <div id="partyContainer"></div>
 
-        </div>
+        <hr>
 
-    </section>
+        <h3>Traversal Abilities</h3>
 
-    <section class="panel">
+        <div id="abilityContainer"></div>
 
-        <h2>
+        <hr>
 
-            Active Abilities
-
-        </h2>
-
-        <div id="abilityContainer">
-
-        </div>
-
-    </section>
-
-</aside>
-
-<!-- ========================================= -->
-<!-- SAFARI VIEW -->
-<!-- ========================================= -->
-
-<main class="safari-main">
-
-    <canvas
-
-        id="safariCanvas"
-
-        width="1600"
-
-        height="900"
-
-    ></canvas>
-
-    <!-- Territory Warning -->
-
-    <div
-
-        id="territoryBanner"
-
-        class="hidden"
-
-    >
-
-        ⚠ Entering Territory
-
-    </div>
-
-    <!-- Alpha Warning -->
-
-    <div
-
-        id="alphaBanner"
-
-        class="hidden"
-
-    >
-
-        ★ Alpha Nearby ★
-
-    </div>
-
-</main>
-
-<!-- ========================================= -->
-<!-- RIGHT SIDEBAR -->
-<!-- ========================================= -->
-
-<aside class="right-sidebar">
-
-    <section class="panel">
-
-        <h2>
-
-            Creature
-
-        </h2>
-
-        <div id="selectedCreature">
-
-            Click a creature...
-
-        </div>
-
-    </section>
-
-    <section class="panel">
-
-        <h2>
-
-            Objective
-
-        </h2>
+        <h3>Current Quest</h3>
 
         <div id="questPanel">
 
+            <p>No active quest.</p>
+
         </div>
 
-    </section>
+    </aside>
 
-    <section class="panel">
+    <!-- ================================= -->
+    <!-- SAFARI WORLD -->
+    <!-- ================================= -->
 
-        <h2>
+    <main class="safari-main">
 
-            Minimap
+        <canvas id="safariCanvas"></canvas>
 
-        </h2>
+        <div id="territoryBanner"
+             class="fade-in"
+             hidden>
 
-        <canvas
+            Territory Warning
 
-            id="miniMap"
+        </div>
 
-            width="250"
+        <div id="alphaBanner"
+             hidden>
 
-            height="250"
+            Alpha Nearby!
 
-        ></canvas>
+        </div>
 
-    </section>
+        <div class="discovery-banner"
+             hidden
+             id="discoveryBanner">
 
-</aside>
+            New Area Discovered
+
+        </div>
+
+        <div class="weather-overlay"
+             id="weatherOverlay">
+
+        </div>
+
+    </main>
+
+    <!-- ================================= -->
+    <!-- RIGHT SIDEBAR -->
+    <!-- ================================= -->
+
+    <aside class="right-sidebar">
+
+        <h2>Explorer Tools</h2>
+
+        <canvas id="miniMap"
+                width="280"
+                height="180">
+
+        </canvas>
+
+        <hr>
+
+        <h3>Selected Creature</h3>
+
+        <div id="selectedCreature">
+
+            <p>
+
+                Observe a creature to learn
+                more about it.
+
+            </p>
+
+        </div>
+
+        <hr>
+
+        <h3>Environment</h3>
+
+        <div id="environmentInfo">
+
+            <p>Weather: Sunny</p>
+
+            <p>Biome: Forest</p>
+
+            <p>Time: Morning</p>
+
+        </div>
+
+        <hr>
+
+        <h3>Photography</h3>
+
+        <button id="cameraButton">
+
+            📸 Take Photo
+
+        </button>
+
+    </aside>
 
 </div>
 
-<!-- ========================================= -->
-<!-- CREATURE POPUP -->
-<!-- ========================================= -->
+<!-- ================================= -->
+<!-- CREATURE INTERACTION -->
+<!-- ================================= -->
 
-<div
-
-    id="creaturePopup"
-
-    class="popup hidden"
-
->
+<div class="popup"
+     id="creaturePopup"
+     hidden>
 
     <div class="popup-card">
 
-        <h2
+        <h2 id="popupCreatureName">
 
-            id="popupName"
-
-        >
-
-            Sparkit
+            Unknown Creature
 
         </h2>
 
-        <p
-
-            id="popupLevel"
-
-        >
-
-            Lv. 5
-
-        </p>
-
-        <p
-
-            id="popupMood"
-
-        >
-
-            😊 Curious
+        <p id="popupCreatureDescription">
 
         </p>
 
         <div class="popup-buttons">
 
-            <button
+            <button id="observeButton">
 
-                id="battleButton"
-
-            >
-
-                Battle
+                👀 Observe
 
             </button>
 
-            <button
+            <button id="feedButton">
 
-                id="observeButton"
-
-            >
-
-                Observe
+                🍓 Feed
 
             </button>
 
-            <button
+            <button id="battleButton">
 
-                id="feedButton"
-
-            >
-
-                Feed
+                ⚔ Battle
 
             </button>
 
-            <button
+            <button id="leaveButton">
 
-                id="photoButton"
-
-            >
-
-                Photograph
-
-            </button>
-
-            <button
-
-                id="cancelPopup"
-
-            >
-
-                Cancel
+                🚶 Leave
 
             </button>
 
@@ -319,31 +208,10 @@
 
 </div>
 
-<!-- ========================================= -->
-<!-- JAVASCRIPT -->
-<!-- ========================================= -->
+<script type="module"
+        src="js/safariPage.js">
 
-<script src="js/config.js"></script>
-
-<script src="js/helpers.js"></script>
-
-<script src="js/player/player.js"></script>
-
-<script src="js/player/inventory.js"></script>
-
-<script src="js/player/collection.js"></script>
-
-<script src="js/safari/weatherSystem.js"></script>
-
-<script src="js/safari/territoryManager.js"></script>
-
-<script src="js/safari/ecosystem.js"></script>
-
-<script src="js/safari/spawnManager.js"></script>
-
-<script src="js/safari/safariAI.js"></script>
-
-<script src="js/safari.js"></script>
+</script>
 
 </body>
 
