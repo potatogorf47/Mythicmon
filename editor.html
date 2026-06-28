@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>MythicMon World Creator</title>
+
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/buttons.css">
+<link rel="stylesheet" href="css/cards.css">
+<link rel="stylesheet" href="css/editor.css">
+<link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+<div class="editor-screen">
+
+<!-- ================================= -->
+<!-- TOOLBOX -->
+<!-- ================================= -->
+
+<aside class="editor-tools">
+
+<h2>
+
+🌍 World Creator
+
+</h2>
+
+<button onclick="location.href='home.html'">
+
+← Return Home
+
+</button>
+
+<hr>
+
+<div class="tool-category">
+
+<h3>
+
+Terrain
+
+</h3>
+
+<div class="tool-grid">
+
+<button class="tool-button">🌱</button>
+<button class="tool-button">🪨</button>
+<button class="tool-button">🌊</button>
+<button class="tool-button">🌋</button>
+<button class="tool-button">❄</button>
+<button class="tool-button">☁</button>
+
+</div>
+
+</div>
+
+<div class="tool-category">
+
+<h3>
+
+Nature
+
+</h3>
+
+<div class="tool-grid">
+
+<button class="tool-button">🌲</button>
+<button class="tool-button">🌸</button>
+<button class="tool-button">🍄</button>
+<button class="tool-button">🌾</button>
+<button class="tool-button">🌵</button>
+<button class="tool-button">🪵</button>
+
+</div>
+
+</div>
+
+<div class="tool-category">
+
+<h3>
+
+Structures
+
+</h3>
+
+<div class="tool-grid">
+
+<button class="tool-button">🏠</button>
+<button class="tool-button">🏛</button>
+<button class="tool-button">🌉</button>
+<button class="tool-button">🪜</button>
+<button class="tool-button">🪨</button>
+<button class="tool-button">🚪</button>
+
+</div>
+
+</div>
+
+</aside>
+
+<!-- ================================= -->
+<!-- WORLD -->
+<!-- ================================= -->
+
+<main class="editor-canvas-container">
+
+<canvas
+id="editorCanvas"
+width="1600"
+height="900">
+
+</canvas>
+
+<div class="editor-bottom-bar">
+
+<button>
+
+▶ Test World
+
+</button>
+
+<button>
+
+💾 Save
+
+</button>
+
+<button>
+
+☁ Publish
+
+</button>
+
+<button>
+
+↩ Undo
+
+</button>
+
+<button>
+
+↪ Redo
+
+</button>
+
+</div>
+
+</main>
+
+<!-- ================================= -->
+<!-- PROPERTIES -->
+<!-- ================================= -->
+
+<aside class="editor-properties">
+
+<h2>
+
+World Settings
+
+</h2>
+
+<div class="property-group">
+
+<label>
+
+World Name
+
+</label>
+
+<input
+type="text"
+id="worldName">
+
+</div>
+
+<div class="property-group">
+
+<label>
+
+Description
+
+</label>
+
+<textarea
+rows="5"
+id="worldDescription">
+
+</textarea>
+
+</div>
+
+<div class="property-group">
+
+<label>
+
+Difficulty
+
+</label>
+
+<select>
+
+<option>
+
+Easy
+
+</option>
+
+<option>
+
+Normal
+
+</option>
+
+<option>
+
+Hard
+
+</option>
+
+<option>
+
+Expert
+
+</option>
+
+</select>
+
+</div>
+
+<div class="property-group">
+
+<label>
+
+Biome
+
+</label>
+
+<select>
+
+<option>
+
+Forest
+
+</option>
+
+<option>
+
+Ocean
+
+</option>
+
+<option>
+
+Mountain
+
+</option>
+
+<option>
+
+Volcano
+
+</option>
+
+<option>
+
+Sky Islands
+
+</option>
+
+<option>
+
+Ancient Ruins
+
+</option>
+
+</select>
+
+</div>
+
+<hr>
+
+<h3>
+
+Objects
+
+</h3>
+
+<div
+class="object-list"
+id="objectList">
+
+</div>
+
+</aside>
+
+</div>
+
+<script
+type="module"
+src="js/editorPage.js">
+
+</script>
+
+</body>
+
+</html>
