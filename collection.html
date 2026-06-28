@@ -1,54 +1,213 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
-<title>Collection</title>
+<meta charset="UTF-8">
 
-<link rel="stylesheet"
-href="style.css">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>MythicMon Field Guide</title>
+
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/buttons.css">
+<link rel="stylesheet" href="css/cards.css">
+<link rel="stylesheet" href="css/collection.css">
+<link rel="stylesheet" href="css/responsive.css">
 
 </head>
 
 <body>
 
-<nav>
+<div class="collection-screen">
 
-<div class="logo">
-MythicMon
-</div>
+<!-- ===================================== -->
+<!-- FILTER SIDEBAR -->
+<!-- ===================================== -->
 
-<div class="nav-links">
+<aside class="collection-sidebar">
 
-<a href="index.html">
-Shop
-</a>
+<h2>
 
-<a href="safari.html">
-Safari
-</a>
+Field Guide
 
-<a href="collection.html">
-Collection
-</a>
+</h2>
 
-</div>
+<button onclick="location.href='home.html'">
 
-</nav>
+← Return Home
 
-<h1 class="page-title">
+</button>
 
-Collection
+<hr>
+
+<h3>
+
+Search
+
+</h3>
+
+<input
+id="searchCreatures"
+placeholder="Search MythicMon...">
+
+<hr>
+
+<h3>
+
+Filters
+
+</h3>
+
+<select id="typeFilter">
+
+<option>All Types</option>
+
+</select>
+
+<select id="rarityFilter">
+
+<option>All Rarities</option>
+
+</select>
+
+<select id="habitatFilter">
+
+<option>All Habitats</option>
+
+</select>
+
+<select id="regionFilter">
+
+<option>All Regions</option>
+
+</select>
+
+<hr>
+
+<h3>
+
+Sort By
+
+</h3>
+
+<select id="sortFilter">
+
+<option>Name</option>
+
+<option>Level</option>
+
+<option>Discovery Date</option>
+
+<option>Rarity</option>
+
+<option>Research Progress</option>
+
+</select>
+
+</aside>
+
+<!-- ===================================== -->
+<!-- COLLECTION -->
+<!-- ===================================== -->
+
+<main class="collection-content">
+
+<h1>
+
+MythicMon Field Guide
 
 </h1>
 
+<p>
+
+Research every species you've encountered.
+
+</p>
+
 <div
-id="collection-grid"
-class="collection-grid">
+class="collection-grid"
+id="creatureGrid">
 
 </div>
 
-<script src="script.js"></script>
+</main>
+
+<!-- ===================================== -->
+<!-- RESEARCH PANEL -->
+<!-- ===================================== -->
+
+<aside class="showcase-panel">
+
+<h2>
+
+Research
+
+</h2>
+
+<div id="selectedCreaturePanel">
+
+<p>
+
+Select a MythicMon.
+
+</p>
+
+</div>
+
+<hr>
+
+<h3>
+
+Research Progress
+
+</h3>
+
+<div class="progress-bar">
+
+<div
+id="researchProgress"
+class="progress-fill">
+
+</div>
+
+</div>
+
+<p
+id="researchPercent">
+
+0%
+
+</p>
+
+<hr>
+
+<h3>
+
+Discovery Notes
+
+</h3>
+
+<div
+id="researchNotes">
+
+No observations yet.
+
+</div>
+
+</aside>
+
+</div>
+
+<script
+type="module"
+src="js/collectionPage.js">
+
+</script>
 
 </body>
+
 </html>
