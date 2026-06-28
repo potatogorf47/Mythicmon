@@ -1,123 +1,248 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
-    <title>MythicMon Battle</title>
+<meta charset="UTF-8">
 
-    <link rel="stylesheet"
-    href="style.css">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>MythicMon Battle</title>
+
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/buttons.css">
+<link rel="stylesheet" href="css/cards.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/battle.css">
+<link rel="stylesheet" href="css/responsive.css">
 
 </head>
 
-<body class="battle-page">
+<body>
 
-    <nav>
+<div class="battle-screen">
 
-        <div class="logo">
-            MythicMon
-        </div>
+    <!-- ================================= -->
+    <!-- TOP INFORMATION -->
+    <!-- ================================= -->
 
-    </nav>
+    <header class="top-bar">
 
-    <div class="battle-screen">
+        <button onclick="history.back()">
 
-        <!-- ENEMY -->
+            ← Leave Battle
 
-        <div class="enemy-area">
+        </button>
 
-            <div class="enemy-card">
+        <h2 id="battleTitle">
 
-                <h2 id="enemy-name">
-                    Enemy
+            Wild Encounter
+
+        </h2>
+
+        <span id="turnCounter">
+
+            Turn 1
+
+        </span>
+
+    </header>
+
+    <!-- ================================= -->
+    <!-- BATTLEFIELD -->
+    <!-- ================================= -->
+
+    <main class="battlefield">
+
+        <!-- Player -->
+
+        <section class="battle-side">
+
+            <div class="battle-creature">
+
+                <img id="playerCreatureImage"
+                     src="assets/ui/placeholderCreature.png">
+
+            </div>
+
+            <div class="battle-info">
+
+                <h2 id="playerCreatureName">
+
+                    Your Creature
+
                 </h2>
 
-                <p>
-                    HP:
-                    <span id="enemy-hp-text">
-                        100
-                    </span>
-                </p>
+                <div class="health-bar">
 
-                <div class="hp-container">
-
-                    <div
-                    id="enemy-hp-fill"
-                    class="hp-fill">
+                    <div class="health-fill"
+                         id="playerHealth">
 
                     </div>
 
                 </div>
 
-            </div>
+                <div class="energy-bar">
 
-            <div class="enemy-sprite">
-
-                Enemy Art
-
-            </div>
-
-        </div>
-
-        <!-- PLAYER -->
-
-        <div class="player-area">
-
-            <div class="player-sprite">
-
-                Starter Art
-
-            </div>
-
-            <div class="player-card">
-
-                <h2 id="player-name">
-                    Your MythicMon
-                </h2>
-
-                <p>
-                    HP:
-                    <span id="player-hp-text">
-                        100
-                    </span>
-                </p>
-
-                <div class="hp-container">
-
-                    <div
-                    id="player-hp-fill"
-                    class="hp-fill">
+                    <div class="energy-fill"
+                         id="playerEnergy">
 
                     </div>
 
                 </div>
 
-            </div>
+                <div class="status-icons"
+                     id="playerStatus">
 
-        </div>
-
-        <!-- BATTLE MENU -->
-
-        <div class="battle-menu">
-
-            <div id="battle-log">
-
-                A wild creature appeared!
+                </div>
 
             </div>
 
-            <button onclick="attackEnemy()">
+        </section>
 
-                Attack
+        <!-- Enemy -->
 
-            </button>
+        <section class="battle-side">
+
+            <div class="battle-creature">
+
+                <img id="enemyCreatureImage"
+                     src="assets/ui/placeholderCreature.png">
+
+            </div>
+
+            <div class="battle-info">
+
+                <h2 id="enemyCreatureName">
+
+                    Wild Creature
+
+                </h2>
+
+                <div class="health-bar">
+
+                    <div class="health-fill"
+                         id="enemyHealth">
+
+                    </div>
+
+                </div>
+
+                <div class="energy-bar">
+
+                    <div class="energy-fill"
+                         id="enemyEnergy">
+
+                    </div>
+
+                </div>
+
+                <div class="status-icons"
+                     id="enemyStatus">
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Floating UI -->
+
+        <div class="turn-order"
+             id="turnOrder">
 
         </div>
 
-    </div>
+        <div class="battle-log"
+             id="battleLog">
 
-    <script src="script.js"></script>
-    <script src="battle.js"></script>
+            A wild creature appeared!
+
+        </div>
+
+    </main>
+
+    <!-- ================================= -->
+    <!-- MOVE PANEL -->
+    <!-- ================================= -->
+
+    <section class="move-panel">
+
+        <button class="move-button">
+
+            <div class="move-name">
+
+                Move 1
+
+            </div>
+
+            <div class="move-description">
+
+                Description
+
+            </div>
+
+        </button>
+
+        <button class="move-button">
+
+            <div class="move-name">
+
+                Move 2
+
+            </div>
+
+            <div class="move-description">
+
+                Description
+
+            </div>
+
+        </button>
+
+        <button class="move-button">
+
+            <div class="move-name">
+
+                Move 3
+
+            </div>
+
+            <div class="move-description">
+
+                Description
+
+            </div>
+
+        </button>
+
+        <button class="move-button">
+
+            <div class="move-name">
+
+                Move 4
+
+            </div>
+
+            <div class="move-description">
+
+                Description
+
+            </div>
+
+        </button>
+
+    </section>
+
+</div>
+
+<script type="module"
+        src="js/battlePage.js">
+
+</script>
 
 </body>
 
