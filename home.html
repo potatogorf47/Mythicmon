@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>MythicMon - Home</title>
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/cards.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/menus.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+<div class="hub-screen">
+
+    <!-- ====================================== -->
+    <!-- TOP BAR -->
+    <!-- ====================================== -->
+
+    <header class="top-bar">
+
+        <div>
+
+            <h1>🏕️ Explorer Headquarters</h1>
+
+            <p id="playerRank">
+                Rookie Explorer
+            </p>
+
+        </div>
+
+        <div class="top-bar-right">
+
+            <span id="playerCoins">
+                💰 0
+            </span>
+
+            <span id="playerGems">
+                💎 0
+            </span>
+
+        </div>
+
+    </header>
+
+    <!-- ====================================== -->
+    <!-- HOME CONTENT -->
+    <!-- ====================================== -->
+
+    <main class="container">
+
+        <section>
+
+            <h2>Your Headquarters</h2>
+
+            <p>
+
+                Your headquarters grows as you become a stronger explorer.
+                Upgrade buildings, unlock new facilities, and display your
+                greatest discoveries.
+
+            </p>
+
+        </section>
+
+        <section class="hub-grid">
+
+            <button class="large-button"
+                    onclick="location.href='safari.html'">
+
+                🌲 Safari
+
+                <small>
+                    Explore the world
+                </small>
+
+            </button>
+
+            <button class="large-button"
+                    onclick="location.href='collection.html'">
+
+                📖 Collection
+
+                <small>
+                    View your journal
+                </small>
+
+            </button>
+
+            <button class="large-button"
+                    onclick="location.href='museum.html'">
+
+                🏛 Museum
+
+                <small>
+                    Display your discoveries
+                </small>
+
+            </button>
+
+            <button class="large-button"
+                    onclick="location.href='battle.html'">
+
+                ⚔ Battle Arena
+
+                <small>
+                    Practice battling
+                </small>
+
+            </button>
+
+            <button class="large-button"
+                    onclick="location.href='packs.html'">
+
+                🎴 Booster Packs
+
+                <small>
+                    Open card packs
+                </small>
+
+            </button>
+
+            <button class="large-button"
+                    onclick="location.href='deck.html'">
+
+                🃏 Deck Builder
+
+                <small>
+                    Build battle decks
+                </small>
+
+            </button>
+
+            <button class="large-button"
+                    onclick="location.href='editor.html'">
+
+                🛠 World Creator
+
+                <small>
+                    Create your own adventures
+                </small>
+
+            </button>
+
+            <button class="large-button"
+                    onclick="location.href='campaigns.html'">
+
+                🌍 Community Worlds
+
+                <small>
+                    Play player-made campaigns
+                </small>
+
+            </button>
+
+            <button class="large-button"
+                    onclick="location.href='profile.html'">
+
+                👤 Profile
+
+                <small>
+                    Achievements & statistics
+                </small>
+
+            </button>
+
+        </section>
+
+        <!-- ====================================== -->
+        <!-- PARTNER -->
+        <!-- ====================================== -->
+
+        <section class="card">
+
+            <div class="card-body">
+
+                <h2>Your Partner</h2>
+
+                <div id="partnerPreview">
+
+                    <img
+                        id="partnerImage"
+                        src="assets/ui/placeholderCreature.png"
+                        alt="Partner Creature">
+
+                    <h3 id="partnerName">
+                        No Partner Selected
+                    </h3>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ====================================== -->
+        <!-- NEWS -->
+        <!-- ====================================== -->
+
+        <section class="card">
+
+            <div class="card-body">
+
+                <h2>Explorer News</h2>
+
+                <ul id="newsFeed">
+
+                    <li>Welcome back!</li>
+
+                    <li>Featured Community Worlds update every Friday.</li>
+
+                    <li>Seasonal events appear automatically.</li>
+
+                </ul>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script type="module" src="js/home.js"></script>
+
+</body>
+
+</html>
