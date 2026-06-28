@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>MythicMon Expeditions</title>
+
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/buttons.css">
+<link rel="stylesheet" href="css/cards.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/collection.css">
+<link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- ====================================== -->
+<!-- HEADER -->
+<!-- ====================================== -->
+
+<header class="top-bar">
+
+<button onclick="location.href='home.html'">
+
+← Return Home
+
+</button>
+
+<h1>
+
+🌍 Community Expeditions
+
+</h1>
+
+<button id="refreshWorlds">
+
+Refresh
+
+</button>
+
+</header>
+
+<!-- ====================================== -->
+<!-- FEATURED -->
+<!-- ====================================== -->
+
+<section class="card">
+
+<div class="card-body">
+
+<h2>
+
+⭐ Featured Expedition
+
+</h2>
+
+<div class="collection-card featured-expedition">
+
+<div class="collection-art">
+
+🗺️
+
+</div>
+
+<div class="collection-info">
+
+<h3 id="featuredName">
+
+The Lost Crystal Jungle
+
+</h3>
+
+<p>
+
+Creator:
+<span id="featuredCreator">
+
+Unknown Explorer
+
+</span>
+
+</p>
+
+<p>
+
+Estimated Time:
+<span id="featuredLength">
+
+90 Minutes
+
+</span>
+
+</p>
+
+<p>
+
+Difficulty:
+<span id="featuredDifficulty">
+
+★★★★☆
+
+</span>
+
+</p>
+
+<p>
+
+Community Rating:
+<span id="featuredRating">
+
+98%
+
+</span>
+
+</p>
+
+<button>
+
+Play Expedition
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ====================================== -->
+<!-- FILTERS -->
+<!-- ====================================== -->
+
+<section class="card">
+
+<div class="card-body">
+
+<h2>
+
+Browse
+
+</h2>
+
+<div class="toolbar">
+
+<select id="categoryFilter">
+
+<option>All</option>
+
+<option>Exploration</option>
+
+<option>Platforming</option>
+
+<option>Story</option>
+
+<option>Puzzle</option>
+
+<option>Photography</option>
+
+<option>Boss Hunt</option>
+
+<option>Relaxing</option>
+
+</select>
+
+<select id="difficultyFilter">
+
+<option>Any Difficulty</option>
+
+<option>Easy</option>
+
+<option>Normal</option>
+
+<option>Hard</option>
+
+<option>Expert</option>
+
+</select>
+
+<input
+type="text"
+placeholder="Search Expeditions..."
+id="searchExpeditions">
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ====================================== -->
+<!-- WORLD GRID -->
+<!-- ====================================== -->
+
+<section>
+
+<div
+class="collection-grid"
+id="expeditionGrid">
+
+<!-- Filled by JavaScript -->
+
+</div>
+
+</section>
+
+<!-- ====================================== -->
+<!-- EVENTS -->
+<!-- ====================================== -->
+
+<section class="card">
+
+<div class="card-body">
+
+<h2>
+
+Seasonal Expeditions
+
+</h2>
+
+<div
+id="seasonalExpeditions"
+class="collection-grid">
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ====================================== -->
+<!-- FRIENDS -->
+<!-- ====================================== -->
+
+<section class="card">
+
+<div class="card-body">
+
+<h2>
+
+Friends' Worlds
+
+</h2>
+
+<div
+id="friendWorlds"
+class="collection-grid">
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+<script
+type="module"
+src="js/expeditionsPage.js">
+
+</script>
+
+</body>
+
+</html>
