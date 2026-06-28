@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>MythicMon Deck Builder</title>
+
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/buttons.css">
+<link rel="stylesheet" href="css/cards.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/collection.css">
+<link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+<div class="collection-screen">
+
+<!-- ====================================== -->
+<!-- LEFT PANEL -->
+<!-- ====================================== -->
+
+<aside class="collection-sidebar">
+
+<h2>
+
+Decks
+
+</h2>
+
+<button onclick="location.href='home.html'">
+
+← Return Home
+
+</button>
+
+<hr>
+
+<button id="newDeckButton">
+
+＋ New Deck
+
+</button>
+
+<div id="deckList">
+
+</div>
+
+</aside>
+
+<!-- ====================================== -->
+<!-- CENTER -->
+<!-- ====================================== -->
+
+<main class="collection-content">
+
+<h1>
+
+Deck Builder
+
+</h1>
+
+<p>
+
+Build decks from the MythicMon you've collected.
+
+</p>
+
+<div class="collection-grid"
+id="cardCollection">
+
+</div>
+
+</main>
+
+<!-- ====================================== -->
+<!-- RIGHT -->
+<!-- ====================================== -->
+
+<aside class="showcase-panel">
+
+<h2>
+
+Current Deck
+
+</h2>
+
+<p>
+
+Cards
+
+<span id="deckCount">
+
+0 / 40
+
+</span>
+
+</p>
+
+<div
+id="currentDeck">
+
+</div>
+
+<hr>
+
+<h3>
+
+Statistics
+
+</h3>
+
+<div class="stat-row">
+
+<span>
+
+Average Level
+
+</span>
+
+<span id="averageLevel">
+
+0
+
+</span>
+
+</div>
+
+<div class="stat-row">
+
+<span>
+
+Energy Curve
+
+</span>
+
+<span id="energyCurve">
+
+Balanced
+
+</span>
+
+</div>
+
+<div class="stat-row">
+
+<span>
+
+Creature Types
+
+</span>
+
+<span id="typeSpread">
+
+-
+
+</span>
+
+</div>
+
+<hr>
+
+<button id="saveDeckButton">
+
+💾 Save Deck
+
+</button>
+
+<button id="duplicateDeckButton">
+
+📋 Duplicate
+
+</button>
+
+<button id="deleteDeckButton">
+
+🗑 Delete
+
+</button>
+
+</aside>
+
+</div>
+
+<script type="module"
+src="js/deckPage.js">
+
+</script>
+
+</body>
+
+</html>
