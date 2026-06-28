@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>MythicMon Museum</title>
+
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/buttons.css">
+<link rel="stylesheet" href="css/cards.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/collection.css">
+<link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+<div class="collection-screen">
+
+    <!-- ================================= -->
+    <!-- LEFT SIDEBAR -->
+    <!-- ================================= -->
+
+    <aside class="collection-sidebar">
+
+        <h2>Your Museum</h2>
+
+        <p>
+
+            Showcase your greatest discoveries,
+            memories, and rarest MythicMon.
+
+        </p>
+
+        <button onclick="location.href='home.html'">
+
+            ← Return Home
+
+        </button>
+
+        <hr>
+
+        <h3>Museum Wings</h3>
+
+        <button>🌲 Forest Wing</button>
+
+        <button>🌊 Ocean Wing</button>
+
+        <button>⛰ Mountain Wing</button>
+
+        <button>☁ Sky Wing</button>
+
+        <button>🏛 Ancient Wing</button>
+
+        <button>✨ Legendary Wing</button>
+
+        <button>🏆 Hall of Fame</button>
+
+    </aside>
+
+    <!-- ================================= -->
+    <!-- MAIN DISPLAY -->
+    <!-- ================================= -->
+
+    <main class="collection-content">
+
+        <h1>
+
+            Museum Gallery
+
+        </h1>
+
+        <p>
+
+            Every creature tells a story.
+
+        </p>
+
+        <div class="collection-grid">
+
+            <!-- Favorite -->
+
+            <div class="collection-card">
+
+                <div class="collection-art">
+
+                    <img src="assets/ui/placeholderCreature.png">
+
+                </div>
+
+                <div class="collection-info">
+
+                    <h3>Favorite Companion</h3>
+
+                    <p id="favoriteCompanion">
+
+                        None Selected
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- Oldest -->
+
+            <div class="collection-card">
+
+                <div class="collection-art">
+
+                    <img src="assets/ui/placeholderCreature.png">
+
+                </div>
+
+                <div class="collection-info">
+
+                    <h3>Oldest Partner</h3>
+
+                    <p>
+
+                        Unknown
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- Strongest -->
+
+            <div class="collection-card">
+
+                <div class="collection-art">
+
+                    <img src="assets/ui/placeholderCreature.png">
+
+                </div>
+
+                <div class="collection-info">
+
+                    <h3>Strongest Creature</h3>
+
+                    <p>
+
+                        Unknown
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- Rarest -->
+
+            <div class="collection-card">
+
+                <div class="collection-art">
+
+                    <img src="assets/ui/placeholderCreature.png">
+
+                </div>
+
+                <div class="collection-info">
+
+                    <h3>Rarest Discovery</h3>
+
+                    <p>
+
+                        Unknown
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ================================= -->
+        <!-- ACHIEVEMENTS -->
+        <!-- ================================= -->
+
+        <section class="card">
+
+            <div class="card-body">
+
+                <h2>
+
+                    Explorer Achievements
+
+                </h2>
+
+                <div class="badge-container">
+
+                    <span class="badge">
+
+                        First Capture
+
+                    </span>
+
+                    <span class="badge">
+
+                        Explorer
+
+                    </span>
+
+                    <span class="badge">
+
+                        Researcher
+
+                    </span>
+
+                    <span class="badge">
+
+                        Photographer
+
+                    </span>
+
+                    <span class="badge">
+
+                        Builder
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================================= -->
+        <!-- PHOTO WALL -->
+        <!-- ================================= -->
+
+        <section class="card">
+
+            <div class="card-body">
+
+                <h2>
+
+                    Wildlife Photography
+
+                </h2>
+
+                <div class="collection-grid"
+                     id="photoGallery">
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================================= -->
+        <!-- FIELD NOTES -->
+        <!-- ================================= -->
+
+        <section class="card">
+
+            <div class="card-body">
+
+                <h2>
+
+                    Explorer Journal
+
+                </h2>
+
+                <div class="field-notes">
+
+                    Begin your adventure to create your own
+                    collection of discoveries.
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script type="module"
+        src="js/museum.js"></script>
+
+</body>
+
+</html>
