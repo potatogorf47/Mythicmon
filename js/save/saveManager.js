@@ -164,27 +164,23 @@ const SaveManager =
     import(save)
     {
 
-        Object.assign(
+    if (typeof Player !== "undefined") {
+        Object.assign(Player, save.player);
+    }
 
-            Player,
+    if (
+        typeof Collection !== "undefined" &&
+        typeof Collection.import === "function"
+    ) {
+        Collection.import(save.collection);
+    }
 
-            save.player
-
-        );
-
-        Collection.import(
-
-            save.collection
-
-        );
-
-        Inventory.import(
-
-            save.inventory
-
-        );
-
-    },
+    if (
+        typeof Inventory !== "undefined" &&
+        typeof Inventory.import === "function"
+    ) {
+        Inventory.import(save.inventory);
+    }
 
     //--------------------------------------------------
     // Delete Save
