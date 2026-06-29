@@ -1,729 +1,162 @@
-// =====================================
-// MYTHICMON
-// script.js
-// PART 1 - SAVE SYSTEM
-// =====================================
+/*
+========================================
+MYTHICMON GAME MANAGER
+script.js
+========================================
+*/
 
-// -----------------------------
-// SAVE SETTINGS
-// -----------------------------
+class GameManager {
 
-const SAVE_KEY = "mythicmon_save";
+    static async initialize() {
 
-// -----------------------------
-// GAME DATA
-// -----------------------------
+        console.log("=== MythicMon Starting ===");
 
-let gameData =
-{
-    username: "",
+        this.cacheElements();
 
-    starter: null,
+        this.showLoading();
 
-    coins: 100,
+        await this.simulateLoading();
 
-    level: 1,
+        this.loadSave();
 
-    xp: 0,
+        this.initializeButtons();
 
-    collection: [],
+        this.showTitle();
 
-    unlocked: []
-};
+        console.log("=== Startup Complete ===");
 
-// =====================================
-// SAVE GAME
-// =====================================
-
-function saveGame()
-{
-    localStorage.setItem(
-        SAVE_KEY,
-        JSON.stringify(gameData)
-    );
-}
-
-// =====================================
-// LOAD GAME
-// =====================================
-
-function loadGame()
-{
-    const save =
-    localStorage.getItem(
-        SAVE_KEY
-    );
-
-    if(save)
-    {
-        gameData =
-        JSON.parse(save);
     }
 
-    // Future proof older saves
+    static cacheElements() {
 
-    if(!gameData.collection)
-    {
-        gameData.collection = [];
+        this.loadingScreen =
+            document.getElementById("loadingScreen");
+
+        this.titleScreen =
+            document.getElementById("titleScreen");
+
+        this.profileScreen =
+            document.getElementById("profileScreen");
+
+        this.hubScreen =
+            document.getElementById("hubScreen");
+
+        this.loadingBar =
+            document.getElementById("loadingProgress");
+
     }
 
-    if(!gameData.unlocked)
-    {
-        gameData.unlocked = [];
+    static showLoading() {
+
+        this.loadingScreen?.classList.remove("hidden");
+
+        this.titleScreen?.classList.add("hidden");
+
     }
 
-    if(gameData.coins == null)
-    {
-        gameData.coins = 100;
-    }
+    static async simulateLoading() {
 
-    if(gameData.level == null)
-    {
-        gameData.level = 1;
-    }
-
-    if(gameData.xp == null)
-    {
-        gameData.xp = 0;
-    }
-
-    if(gameData.username == null)
-    {
-        gameData.username = "";
-    }
-}
-
-// =====================================
-// RESET SAVE
-// =====================================
-
-function resetGame()
-{
-    if(
-        confirm(
-            "Delete your MythicMon save?"
-        )
-    )
-    {
-        localStorage.removeItem(
-            SAVE_KEY
-        );
-
-        location.reload();
-    }
-}
-
-// =====================================
-// HELPER FUNCTIONS
-// =====================================
-
-function getCreature(name)
-{
-    return creatures.find(
-        creature =>
-        creature.name === name
-    );
-}
-
-function hasCreature(name)
-{
-    return gameData.collection.includes(
-        name
-    );
-}
-
-function unlockCreature(name)
-{
-    if(
-        !gameData.unlocked.includes(
-            name
-        )
-    )
-    {
-        gameData.unlocked.push(
-            name
-        );
-    }
-}
-
-function addCreature(name)
-{
-    gameData.collection.push(
-        name
-    );
-
-    unlockCreature(name);
-}
-
-function addCoins(amount)
-{
-    gameData.coins += amount;
-
-    updateCoins();
-
-    saveGame();
-}
-
-function removeCoins(amount)
-{
-    gameData.coins -= amount;
-
-    if(gameData.coins < 0)
-    {
-        gameData.coins = 0;
-    }
-
-    updateCoins();
-
-    saveGame();
-}
-
-// =====================================
-// COINS
-// =====================================
-
-function updateCoins()
-{
-    const display =
-    document.getElementById(
-        "coin-display"
-    );
-
-    if(display)
-    {
-        display.textContent =
-        gameData.coins;
-    }
-}
-
-// =====================================
-// STARTUP
-// =====================================
-
-loadGame();
-
-console.log(
-    "Part 1 Loaded"
-);
-// =====================================
-// PART 2
-// STARTER + PACK OPENING
-// =====================================
-
-// -----------------------------
-// STARTER MODAL
-// -----------------------------
-
-function checkStarter()
-{
-    const modal =
-    document.getElementById(
-        "starter-modal"
-    );
-
-    if(!modal)
-    {
-        return;
-    }
-
-    if(gameData.starter === null)
-    {
-        modal.style.display = "flex";
-    }
-    else
-    {
-        modal.style.display = "none";
-    }
-}
-
-// -----------------------------
-// CHOOSE STARTER
-// -----------------------------
-
-function chooseStarter(name)
-{
-    if(gameData.starter !== null)
-    {
-        return;
-    }
-
-    const creature =
-    getCreature(name);
-
-    if(!creature)
-    {
-        alert(
-            "Starter not found."
-        );
-
-        return;
-    }
-
-    gameData.starter =
-    creature.name;
-
-    addCreature(
-        creature.name
-    );
-
-    saveGame();
-
-    checkStarter();
-
-    showCollection();
-
-    alert(
-        "You chose " +
-        creature.name +
-        "!"
-    );
-}
-
-// =====================================
-// RARITY WEIGHTS
-// =====================================
-
-function chooseCreatureByRarity(list)
-{
-    const roll =
-    Math.random() * 100;
-
-    let rarity;
-
-    if(roll < 60)
-    {
-        rarity = "Common";
-    }
-
-    else if(roll < 85)
-    {
-        rarity = "Rare";
-    }
-
-    else if(roll < 95)
-    {
-        rarity = "Epic";
-    }
-
-    else if(roll < 99.5)
-    {
-        rarity = "Legendary";
-    }
-
-    else
-    {
-        rarity = "Mythic";
-    }
-
-    let possible =
-    list.filter(
-
-        creature =>
-
-        creature.rarity === rarity
-
-    );
-
-    if(possible.length === 0)
-    {
-        possible = list;
-    }
-
-    return possible[
-        Math.floor(
-            Math.random() *
-            possible.length
-        )
-    ];
-}
-// =====================================
-// OPEN PACK
-// =====================================
-
-function openPack(zone)
-{
-    if(gameData.coins < 10)
-    {
-        alert("Not enough coins!");
-        return;
-    }
-
-    gameData.coins -= 10;
-
-    updateCoins();
-
-    const available =
-    creatures.filter(
-
-        creature =>
-
-        creature.zone === zone
-
-    );
-
-    if(available.length === 0)
-    {
-        alert("No creatures found.");
-        return;
-    }
-
-    const pull =
-    chooseCreatureByRarity(
-        available
-    );
-
-    addCreature(
-        pull.name
-    );
-
-    saveGame();
-
-    showCard(
-        pull
-    );
-}
-// =====================================
-// PART 3
-// PACK REVEAL
-// =====================================
-
-let openedCards = [];
-let currentReveal = 0;
-
-// =====================================
-// START PACK OPENING
-// =====================================
-
-function showPackOpening(cards)
-{
-    openedCards = cards;
-    currentReveal = 0;
-
-    showNextCard();
-}
-
-// =====================================
-// SHOW NEXT CARD
-// =====================================
-
-function showNextCard()
-{
-    const oldOverlay =
-    document.getElementById(
-        "pack-overlay"
-    );
-
-    if(oldOverlay)
-    {
-        oldOverlay.remove();
-    }
-
-    if(currentReveal >= openedCards.length)
-    {
-        return;
-    }
-
-    const card =
-    openedCards[currentReveal];
-
-    const overlay =
-    document.createElement("div");
-
-    overlay.id =
-    "pack-overlay";
-
-    overlay.innerHTML =
-    `
-    <div class="reveal-card ${card.rarity.toLowerCase()}">
-
-        <div class="card-art">
-
-            ${card.name}
-
-        </div>
-
-        <h1>
-
-            ${card.name}
-
-        </h1>
-
-        <h3>
-
-            ${card.type}
-
-        </h3>
-
-        <p>
-
-            ${card.rarity}
-
-        </p>
-
-        <div class="battle-stats">
-
-            <div>HP ${card.hp}</div>
-
-            <div>ATK ${card.attack}</div>
-
-            <div>DEF ${card.defense}</div>
-
-            <div>SPD ${card.speed}</div>
-
-        </div>
-
-        <button onclick="nextReveal()">
-
-            Continue
-
-        </button>
-
-    </div>
-    `;
-
-    document.body.appendChild(
-        overlay
-    );
-}
-
-// =====================================
-// NEXT CARD
-// =====================================
-
-function nextReveal()
-{
-    currentReveal++;
-
-    if(currentReveal >= openedCards.length)
-    {
-        finishPackOpening();
-        return;
-    }
-
-    showNextCard();
-}
-
-// =====================================
-// FINISH PACK
-// =====================================
-
-function finishPackOpening()
-{
-    const overlay =
-    document.getElementById(
-        "pack-overlay"
-    );
-
-    if(overlay)
-    {
-        overlay.remove();
-    }
-
-    openedCards = [];
-    currentReveal = 0;
-}
-
-// =====================================
-// CLOSE IF PLAYER PRESSES ESC
-// =====================================
-
-document.addEventListener(
-    "keydown",
-
-    function(event)
-    {
-        if(event.key !== "Escape")
-        {
+        if (!this.loadingBar)
             return;
+
+        for (let i = 0; i <= 100; i++) {
+
+            this.loadingBar.style.width = i + "%";
+
+            await new Promise(resolve =>
+                setTimeout(resolve, 12));
+
         }
 
-        const overlay =
-        document.getElementById(
-            "pack-overlay"
-        );
-
-        if(overlay)
-        {
-            finishPackOpening();
-        }
-    }
-);
-// =====================================
-// PART 4
-// COLLECTION
-// =====================================
-
-function showCollection()
-{
-    const grid =
-    document.getElementById(
-        "collection-grid"
-    );
-
-    if(!grid)
-    {
-        return;
     }
 
-    grid.innerHTML = "";
+    static showTitle() {
 
-    const counts = {};
+        this.loadingScreen?.classList.add("hidden");
 
-    for(const name of gameData.collection)
-    {
-        if(!counts[name])
-        {
-            counts[name] = 0;
-        }
+        this.titleScreen?.classList.remove("hidden");
 
-        counts[name]++;
     }
 
-    Object.keys(counts).forEach(
+    static loadSave() {
 
-        function(name)
-        {
-            const creature =
-            getCreature(name);
+        try {
 
-            if(!creature)
-            {
-                return;
+            if (typeof SaveManager !== "undefined") {
+
+                SaveManager.load();
+
             }
 
-            grid.innerHTML +=
-            `
-            <div class="collection-card">
-
-                <div class="art">
-
-                    ${creature.name}
-
-                </div>
-
-                <div class="card-info">
-
-                    <h3>${creature.name}</h3>
-
-                    <p>${creature.type}</p>
-
-                    <p>${creature.rarity}</p>
-
-                    <p>x${counts[name]}</p>
-
-                </div>
-
-            </div>
-            `;
         }
 
-    );
-}
+        catch (error) {
 
-// =====================================
-// SAFARI
-// =====================================
+            console.warn("No save found.");
 
-function enterSafari(zone)
-{
-    localStorage.setItem(
-        "currentZone",
-        zone
-    );
+        }
 
-    window.location.href =
-    "battle.html";
-}
-
-// =====================================
-// XP
-// =====================================
-
-function addXP(amount)
-{
-    gameData.xp += amount;
-
-    while(gameData.xp >= 100)
-    {
-        gameData.xp -= 100;
-
-        gameData.level++;
-
-        alert(
-            "Level Up!\nLevel " +
-            gameData.level
-        );
     }
 
-    saveGame();
-}
+    static initializeButtons() {
 
-// =====================================
-// PLAYER INFO
-// =====================================
+        document.getElementById("continueBtn")
+            ?.addEventListener("click", () => {
 
-function updatePlayerInfo()
-{
-    const level =
-    document.getElementById(
-        "player-level"
-    );
+                this.continueGame();
 
-    if(level)
-    {
-        level.textContent =
-        gameData.level;
+            });
+
+        document.getElementById("newGameBtn")
+            ?.addEventListener("click", () => {
+
+                this.newGame();
+
+            });
+
+        document.getElementById("collectionBtn")
+            ?.addEventListener("click", () => {
+
+                window.location.href =
+                    "collection.html";
+
+            });
+
+        document.getElementById("settingsBtn")
+            ?.addEventListener("click", () => {
+
+                alert("Settings coming soon.");
+
+            });
+
+        document.getElementById("creditsBtn")
+            ?.addEventListener("click", () => {
+
+                alert("MythicMon\nCreated by Potato Gorf");
+
+            });
+
     }
 
-    const xp =
-    document.getElementById(
-        "player-xp"
-    );
+    static continueGame() {
 
-    if(xp)
-    {
-        xp.textContent =
-        gameData.xp + "/100";
-    }
-}
+        window.location.href =
+            "home.html";
 
-// =====================================
-// RANDOM HELPER
-// =====================================
-
-function randomChoice(array)
-{
-    return array[
-        Math.floor(
-            Math.random() *
-            array.length
-        )
-    ];
-}
-
-// =====================================
-// STARTUP
-// =====================================
-
-window.addEventListener(
-
-    "load",
-
-    function()
-    {
-        loadGame();
-
-        updateCoins();
-
-        updatePlayerInfo();
-
-        checkStarter();
-
-        showCollection();
-
-        console.log(
-            "MythicMon Loaded!"
-        );
     }
 
-);
+    static newGame() {
+
+        this.titleScreen.classList.add("hidden");
+
+        this.profileScreen.classList.remove("hidden");
+
+    }
+
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+
+    GameManager.initialize();
+
+});
